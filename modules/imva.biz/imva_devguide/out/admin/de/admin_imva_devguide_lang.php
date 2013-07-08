@@ -60,8 +60,8 @@ $aLang = array(
 		'IMVA_DEVGUIDE_RV_FAIL'							=>	'Fehler beim Neugenerieren der Datenbankviews.',
 		
 		// Nett sein
-		'IMVA_DEVGUIDE_FOOTER_DONATE1'					=>	'Hat Ihnen dieses Modul schon geholfen? Wie w&auml;re es mit einer',
+		'IMVA_DEVGUIDE_FOOTER_DONATE1'					=>	'Hat Ihnen dieses Modul geholfen? Wie w&auml;re es mit einer ',
 		'IMVA_DEVGUIDE_FOOTER_DONATE2'					=>	'Spende',
-		'IMVA_DEVGUIDE_FOOTER_DONATE3'					=>	'?',
+		'IMVA_DEVGUIDE_FOOTER_DONATE3'					=>	'? ;-)',
 		
 );

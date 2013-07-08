@@ -59,7 +59,7 @@ $aLang = array(
 		'IMVA_DEVGUIDE_RV_FAIL'							=>	'Error rebuilding database views.',
 		
 		// Be nice
-		'IMVA_DEVGUIDE_FOOTER_DONATE1'					=>	'Was this module helpful for you? Maybe you want to consider a',
+		'IMVA_DEVGUIDE_FOOTER_DONATE1'					=>	'Was this module helpful for you? Maybe you want to consider a ',
 		'IMVA_DEVGUIDE_FOOTER_DONATE2'					=>	'donation',
 		'IMVA_DEVGUIDE_FOOTER_DONATE3'					=>	'? ;-)',
 		
