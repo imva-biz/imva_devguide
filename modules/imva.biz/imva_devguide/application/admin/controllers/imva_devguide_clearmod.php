@@ -39,6 +39,7 @@ class imva_devguide_clearmod extends oxAdminView
 	private $_sTemplate = 'imva_devguide_clearmod.tpl';		// Template
 	private $_oConfig2 = null;								// Config object
 	private $_sShopId = 'oxbaseshop';						// The shop ID. Prepared for usage in EE (maybe soon)
+	private $_blIsSuccessful = false;						// Successful?
 	
 	
 	
@@ -66,7 +67,8 @@ class imva_devguide_clearmod extends oxAdminView
 		parent::render();
 		$this->_clearModuleCache();
 		$this->_reviveDevguide();
-		$this->_aViewData['success'] = true;
+		
+		$this->_aViewData['success'] = $this->_blIsSuccessful;
 		
 		return $this->_sTemplate;
 	}
@@ -128,5 +130,8 @@ class imva_devguide_clearmod extends oxAdminView
 		
 		$sSelect = $sSelectHead." ('".$this->genId()."', '".$this->_sShopId."', '', 'aModulePaths', 'aarr', 0x4dba32ab76d7c8ce5252f1dfe4d11b2888ebf17bac57a9cffdfd92e55a416852b8466ac310ced77be57f977af5d49f853804ebb4cc034105d36e7ab74319401135de264a2c12f8d033fc4cd04392c5cd2d9355f79b6c136d7515928f40ebfcece2fea47fce134e3dc1057f87923ec6ed810a3e2c36ca24024add4e61ae27ab0053078efbef626cf7a8d73684f7a8cc66a04b0e95eeee5689b59a48eba585dc4eabc4e987f77c41c57ef6057e512a1230907267d013b15269b513e8b63c970e232a524ded128052d1e2438336f78b9671fdf8ced771ee25e37b38881538d76c40ccfa6c2f55415b8c5cc3588d82916655ca09ae6c6ed197897402c2931d5b10fece6b4d734a50f50faaa5cda655ba9cb88915029a254744d1dcff55f9520e2345810a210386e0282c01d855eab249974e5eeb32cb278b42c64ebe4d18983fde05f701c6f7d2c6d2d8f106cc23f757dd75032f3fcb272ed8c10c9a8921f7d8b98d15e4b86a95fc9661d1dbc87cea3f33b7fcb94e467326c00373c64b4a7d2470d812c09b8167b452c58e38b8c65644e86b995d26cb625f8b3de19e39de2bce9b4a986506b3d0c531061814cd74fa0aa8c70eed919db3a994e4b4eb3728482406e96c7724cf9a8137efa62120080b53923fd2a8db274ecb3a549b4dcd51f8000b110b452067bea207359228aa255c5e035a67326f6f558e7c82762e3b858d726680260d2fee2a79bc2c9fbb63be7e733145ad496aba45c9f6ea3708e804327e8b166735e307f3d7331c2a8b832eb9ac3cff36e504ed80f861eac7b17dce6561ae82a8560afbbccb658c189c562b724eab5a14eb5696214fc1b24cb3adc384609139a91731049cd7600728f439ca5c963f104146017eb189493a6b7e34aba260bf8fdb00a76275e3bfc4af97da6a4cf33cc120e661f98e51909787dceb4c53dd36b87dd5807378fdee83210cca677dc1f521c71bd40cf69c5f120d324580f46f12b0f343a2386d88fe0591f14909624fac5f78f2a90e850bc870409c703e9665637f7de05e81e1eaa5b209b92eae410fc4d90d8eb93dfe1b410f883bce52ba6319dbae84bd892d37664c39e579c6d850d70d2572a8c231b27d2dc3c3491d179abff6af937e378edf5a10e67cb5e3938cdf8f1d1f4548283f174451714aa6969ea141a0632d21e42f5106611ceaa8da582c9359f046114dd6adcbdf0b746d481dba93bb3221c50cdbf5f424c58a7970066d0af24fc56a482f01bc0717c225529f8e2ba7e0c27a2bf352ebbe50518648f5bd66b9f12458e0cabb018156ea2e01b804082c0620ec80ce8c7984c0b25a04d01891cf1f96e2f60d99, '')";
 		oxDb::getDb(true)->execute($sSelect);
+		
+		// Set Success Flag
+		$this->_blIsSuccessful = true;
 	}
 }

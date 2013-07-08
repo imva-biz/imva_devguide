@@ -29,8 +29,8 @@
  * (c) 2012-2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/xxxx-7/4
- * v 0.1
+ * 13/7/5-8
+ * v 0.5
  *
  */
 
@@ -51,7 +51,7 @@ $aModule = array(
 			ein zus&auml;tzliches Men&uuml;. Das Modul hat keinen Einfluss auf den regul&auml;ren Shopbetrieb.</p>',
 	),
 	'thumbnail'		=> 'out/src/imva-Logo-90.png',
-	'version'		=> '0.1',
+	'version'		=> '0.5',
 	'author'		=> 'Johannes Ackermann',
 	'url'			=> 'http://imva.biz',
 	'email' 		=> 'imva@imva.biz',
@@ -81,14 +81,14 @@ $aModule = array(
     		'file'     => 'out/blocks/imva_footer.tpl'
     	),
     	array(
-    			'template' => 'imva_devguide_clearmod.tpl',
-    			'block'    => 'imva_header',
-    			'file'     => 'out/blocks/imva_header.tpl'
+    		'template' => 'imva_devguide_clearmod.tpl',
+    		'block'    => 'imva_header',
+			'file'     => 'out/blocks/imva_header.tpl'
     	),
     	array(
-    			'template' => 'imva_devguide_clearmod.tpl',
-    			'block'    => 'imva_footer',
-    			'file'     => 'out/blocks/imva_footer.tpl'
+    		'template' => 'imva_devguide_clearmod.tpl',
+    		'block'    => 'imva_footer',
+    		'file'     => 'out/blocks/imva_footer.tpl'
     	),
 		array(
     		'template' => 'imva_devguide_cleartemp.tpl',

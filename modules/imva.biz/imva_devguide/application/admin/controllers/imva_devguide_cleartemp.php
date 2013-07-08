@@ -29,15 +29,15 @@
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5
- * v 0.1
+ * 13/7/5-8
+ * v 0.5
  *
  */
 
 class imva_devguide_cleartemp extends oxAdminView
 {
-	private $_sTemplate = 'imva_devguide_cleartemp.tpl';		// Template
-	private $_oSvc = null;
+	private $_sTemplate = 'imva_devguide_cleartemp.tpl';	// Template
+	private $_blIsSuccessful = false;						// Successful?
 	
 	
 	
@@ -49,7 +49,9 @@ class imva_devguide_cleartemp extends oxAdminView
 	{
 		parent::render();		
 		$this->_clearTemp();
-		$this->_aViewConfig['success'] = true;
+		
+		$this->_aViewData['success'] = $this->_blIsSuccessful;
+		
 		return $this->_sTemplate;
 	}
 	
@@ -64,17 +66,42 @@ class imva_devguide_cleartemp extends oxAdminView
 	private function _clearTemp()
 	{
 		// Compile dir
-		$sTempDir = $this->getConfig()->getConfigParam('sCompileDir').'/';
+		$sTempDir = $this->getConfig()->getConfigParam('sCompileDir');
 		
-		// Delete files from temp dir
-		$aFiles = glob($sTempDir);		
-		foreach ($aFiles as $sFile){
-			unlink($sTempDir.$sFile);
+		// tmp
+		$this->_clearDir($sTempDir);
+		
+		// tmp/smarty
+		$this->_clearDir($sTempDir.'/smarty/');
+		
+		// Create new .htaccess
+		$oFile = fopen($sTempDir.'/.htaccess','w');
+		fwrite($oFile,'Deny From All');
+		fclose($oFile);
+		
+		// Set Success Flag
+		$this->_blIsSuccessful = true;
+	}
+	
+	
+	
+	/**
+	 * Clear directory
+	 * 
+	 * @param string
+	 * @return null
+	 */
+	private function _clearDir($sPath)
+	{
+		if (is_dir($sPath)){
+			if ($oDirH = opendir($sPath)){
+				while (($sFile = readdir($oDirH)) !== false){
+					if ($sFile != '.' and $sFile != '..'){ // don't do for . and ..
+						@unlink($sPath.$sFile); // suppress warnings
+					}
+				}
+				closedir($oDirH);
+			}
 		}
-		
-		// Create new .htaccesss
-		$oFileSerice = oxNew('imva_fileservice');
-		$oFileService->load($sTempDir.'.htaccess');
-		$oFileService->writeFile('Deny From All');
 	}
 }

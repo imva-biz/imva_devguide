@@ -34,34 +34,33 @@
  *
  */
 
-$sLangName  = "Deutsch";
+$sLangName  = "English";
 $aLang = array(
 		'charset'										=>	'UTF-8',
 	
 		// Main Views
 		'imva_devguide'									=>	'imva.biz: Developer\'s Guide',
 		'imva_devguide_admin'							=>	'Entwicklungshelfer',
-		'imva_devguide_main'							=>	'Info',
-		'imva_devguide_cleartemp'						=>	'Cache leeren',
-		'imva_devguide_rebuildviews'					=>	'Views neu aufbauen',
-		'imva_devguide_clearmod'						=>	'Module zur&uuml;cksetzen',
+		'imva_devguide_main'							=>	'Information',
+		'imva_devguide_cleartemp'						=>	'Clear cache',
+		'imva_devguide_rebuildviews'					=>	'Rebuild Views',
+		'imva_devguide_clearmod'						=>	'Reset modules',
 		
-		'IMVA_DEVGUIDE_MAIN_INTRO'						=>	'Dieses Modul ermöglicht den schnellen Zugriff auf Funktionen, die Sie als
-															Entwickler häufig brauchen.<br />
-															Bedenken Sie, dass alle Aktionen sofort und ohne Rückfrage ausgeführt
-															werden.',
+		'IMVA_DEVGUIDE_MAIN_INTRO'						=>	'This module enables you to quick-access functions that developers might need
+															often.<br />
+															Be awar that all actions are performed immediately, without any callbacks.',
 		
 		'IMVA_DEVGUIDE_TITLE'							=>	'imva.biz: &quot;Entwicklungshelfer&quot;',
-		'IMVA_DEVGUIDE_CLEARMOD_CLEARED'				=>	'Alle Module wurden zurückgesetzt; das Modul &quot;Entwicklungshelfer&quot; wurde automatisch reaktiviert.',
-		'IMVA_DEVGUIDE_CLEARMOD_FAIL'					=>	'Die Modulkonfiguration konnte nicht zurückgesetzt werden.',
-		'IMVA_DEVGUIDE_CLEARTEMP_CLEARED'				=>	'Der Cache (/tmp/-Verzeichnis) wurde geleert.',
-		'IMVA_DEVGUIDE_CLEARTEMP_FAIL'					=>	'Fehler beim Leeren von /tmp/. Schreibrechte pr&uuml;fen.',
-		'IMVA_DEVGUIDE_RV_CLEARED'						=>	'Die Datenbankviews wurden neu aufgebaut.',
-		'IMVA_DEVGUIDE_RV_FAIL'							=>	'Fehler beim Neugenerieren der Datenbankviews.',
+		'IMVA_DEVGUIDE_CLEARMOD_CLEARED'				=>	'All modules have been reset; the &quot;Entwicklungshelfer&quot; has been re-activated.',
+		'IMVA_DEVGUIDE_CLEARMOD_FAIL'					=>	'Could not reset the module configuration.',
+		'IMVA_DEVGUIDE_CLEARTEMP_CLEARED'				=>	'Cache (/tmp/ directory) has been cleared.',
+		'IMVA_DEVGUIDE_CLEARTEMP_FAIL'					=>	'Error clearing /tmp/. Check the permissions.',
+		'IMVA_DEVGUIDE_RV_CLEARED'						=>	'Database views have been rebuilt.',
+		'IMVA_DEVGUIDE_RV_FAIL'							=>	'Error rebuilding database views.',
 		
-		// Nett sein
-		'IMVA_DEVGUIDE_FOOTER_DONATE1'					=>	'Hat Ihnen dieses Modul schon geholfen? Wie w&auml;re es mit einer',
-		'IMVA_DEVGUIDE_FOOTER_DONATE2'					=>	'Spende',
-		'IMVA_DEVGUIDE_FOOTER_DONATE3'					=>	'?',
+		// Be nice
+		'IMVA_DEVGUIDE_FOOTER_DONATE1'					=>	'Was this module helpful for you? Maybe you want to consider a',
+		'IMVA_DEVGUIDE_FOOTER_DONATE2'					=>	'donation',
+		'IMVA_DEVGUIDE_FOOTER_DONATE3'					=>	'? ;-)',
 		
 );

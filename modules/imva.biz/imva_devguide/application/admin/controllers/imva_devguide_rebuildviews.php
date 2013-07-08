@@ -29,14 +29,15 @@
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5
- * v 0.1
+ * 13/7/5-8
+ * v 0.5
  *
  */
 
 class imva_devguide_rebuildviews extends oxAdminView
 {
-	private $_sTemplate = 'imva_devguide_rebuildviews.tpl';		// Template
+	private $_sTemplate = 'imva_devguide_rebuildviews.tpl';	// Template
+	private $_blIsSuccessful = false;						// Successful?
 	
 	
 	
@@ -47,6 +48,26 @@ class imva_devguide_rebuildviews extends oxAdminView
 	public function render()
 	{
 		parent::render();
+		$this->_rebuildViews();
+		
+		$this->_aViewData['success'] = $this->_blIsSuccessful;
+		
 		return $this->_sTemplate;
+	}
+	
+	
+	
+	/**
+	 * Rebuild Views
+	 * 
+	 * @param null
+	 * @return null
+	 */
+	private function _rebuildViews()
+	{
+        if (oxRegistry::getSession()->getVariable('malladmin')){
+			$oMetaData = oxNew('oxDbMetaDataHandler');
+			$this->_blIsSuccessful = $oMetaData->updateViews();	// Set Success Flag
+        }
 	}
 }
