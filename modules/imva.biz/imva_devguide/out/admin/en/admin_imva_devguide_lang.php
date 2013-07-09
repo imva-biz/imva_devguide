@@ -29,8 +29,8 @@
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-8
- * v 0.5
+ * 13/7/5-9
+ * v 0.6
  *
  */
 
@@ -38,7 +38,7 @@ $sLangName  = "English";
 $aLang = array(
 		'charset'										=>	'UTF-8',
 	
-		// Main Views
+		// Titles
 		'imva_devguide'									=>	'imva.biz: Developer\'s Guide',
 		'imva_devguide_admin'							=>	'Entwicklungshelfer',
 		'imva_devguide_main'							=>	'Information',
@@ -46,19 +46,26 @@ $aLang = array(
 		'imva_devguide_rebuildviews'					=>	'Rebuild Views',
 		'imva_devguide_clearmod'						=>	'Reset modules',
 		
+		// Main View
+		'IMVA_DEVGUIDE_CLEARMOD_ALL'					=>	'... in all subshops',
 		'IMVA_DEVGUIDE_MAIN_INTRO'						=>	'This module enables you to quick-access functions that developers might need
 															often.<br />
-															Be awar that all actions are performed immediately, without any callbacks.',
+															Be aware that all actions are performed immediately and without callback.',
 		
+		// Views
 		'IMVA_DEVGUIDE_TITLE'							=>	'imva.biz: &quot;Entwicklungshelfer&quot;',
-		'IMVA_DEVGUIDE_CLEARMOD_CLEARED'				=>	'All modules have been reset; the &quot;Entwicklungshelfer&quot; has been re-activated.',
+		'IMVA_DEVGUIDE_CLEARMOD_CLEARED'				=>	'All modules have been reset;',
+		'IMVA_DEVGUIDE_CLEARMOD_CLEARALL'				=>	'Reset in all subshops.',
+		'IMVA_DEVGUIDE_CLEARMOD_CLEAREDALL'				=>	'All modules have been reset;',
+		'IMVA_DEVGUIDE_CLEARMOD_RESTORED'				=>	'the &quot;Entwicklungshelfer&quot; module has been re-activated.',
 		'IMVA_DEVGUIDE_CLEARMOD_FAIL'					=>	'Could not reset the module configuration.',
 		'IMVA_DEVGUIDE_CLEARTEMP_CLEARED'				=>	'Cache (/tmp/ directory) has been cleared.',
 		'IMVA_DEVGUIDE_CLEARTEMP_FAIL'					=>	'Error clearing /tmp/. Check the permissions.',
 		'IMVA_DEVGUIDE_RV_CLEARED'						=>	'Database views have been rebuilt.',
 		'IMVA_DEVGUIDE_RV_FAIL'							=>	'Error rebuilding database views.',
 		
-		// Be nice
+		// Footer
+		'IMVA_DEVGUIDE_MANUAL'							=>	'User manual',
 		'IMVA_DEVGUIDE_FOOTER_DONATE1'					=>	'Was this module helpful for you? Maybe you want to consider a ',
 		'IMVA_DEVGUIDE_FOOTER_DONATE2'					=>	'donation',
 		'IMVA_DEVGUIDE_FOOTER_DONATE3'					=>	'? ;-)',

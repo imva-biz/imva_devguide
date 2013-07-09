@@ -29,8 +29,8 @@
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-8
- * v 0.5
+ * 13/7/5-9
+ * v 0.6
  *
  */
 
@@ -38,7 +38,7 @@ $sLangName  = "Deutsch";
 $aLang = array(
 		'charset'										=>	'UTF-8',
 	
-		// Main Views
+		// Titles
 		'imva_devguide'									=>	'imva.biz: Developer\'s Guide',
 		'imva_devguide_admin'							=>	'Entwicklungshelfer',
 		'imva_devguide_main'							=>	'Info',
@@ -46,20 +46,27 @@ $aLang = array(
 		'imva_devguide_rebuildviews'					=>	'Views neu aufbauen',
 		'imva_devguide_clearmod'						=>	'Module zur&uuml;cksetzen',
 		
+		// Main View
+		'IMVA_DEVGUIDE_CLEARMOD_ALL'					=>	'... in allen Subshops',
 		'IMVA_DEVGUIDE_MAIN_INTRO'						=>	'Dieses Modul ermöglicht den schnellen Zugriff auf Funktionen, die Sie als
 															Entwickler häufig brauchen.<br />
 															Bedenken Sie, dass alle Aktionen sofort und ohne Rückfrage ausgeführt
 															werden.',
 		
+		// Views
 		'IMVA_DEVGUIDE_TITLE'							=>	'imva.biz: &quot;Entwicklungshelfer&quot;',
-		'IMVA_DEVGUIDE_CLEARMOD_CLEARED'				=>	'Alle Module wurden zurückgesetzt; das Modul &quot;Entwicklungshelfer&quot; wurde automatisch reaktiviert.',
+		'IMVA_DEVGUIDE_CLEARMOD_CLEARED'				=>	'Alle Module im gew&auml;hlten Shop wurden zurückgesetzt;',
+		'IMVA_DEVGUIDE_CLEARMOD_CLEARALL'				=>	'Auf alle Subshops anwenden.',
+		'IMVA_DEVGUIDE_CLEARMOD_CLEAREDALL'				=>	'Alle Module in allen Shops wurden zurückgesetzt;',
+		'IMVA_DEVGUIDE_CLEARMOD_RESTORED'				=>	'das Modul &quot;Entwicklungshelfer&quot; wurde automatisch reaktiviert.',
 		'IMVA_DEVGUIDE_CLEARMOD_FAIL'					=>	'Die Modulkonfiguration konnte nicht zurückgesetzt werden.',
 		'IMVA_DEVGUIDE_CLEARTEMP_CLEARED'				=>	'Der Cache (/tmp/-Verzeichnis) wurde geleert.',
 		'IMVA_DEVGUIDE_CLEARTEMP_FAIL'					=>	'Fehler beim Leeren von /tmp/. Schreibrechte pr&uuml;fen.',
 		'IMVA_DEVGUIDE_RV_CLEARED'						=>	'Die Datenbankviews wurden neu aufgebaut.',
 		'IMVA_DEVGUIDE_RV_FAIL'							=>	'Fehler beim Neugenerieren der Datenbankviews.',
 		
-		// Nett sein
+		// Footer
+		'IMVA_DEVGUIDE_MANUAL'							=>	'Benutzerhandbuch',
 		'IMVA_DEVGUIDE_FOOTER_DONATE1'					=>	'Hat Ihnen dieses Modul geholfen? Wie w&auml;re es mit einer ',
 		'IMVA_DEVGUIDE_FOOTER_DONATE2'					=>	'Spende',
 		'IMVA_DEVGUIDE_FOOTER_DONATE3'					=>	'? ;-)',

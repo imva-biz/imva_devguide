@@ -29,8 +29,8 @@
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-8
- * v 0.5
+ * 13/7/5-9
+ * v 0.6
  *
  */
 
@@ -65,7 +65,21 @@ class imva_devguide_clearmod extends oxAdminView
 	public function render()
 	{
 		parent::render();
-		$this->_clearModuleCache();
+		
+		// Multishop feature for Enterprise Edition only
+		if ($this->_oConfig2->getEdition() == 'EE'){
+			$this->_aViewData['blIsEE'] = true;
+		}
+		
+		// Call clear function
+		if ($this->_oConfig2->getParameter('shops') == 'all'){
+			$this->_clearModuleCache();
+			$this->_aViewData['allcleared'] = true;
+		}
+		else{
+			$this->_clearModuleCache($this->_sShopId);
+		}
+		
 		$this->_reviveDevguide();
 		
 		$this->_aViewData['success'] = $this->_blIsSuccessful;
@@ -91,13 +105,21 @@ class imva_devguide_clearmod extends oxAdminView
 	/**
 	 * Clear module cache
 	 * Cleans all module configuration entries from the database.
+	 * Use with shop ID to clear only modules for a certain subshop (OXID EE only).
 	 * 
-	 * @param null
+	 * @param string
 	 * @return null
 	 */
-	private function _clearModuleCache()
+	private function _clearModuleCache($sShopId = '')
 	{
-		$sSelect = 'delete from oxconfig where oxvarname in ("aDisabledModules","aLegacyModule","aModuleFiles","aModulePaths","aModules","aModuleTemplates");';		
+		$sSelect = 'delete from oxconfig where oxvarname in ("aDisabledModules","aLegacyModule","aModuleFiles","aModulePaths","aModules","aModuleTemplates")';
+
+		if ($sShopId){
+			$sSelect .= ' and oxshopid = "'.$sShopId.'"';
+		}
+		
+		$sSelect .= ';';
+		
 		oxDb::getDb(true)->execute($sSelect);
 	}
 	

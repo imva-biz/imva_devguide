@@ -29,14 +29,26 @@
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5
- * v 0.1
+ * 13/7/5-9
+ * v 0.6
  *
  */
 
 class imva_devguide_main extends oxAdminView
 {
 	private $_sTemplate = 'imva_devguide_main.tpl';		// Template
+	private $_oConfig2 = null;							// Config object
+	
+	
+	
+	/**
+	 * Construct
+	 */
+	public function __construct()
+	{
+		// Fill config
+		$this->_oConfig2 = $this->getConfig();
+	}
 	
 	
 	
@@ -47,6 +59,12 @@ class imva_devguide_main extends oxAdminView
 	public function render()
 	{
 		parent::render();
+		
+		// Multishop feature for Enterprise Edition only
+		if ($this->_oConfig2->getEdition() == 'EE'){
+			$this->_aViewData['blIsEE'] = true;
+		}
+		
 		return $this->_sTemplate;
 	}
 }
