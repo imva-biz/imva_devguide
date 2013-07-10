@@ -29,8 +29,8 @@
  * (c) 2012-2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/2/8-7/9
- * v 0.6
+ * 13/2/8-7/10
+ * v 0.7
  *
  */
 
@@ -47,11 +47,11 @@ $aModule = array(
 			access to often executed actions.<br />This module extends the shop admin with a new menu and does not affect the
 			regular shop operation.</p>',
 		'de'	=>	'<p>Developer\'s Guide, der &bdquo;Entwicklungshelfer&rdquo; unterst&uuml;tzt Entwickler bei der Arbeit am Shop,
-			indem er h&auml;ufig durchgeführte Aktionen mit nur einem Klick ausführt.<br />Dieses Modul erweitert den Shop-Admin um
+			indem er h&auml;ufig durchgef&uuml;hrte Aktionen mit nur einem Klick ausf&uuml;hrt.<br />Dieses Modul erweitert den Shop-Admin um
 			ein zus&auml;tzliches Men&uuml;. Das Modul hat keinen Einfluss auf den regul&auml;ren Shopbetrieb.</p>',
 	),
 	'thumbnail'		=> 'out/src/imva-Logo-90.png',
-	'version'		=> '0.5',
+	'version'		=> '0.7',
 	'author'		=> 'Johannes Ackermann',
 	'url'			=> 'http://imva.biz',
 	'email' 		=> 'imva@imva.biz',
