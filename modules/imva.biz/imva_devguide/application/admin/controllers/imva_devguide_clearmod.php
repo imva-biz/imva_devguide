@@ -29,8 +29,8 @@
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-10
- * v 0.7
+ * 13/7/5-15
+ * v 0.7.1
  *
  */
 
@@ -72,7 +72,7 @@ class imva_devguide_clearmod extends oxAdminView
 		}
 		
 		// Call clear function
-		if ($this->_oConfig2->getParameter('shops') == 'all'){
+		if ($this->_oConfig2->getRequestParameter('shops') == 'all'){
 			$this->_clearModuleCache();
 			$this->_aViewData['allcleared'] = true;
 		}

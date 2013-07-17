@@ -75,7 +75,7 @@ class imva_devguide_cleartemp extends oxAdminView
 		$this->_clearDir($sTempDir.'/smarty/');
 		
 		// Create new .htaccess
-		$oFile = fopen($sTempDir.'/.htaccess','w');
+		$oFile = fopen($sTempDir.'/.htaccess','w+');
 		fwrite($oFile,'Deny From All');
 		fclose($oFile);
 		
