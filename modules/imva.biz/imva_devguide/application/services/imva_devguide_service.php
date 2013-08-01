@@ -2,7 +2,6 @@
 
 /**
  * imva.biz Developer's Guide
- * Main Class
  * 
  * 
  * 
@@ -52,35 +51,86 @@
  *
  */
 
-class imva_devguide_main extends oxAdminView
+class imva_devguide_service extends oxbase
 {
-	private $_sTemplate			=	'imva_devguide_main.tpl';		// Template
-	public $oServ				=	null;							// Devguide Service
+	public $sModuleVersion = '';		// Module Version (for template)
+	public $oConf = null;				// oxconfig
 	
 	
 	
 	/**
 	 * Construct
-	 *
-	 * Provice Service.
+	 * 
 	 * @param null
 	 * @return null
 	 */
 	public function __construct()
 	{
 		parent::__construct();
-		$this->oServ = oxNew('imva_devguide_service');				// Service
+		
+		$this->oConf = $this->getConfig();
+		
+		// Get the module version
+		$oTmpModuleObj = oxNew('oxmodule');
+		$oTmpModuleObj->load('imva_devguide');
+		$this->sModuleVersion = $oTmpModuleObj->getInfo('version');
+	}
+
+	
+	
+	/**
+	 * A small configuration getter, returns the configuration value of the module setting(s).
+	 * 
+	 * @param null
+	 * @return boolean
+	 */
+	public function askMe()
+	{
+		$blReturn = $this->oConf->getConfigParam('imva_devguide_requestonaction');
+		return $blReturn;
 	}
 	
 	
 	
 	/**
-	 * Render
+	 * CONFIG/POST/GET/REQUEST parameter getter
+	 * 
+	 * @param string
 	 * @return string
-	 */	
-	public function render()
+	 */
+	public function getP($sString = '')
 	{
-		parent::render();		
-		return $this->_sTemplate;
+		return $this->oConf->getRequestParameter($sString);
+	}
+	
+	
+	
+	/**
+	 * Name of the current class
+	 * For use with forms.
+	 * 
+	 * @param null
+	 * @return string
+	 */
+	public function getCurrentCl()
+	{
+		return oxConfig::getInstance()->getActiveView()->getClassName();
+	}
+	
+	
+	
+	/**
+	 * Shop edition
+	 * Multishop feature for Enterprise Edition only
+	 * 
+	 * @param null
+	 * @return string
+	 */
+	public function isEE()
+	{
+		if (oxConfig::getInstance()->getActiveShop()->oxshops__oxedition->value == 'EE'){
+			return true;
+		}
+		return false;
 	}
 }

@@ -40,39 +40,42 @@
  *
  *
  *
- * (EULA-13/7)
+ * (EULA-13/7-OS)
  * 
  * 
  *
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-17
- * v 0.7.2
+ * 13/7/5-8/1
+ * v 0.8
  *
  */
 
 class imva_devguide_clearmod extends oxAdminView
 {
-	private $_sTemplate = 'imva_devguide_clearmod.tpl';		// Template
-	private $_oConfig2 = null;								// Config object
-	private $_sShopId = 'oxbaseshop';						// The shop ID. Prepared for usage in EE (maybe soon)
-	private $_blIsSuccessful = false;						// Successful?
+	private $_sTemplate	=	'imva_devguide_clearmod.tpl';			// Template
+	private $_sShopId	=	'oxbaseshop';							// The shop ID. Prepared for usage in EE (maybe soon)
+	public $blSuccess	=	false;									// Successful?
+	public $blFail		=	false;									// Failure
+	public $blAllcleared=	false;									// Status
+	public $oServ		=	null;									// Devguide Service
 	
 	
 	
 	/**
 	 * Construct
+	 * 
+	 * Provice Service.
+	 * @param null
+	 * @return null
 	 */
 	public function __construct()
 	{
-		// Fill config
-		$this->_oConfig2 = $this->getConfig();
-		
-		// Fill shop ID
-		$this->_sShopId = $this->_oConfig2->getActiveShop()->getId();
+		parent::__construct();
+		$this->oServ = oxNew('imva_devguide_service');					// Service
+		$this->_sShopId = $this->getConfig()->getActiveShop()->getId();	// Fill (sub)-shop ID
 	}
-	
 	
 	
 	
@@ -84,23 +87,26 @@ class imva_devguide_clearmod extends oxAdminView
 	{
 		parent::render();
 		
-		// Multishop feature for Enterprise Edition only
-		if ($this->_oConfig2->getEdition() == 'EE'){
-			$this->_aViewData['blIsEE'] = true; // TODO
+		// Determine, whether dialogues are enabled and confirmed OR not enabled
+		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm')) or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null)){
+			
+			$this->blSuccess = false;
+			
+			// Call clear function
+			if ($this->oServ->getP('shops') == 'all'){
+				$this->_clearModuleCache();
+				$this->blAllcleared = true;
+			}
+			else{
+				$this->_clearModuleCache($this->_sShopId);
+			}
+			
+			$this->_reviveDevguide();
 		}
 		
-		// Call clear function
-		if ($this->_oConfig2->getRequestParameter('shops') == 'all'){
-			$this->_clearModuleCache();
-			$this->_aViewData['allcleared'] = true;
+		if ($this->blSuccess and $this->blFail){
+			echo 'ERROR_PARADOX';
 		}
-		else{
-			$this->_clearModuleCache($this->_sShopId);
-		}
-		
-		$this->_reviveDevguide();
-		
-		$this->_aViewData['success'] = $this->_blIsSuccessful;
 		
 		return $this->_sTemplate;
 	}
@@ -156,7 +162,7 @@ class imva_devguide_clearmod extends oxAdminView
 	
 	
 	/**
-	 * Revives the Devguide Module by updateing the database
+	 * Revives the Devguide Module by updating the database
 	 * 
 	 * @param null
 	 * @return null
@@ -169,19 +175,22 @@ class imva_devguide_clearmod extends oxAdminView
 		$sSelect = "('".$this->genId()."', '".$this->_sShopId."', '', 'aModules', 'aarr', 0x4dbaeb2d768d, '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
-		$sSelect = "('".$this->genId()."', '".$this->_sShopId."', '', 'aModuleFiles', 'aarr', 0x4dba322c774f5434e31d93d69a8ad6f167b2af82484a81f5989301e2c05c93c8b81e2f03029a5162e85110e079b45cef0359a67e7b1679e5ba4233720e67ac889140d8ca6db3af0ac5e1a81e17ad1fe25e627c88a2adce906b4eed424233147d57cb315a5f86dbc843379874afdac2b269cd76506764de393b3d5fd478fd709aea2aa8d8dc0ea39b7e3746f487d8bc16d03b7ee59e9e3413ec03bf5d1273090fea5ceb4a3e37dab130b84b306f695072d2302592431939c270976d72dbbc4887f2cadf8703d2e0b18aa85822721ec5cba8799a685bdea03b1bea42721c3483f9aff430a8d1d91a4938cf6dade63fad808e164cad39f1736197f70591c1b36d7326e5cc3a201b98db96a8750a2cd142c9367b2ca0465217aa008be0dd64f4040c69c4c0d0aa61e2b6c968e4dae72fbff7d077ecc5e090f2b9b99a79d65e1a545b8913000a1d08c2a946798c99e8df44ab9626acb08c08a30a61d5ce6c6816ae1e8ee9d8b07a37e3e5f296d070866145c929495551011898ce9f9635deb5d6e2263333846a61e3ebd4dd7e1cbc774d78e9a394bcc01219ea41296383f064a3a236a6ffa65d19340617ce103e667a34fe6b109b2c08b6ccce70f1bba722c56cab5a51184037aa5b7eb5e1afdba74a3265c6ec7eb6ed55dc45af68b8db0a5fff41004bf804400c62a16d859c70a850baff570ebaa3d165d276, '');";
+		$sSelect = "('".$this->genId()."', '".$this->_sShopId."', '', 'aModuleFiles', 'aarr', 0x4dba322c774f5434e31d93d69a8ad6f167b2af82484a81f5989301e2665d92c9b9aeaa0809915a69e35a1beb72bf57e40852ad3afe3193e109b6418c78226be107ec14781e20d88b893749d2b734a56eb2c184680de313668086025b8d38fd5c4985424bb7358ba114953c706935cf5ec5388d794019fa711e60022b013a3650cdfe5b0b21961d31e5216e2070cc8b2718c9ec1b597ae6a111a501ac1aaae03c421bb8793f2bb18362ef04b10709e62fac9198f6b11b6ede49004b0978da05d0c59dc0805b7b663f3ce40035549831d25e3b7a50013b9ec74843a11cef1b721e416b4368e84e3c329ba920e28b292ce8fc92bdba20fc1e3e142c6bd530cf6cb3363cc99486f6a6f5426c1b1e413ee3f4595915dfd998fb98b5f8f3797ac452cf8b9a86896091724a0c8e2680316284c20570e35bb6caf9cc4b80cd954400f0428d09a876b14072cbb7a4df22d76a4b4b94c16dc2056d7dcd9344f559a54037437af3b58bb80c7d0c767995852d2f6baecee0ae4e4aaae3f3e07e996df3b8cd7a91e04368402fc4b9a91f9fe14701c744b67209e45fc720db2f2dd568e2cce25e2dc5c1e2718f64d502d5e2a46a87ae280e39829de525c3af46ea0d7360d90608e5096847b6f3d2192d1453d890864efa9858e8a20fda3b2deae101dd809d1bce34c1dd153f2f706fcd6f23351b0d788367eb66a557c33dbd29eb074d9f8180cee3fd2045bf3bee68f75b9203f427398cb22491ee048ea7e500c27589127191ee59c0c99ba42c6bc71c537e36f730861f311fa99429b5d48d2b5350f7c484b9b60fcb1421fba95a20e98308c63cbf237dc1d69fe9b767cf2d01d132df46687fa488, '');";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		$sSelect = "('".$this->genId()."', '".$this->_sShopId."', '', 'aLegacyModules', 'aarr', 0x307865386533, '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
-		$sSelect = "('".$this->genId()."', '".$this->_sShopId."', '', 'aDisabledModules', 'arr', 0x4dba32cb77d662d5907531ebe71f65fccc2e26c25a152ab2d798ebb1d049bd0176a5f25837a5f9620cc1773d3273fcf7b2fa24e875e28efaeafc117f3cad83c721a456add2ba2478032c73ce1279d9a7c63cec83e41bed55f044adbae21d17616005fe3fa8cc793b72885245a91909e3407b9a1ed88b59b86a0e01cab49c36358479515274a661392e00398d47417c35a30b923e57156f2ab85d7a355dd55e5e1a031c2d94dce1cd7e6f93c5f5981d51fb8e4366d1846cb226e7a453cb1950e9cc92c51567fe8a46064e5c74fdc9798f14749dc2592f4d18c1109f70198677ca17d62579ea168fcc6399437b78b66efeea1f415ac0868d5c1441a56171511d39380ceba55d8d32077847445a0c13f4728b50eefd06790ce8ede1815112390ebde281adbe1e5c73c991dbc0d0d92accec778b5e5b13a484581ce930b7855380ad612fdff5388d1b68d01ab20e7cae2d763233f5a1f768adb4795e9154824e871789135a6bfb5f6bcc36cf506a0df90993c58577cc864ad9bbeae34062c6a5721eafa97568714617d48798ee792a6e3c608a0cef671137a988678957f377a68b9716036d4850bc583b74053e606a7a88e0cc575d41ead9ac68de0a17425fee884214f855c732a168a4a1bd7014e880cf935f6881d033f2d84d13039ba881d0be6d5d365314cdd17440ec53b2827c60, '')";
+		$sSelect = "('".$this->genId()."', '".$this->_sShopId."', '', 'aDisabledModules', 'arr', 0x4dba32cb77d662d5907531ebe71f65fccc2e26c25a152ab2d798ebb1d049bd0176a5f25837a5f9620cc1773d3273fcf7b2fa24e875e28efaeafc117f3cad83c721a456add2ba2478b22971cc107bdba5c41fd86eafb31c2930a31b889e7ac751dcbc833bcd87c5e76fdf3d25df52e574ef12a7f1fdcc2907c6261d44e5667d24cded31cbd629e568003484e6f279bc138dcb9f58622a8948b79928cc158d27c1719185a2108d8748a2fa26709fca1be0a659e73529cde4cebb8e85cd449d0134f3a36fba9d6144a6137e311aebdfcd8e387370a90a73ba5e00590b10c10d55eba43f173c2ce2968bca5178baaca52b05b074290736c1c7488b2a65de113c2d8326222a0f446ed76472b15b8742ac6255beea3af05dadbecef97eea91ad59638d589f837fb445902cf2d136cf0464c27953bd568fc7fe51ebe2fdafdc45ece0c05195c1dbf927028b3579b8f86373637ea616c2ae230df462c91285cbe98e3877e423e075d59ec1d5d52a3360fbe6d4dd861655fcc59ebae33d520b7659ceb2a1cfc445d26f68d67e9e7b0b1a209823bdc4e97d4420d37da03859e1f46339e057a9630078eaa276fade1cdd8509707eff1119f2d0caeb01bc5054c6f5fffa1729d44735aa021b768a601769f70de3c56540b5cf1fa3d3eb81c7c7c67a3588a9f1353c5d20290567031aaaa89e6bb17b25cc2e, '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		$sSelect = "('".$this->genId()."', '".$this->_sShopId."', '', 'aModuleTemplates', 'aarr', 0x4dba322c774f5434e31d93d69a8ad6f167b2af82484a81f5989301e2c05c93c8b8af1a0a0b93586be15819e970bd55e60a50af77721f70a6aa501e8fdfbb8449478112c74946191d0f1229990863c3bddc846166075d0523df036c192b71492cc4d3faf9b1d55a9f4fdd973d2169dd61d8ffd2f7dc0638d743cee7839f0670cb39cb1341d4010528a0c0b1990364ad6aecd5c1837c7448e450505ca21626d53d03dbd024a3cb39f1d8f5fe1f683ec845a292d6b8ff55327a2ea78281f112eeb7493ac028b09ae1707a9fa7d694c1230b5d6835f015eaffcc5153a085034efe58ecebafbd1e8e9cdd2f05c3f840d20d52e329f375da5deb1521bc1b977790fd0a9d7ba618bb961e88143866c48680e02092ad459bfd8e04a6264eaecb3a444c44218c7fb2e922a1f58a2ba799a46cfcb49334af86a3d3b1fafad93a951d591718ca5043495e4b81ea053acfdaab9c07eb23247c7560064ca5972de4481631e538d0b7248ee70306eed8787a855945a280d2f9af81abf7fcc4341ba18dd6b6c15f137fa53338180b167eb42d865cb9fb107678e239e64e70ad9e4e86690797d19756d61912118f5b2422e017cbdf0746980c379c43b40e3d440d4c42fe20af5d48fd830d00f6af370cf619a219085b267b693fa66584486467d096dc5dc5b47f3e2fdd9168092ae327d36bd6f9071b64, '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
-		$sSelect = "('".$this->genId()."', '".$this->_sShopId."', '', 'aModulePaths', 'aarr', 0x4dba32ab76d7c8ce5252f1dfe4d11b2888ebf17bac57a9cffdfd92e55a416852b8466ac310ced77be57f977af5d49f853804ebb4cc034105d36e7ab74319401135de264a2c12f8d033fc4cd04392c5cd2d9355f79b6c136d7515928f40ebfcece2fea47fce134e3dc1057f87923ec6ed810a3e2c36ca24024add4e61ae27ab0053078efbef626cf7a8d73684f7a8cc66a04b0e95eeee5689b59a48eba585dc4eabc4e987f77c41c57ef6057e512a1230907267d013b15269b513e8b63c970e232a524ded128052d1e2438336f78b9671fdf8ced771ee25e37b38881538d76c40ccfa6c2f55415b8c5cc3588d82916655ca09ae6c6ed197897402c2931d5b10fece6b4d734a50f50faaa5cda655ba9cb88915029a254744d1dcff55f9520e2345810a210386e0282c01d855eab249974e5eeb32cb278b42c64ebe4d18983fde05f701c6f7d2c6d2d8f106cc23f757dd75032f3fcb272ed8c10c9a8921f7d8b98d15e4b86a95fc9661d1dbc87cea3f33b7fcb94e467326c00373c64b4a7d2470d812c09b8167b452c58e38b8c65644e86b995d26cb625f8b3de19e39de2bce9b4a986506b3d0c531061814cd74fa0aa8c70eed919db3a994e4b4eb3728482406e96c7724cf9a8137efa62120080b53923fd2a8db274ecb3a549b4dcd51f8000b110b452067bea207359228aa255c5e035a67326f6f558e7c82762e3b858d726680260d2fee2a79bc2c9fbb63be7e733145ad496aba45c9f6ea3708e804327e8b166735e307f3d7331c2a8b832eb9ac3cff36e504ed80f861eac7b17dce6561ae82a8560afbbccb658c189c562b724eab5a14eb5696214fc1b24cb3adc384609139a91731049cd7600728f439ca5c963f104146017eb189493a6b7e34aba260bf8fdb00a76275e3bfc4af97da6a4cf33cc120e661f98e51909787dceb4c53dd36b87dd5807378fdee83210cca677dc1f521c71bd40cf69c5f120d324580f46f12b0f343a2386d88fe0591f14909624fac5f78f2a90e850bc870409c703e9665637f7de05e81e1eaa5b209b92eae410fc4d90d8eb93dfe1b410f883bce52ba6319dbae84bd892d37664c39e579c6d850d70d2572a8c231b27d2dc3c3491d179abff6af937e378edf5a10e67cb5e3938cdf8f1d1f4548283f174451714aa6969ea141a0632d21e42f5106611ceaa8da582c9359f046114dd6adcbdf0b746d481dba93bb3221c50cdbf5f424c58a7970066d0af24fc56a482f01bc0717c225529f8e2ba7e0c27a2bf352ebbe50518648f5bd66b9f12458e0cabb018156ea2e01b804082c0620ec80ce8c7984c0b25a04d01891cf1f96e2f60d99, '')";
+		$sSelect = "('".$this->genId()."', '".$this->_sShopId."', '', 'aModulePaths', 'aarr', 0x4dba32ab76d7c8ce5252f1dfe4d11b2888ebf17bac57a9cffdfd92e55a416852b8466ac310ced77be57f977af5d49f853804ebb4cc034105d36e7ab74319401135de264a2c12f8d033fc4cd04392c5cd2d9355f79b6c136d7515928f40ebfcece2fea47fce134e3dc1057f87923ec6ed810a3e2c36ca24024a6c4b63ac25a9025105adcf0229c406d417d1326ecefc9a5dce77133cfd1d1c10ee31df91b1e868d74ecbcd597d9f613e586bdda320105a5c1101582efa9009ce989dd6be93f6c819425b02c7358b93b65b05996df9b3dc04c0bc85665af238a1a33073cb0502b1f201ad8e98171b928d06dad765851e2aab89204c1cc53fd1d33857c1c78977703011be05be5dfdb80c08b5a6b967d0c3b06647c5db54dea7a4c129124c2a6b25f8cf14c96042bd3b156d77b9d1fc41ad30dee30ea6852cb331e938d1a1f9971bed53f237fadf6c234cd3963742758e16b6f9dca512ff1d4002453859a7aa77b3d409694ee3166b7f49325556588e6454b9333e8a4fe58cd969947f8a553dce23e7a4a06b9aaaca2c13120a7701a7ade1e9911a083c3215a634c2d25e61af5acb15c52bbb27842539c44ab6910d3eda09302cd9f5a9fba0249cf289d306fad03c309ca485fb40b662060c28ff4a47ade38c64bbdb71f3d6ccf408816fb25b38142704326b16f1f2658623e680c0153c628baa002a19b036d9452b17c49f7eced3d35d3be5666d7d6cab2ae66f56ad1a15c0965493a6c311d70cdc786e55d95fe856f227291747b7cc0354707ed473029762a38e40f0895ec2add6da1a9b50699f87b39b7e6de3bba748f189155bada1bd29d082064b996565b1816904a93601bd793eeef7ccbabf3940a07f40f1e64e2f692cd7da66747bfe7552633a27b19751f050cabd4bca5cce48aae1bedc99ec64f61a523c487dc107030cc293a08d5b6743bdd435f2509ef21e24a0b7d81709120204f95c67198e3ad31915ed2b513b53f9a49f03b918949e3320b23da08e8742e87679275af8981d9fa2186ad0efce0f0cdf76eb7a4874493d7b36845d9e41082550926d93c47f266b31296f81b789b193276d7318f4a6668375fd16f18f245d48ad96aa65f4f780b3b276357da71c2655a6bd2ea564cb9537546bc8c3e100b134fc4faf1504c3d43b06ea756fa861828990bda534068ef531713596b20c6a19f480372e65bcda6b0cf242ad523548023ee3091b278b982b1aec6973973b56de6225d2cb9ad7367dc53f50b5d64fa7f454b0afa5159b06ad34fd21f777ddd7711823dc6f90d291916b616c8cf18b5d342f215123458b705724f7586d8272e8a2962395c587c29fd87aad1f35410569, '')";
+		oxDb::getDb(true)->execute($sSelectHead.$sSelect);		
+
+		$sSelect = "('".$this->genId()."', '".$this->_sShopId."', '', 'aModuleVersions', 'aarr', 0x4dba322c774f5434e31d93d69a8ad6f167b2af82484a81f5989364f09949ef729882287d75, '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		
@@ -193,13 +202,21 @@ class imva_devguide_clearmod extends oxAdminView
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_header', '1', 'out/blocks/imva_header.tpl', 'imva_devguide', '')";
-		oxDb::getDb(true)->execute($sSelectHead.$sSelect);		
+		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
+		
+		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_confirm', '1', 'out/blocks/dialogue.tpl', 'imva_devguide', '')";
+		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
+		
 		
 		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_clearmod.tpl', 'imva_footer', '1', 'out/blocks/imva_footer.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_clearmod.tpl', 'imva_header', '1', 'out/blocks/imva_header.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
+
+		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_confirm', '1', 'out/blocks/dialogue.tpl', 'imva_devguide', '')";
+		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
+		
 		
 		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_main.tpl', 'imva_footer', '1', 'out/blocks/imva_footer.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
@@ -207,14 +224,17 @@ class imva_devguide_clearmod extends oxAdminView
 		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_main.tpl', 'imva_header', '1', 'out/blocks/imva_header.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
+		
 		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_footer', '1', 'out/blocks/imva_footer.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_header', '1', 'out/blocks/imva_header.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
+		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_confirm', '1', 'out/blocks/dialogue.tpl', 'imva_devguide', '')";
+		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		// Set Success Flag
-		$this->_blIsSuccessful = true;
+		$this->blSuccess = true;
 	}
 }

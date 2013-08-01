@@ -1,7 +1,7 @@
 <?php
 
 /**
- * IMVA Developer's Guide
+ * imva.biz Developer's Guide
  * 
  * 
  * 
@@ -46,8 +46,8 @@
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-9
- * v 0.6
+ * 13/7/5-8/1
+ * v 0.8
  *
  */
 
@@ -63,11 +63,25 @@ $aLang = array(
 		'imva_devguide_rebuildviews'					=>	'Rebuild Views',
 		'imva_devguide_clearmod'						=>	'Reset modules',
 		
+		// Configuration
+		'SHOP_MODULE_GROUP_imva_devguide_behaviour'		=>	'Behaviour',
+		'SHOP_MODULE_imva_devguide_requestonaction'		=>	'Ask me before running a task',
+		'SHOP_MODULE_GROUP_imva_devguide_logging'		=>	'Logging',
+		'SHOP_MODULE_imva_devguide_enablelogging'		=>	'Log events and actions',
+		
+		// Dialogue
+		'IMVA_DEVGUIDE_CONFIRM'							=>	'Are you sure?',
+		'IMVA_DEVGUIDE_CONFIRM_YES'						=>	'Yes',
+		
 		// Main View
 		'IMVA_DEVGUIDE_CLEARMOD_ALL'					=>	'... in all subshops',
-		'IMVA_DEVGUIDE_MAIN_INTRO'						=>	'This module enables you to quick-access functions that developers might need
-															often.<br />
-															Be aware that all actions are performed immediately and without callback.',
+		'IMVA_DEVGUIDE_MAIN_INTRO'						=>	'This module gives you quick access to functions that developers
+															might need often.',
+		'IMVA_DEVGUIDE_MAIN_NODIALOGUE'					=>	'Be aware that all actions are performed immediately and without callback.',
+		'IMVA_DEVGUIDE_MAIN_WITHDIALOGUE'				=>	'All actions have to be confirmed.',
+		'IMVA_DEVGUIDE_MAIN_BEHAVIOUR'					=>	'In order to change this behaviour, open
+															<i>Extensions&rarr;Modules&rarr;Settings</i>
+															and change the option',
 		
 		// Views
 		'IMVA_DEVGUIDE_TITLE'							=>	'imva.biz: &quot;Entwicklungshelfer&quot;',

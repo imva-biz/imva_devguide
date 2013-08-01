@@ -1,7 +1,7 @@
 <?php
 
 /**
- * IMVA Developer's Guide
+ * imva.biz Developer's Guide
  * 
  * 
  * 
@@ -46,8 +46,8 @@
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-9
- * v 0.6
+ * 13/7/5-8/1
+ * v 0.8
  *
  */
 
@@ -63,12 +63,26 @@ $aLang = array(
 		'imva_devguide_rebuildviews'					=>	'Views neu aufbauen',
 		'imva_devguide_clearmod'						=>	'Module zur&uuml;cksetzen',
 		
+		// Configuration
+		'SHOP_MODULE_GROUP_imva_devguide_behaviour'		=>	'Verhalten',
+		'SHOP_MODULE_imva_devguide_requestonaction'		=>	'Vor dem Durchf&uuml;hren einer Aktion fragen',
+		'SHOP_MODULE_GROUP_imva_devguide_logging'		=>	'Aufzeichnen',
+		'SHOP_MODULE_imva_devguide_enablelogging'		=>	'Durchgef&uuml;hrte Aktionen und Ereignisse aufzeichnen',
+		
+		// Dialogue
+		'IMVA_DEVGUIDE_CONFIRM'							=>	'Sind Sie sicher?',
+		'IMVA_DEVGUIDE_CONFIRM_YES'						=>	'Ja',
+		
 		// Main View
 		'IMVA_DEVGUIDE_CLEARMOD_ALL'					=>	'... in allen Subshops',
 		'IMVA_DEVGUIDE_MAIN_INTRO'						=>	'Dieses Modul ermöglicht den schnellen Zugriff auf Funktionen, die Sie als
-															Entwickler häufig brauchen.<br />
-															Bedenken Sie, dass alle Aktionen sofort und ohne Rückfrage ausgeführt
+															Entwickler häufig brauchen.',
+		'IMVA_DEVGUIDE_MAIN_NODIALOGUE'					=>	'Bedenken Sie, dass alle Aktionen sofort und ohne Rückfrage ausgeführt
 															werden.',
+		'IMVA_DEVGUIDE_MAIN_WITHDIALOGUE'				=>	'Bevor eine Aktion durchgef&uuml;hrt wird, wird eine R&uuml;ckfrage angezeigt.',
+		'IMVA_DEVGUIDE_MAIN_BEHAVIOUR'					=>	'Um dieses Verhalten zu &auml;ndern, &ouml;ffnen Sie
+															<i>Erweiterungen&rarr;Module&rarr;Einstellungen</i>
+															und &auml;ndern Sie die Einstellung',
 		
 		// Views
 		'IMVA_DEVGUIDE_TITLE'							=>	'imva.biz: &quot;Entwicklungshelfer&quot;',

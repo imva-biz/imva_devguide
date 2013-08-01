@@ -40,22 +40,39 @@
  *
  *
  *
- * (EULA-13/7)
+ * (EULA-13/7-OS)
  * 
  * 
  *
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-8
- * v 0.5
+ * 13/7/5-31
+ * v 0.8
  *
  */
 
 class imva_devguide_rebuildviews extends oxAdminView
 {
-	private $_sTemplate = 'imva_devguide_rebuildviews.tpl';	// Template
-	private $_blIsSuccessful = false;						// Successful?
+	private $_sTemplate	=	'imva_devguide_rebuildviews.tpl';	// Template
+	public $blSuccess	=	false;							// Successful?
+	public $blFail		=	false;							// Failure
+	public $oServ		=	null;							// Devguide Service
+	
+	
+	
+	/**
+	 * Construct
+	 *
+	 * Provice Service.
+	 * @param null
+	 * @return null
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->oServ = oxNew('imva_devguide_service');				// Service
+	}
 	
 	
 	
@@ -66,9 +83,15 @@ class imva_devguide_rebuildviews extends oxAdminView
 	public function render()
 	{
 		parent::render();
-		$this->_rebuildViews();
 		
-		$this->_aViewData['success'] = $this->_blIsSuccessful;
+		// Determine, whether dialogues are enabled and confirmed OR not enabled
+		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm')) or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null)){
+			$this->_rebuildViews();
+		}
+
+		if ($this->blSuccess and $this->blFail){
+			echo 'ERROR_PARADOX';
+		}
 		
 		return $this->_sTemplate;
 	}
@@ -85,7 +108,9 @@ class imva_devguide_rebuildviews extends oxAdminView
 	{
         if (oxRegistry::getSession()->getVariable('malladmin')){
 			$oMetaData = oxNew('oxDbMetaDataHandler');
-			$this->_blIsSuccessful = $oMetaData->updateViews();	// Set Success Flag
+			$this->blSuccess = $oMetaData->updateViews();	// Set Success Flag
+        }else{
+        	$this->blFail = true;							// On failure
         }
 	}
 }

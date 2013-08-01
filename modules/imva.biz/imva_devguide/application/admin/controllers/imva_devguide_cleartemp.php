@@ -40,35 +40,60 @@
  *
  *
  *
- * (EULA-13/7)
+ * (EULA-13/7-OS)
  * 
  * 
  *
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-19
- * v 0.5
+ * 13/7/5-31
+ * v 0.8
  *
  */
 
 class imva_devguide_cleartemp extends oxAdminView
 {
-	private $_sTemplate = 'imva_devguide_cleartemp.tpl';	// Template
-	private $_blIsSuccessful = false;						// Successful?
+	private $_sTemplate	=	'imva_devguide_cleartemp.tpl';	// Template
+	public $blSuccess	=	false;							// Successful?
+	public $blFail		=	false;							// Failure
+	public $oServ		=	null;							// Devguide Service
+	
+	
+	
+	/**
+	 * Construct
+	 * 
+	 * Provice Service.
+	 * @param null
+	 * @return null
+	 */
+	public function __construct()
+	{
+		parent::__construct();		
+		$this->oServ = oxNew('imva_devguide_service');				// Service
+	}
 	
 	
 	
 	/**
 	 * Render
+	 * 
+	 * @param null
 	 * @return string
 	 */	
 	public function render()
 	{
-		parent::render();		
-		$this->_clearTemp();
+		parent::render();
 		
-		$this->_aViewData['success'] = $this->_blIsSuccessful;
+		// Determine, whether dialogues are enabled and confirmed OR not enabled
+		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm')) or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null)){			
+			$this->_clearTemp();
+		}
+		
+		if ($this->blSuccess and $this->blFail){
+			echo 'ERROR_PARADOX';
+		}
 		
 		return $this->_sTemplate;
 	}
@@ -98,7 +123,7 @@ class imva_devguide_cleartemp extends oxAdminView
 		fclose($oFile);
 		
 		// Set Success Flag
-		$this->_blIsSuccessful = true;
+		$this->blSuccess = true;
 	}
 	
 	
@@ -120,6 +145,9 @@ class imva_devguide_cleartemp extends oxAdminView
 				}
 				closedir($oDirH);
 			}
+		}
+		else{
+			$this->blFail = true;
 		}
 	}
 }

@@ -16,7 +16,17 @@ The available features will appear in the admin menu on the left hand side. If t
 
 Description and user manual
 
-Available at http://www.ackis-oxid.de/2013/entwicklungshelfer-fr-oxid-entwickler-developers-guide/
+Available at http://www.ackis-oxid.de/2013/entwicklungshelfer-fr-oxid-entwickler-developers-guide/ .
+
+
+
+Updating to Version 0.8
+
+Before updating to Version 0.8 of the module, delete the directory modules/imva.biz/imva_devguide.
+Log in to the admin and go to Extensions -> Modules. When asked if you want to delete the module configuration, accept.
+Copy the new module files to the modules directory and activate the module again.
+
+If problems occur, please follow the steps described in http://www.ackis-oxid.de/2013/module-kann-nicht-aktiviert-werden-in-oxid-eshop-beheben-modulkonfiguration-zurcksetzen/ .
 
 
 

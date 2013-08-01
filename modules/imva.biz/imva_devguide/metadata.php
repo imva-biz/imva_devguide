@@ -1,7 +1,7 @@
 <?php
 
 /**
- * IMVA Devloper's Guide
+ * imva.biz Devloper's Guide
  *
  *
  *
@@ -46,8 +46,8 @@
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/2/8-7/19
- * v 0.7.1
+ * 13/2/8-8/1
+ * v 0.8
  *
  */
 
@@ -68,13 +68,14 @@ $aModule = array(
 			ein zus&auml;tzliches Men&uuml;. Das Modul hat keinen Einfluss auf den regul&auml;ren Shopbetrieb.</p>',
 	),
 	'thumbnail'		=> 'out/src/imva-Logo-90.png',
-	'version'		=> '0.7.1',
+	'version'		=> '0.8',
 	'author'		=> 'Johannes Ackermann',
 	'url'			=> 'http://imva.biz',
 	'email' 		=> 'imva@imva.biz',
 	'extend'		=> array(
 	),
 	'files' => array(
+		'imva_devguide_service'				=>	'imva.biz/imva_devguide/application/services/imva_devguide_service.php',
 		'imva_devguide_main'				=>	'imva.biz/imva_devguide/application/admin/controllers/imva_devguide_main.php',
 		'imva_devguide_clearmod'			=>	'imva.biz/imva_devguide/application/admin/controllers/imva_devguide_clearmod.php',
 		'imva_devguide_cleartemp'			=>	'imva.biz/imva_devguide/application/admin/controllers/imva_devguide_cleartemp.php',
@@ -107,6 +108,11 @@ $aModule = array(
     		'block'    => 'imva_footer',
     		'file'     => 'out/blocks/imva_footer.tpl'
     	),
+    	array(
+			'template' => 'imva_devguide_clearmod.tpl',
+			'block'    => 'imva_devguide_confirm',
+			'file'     => 'out/blocks/dialogue.tpl'
+    	),
 		array(
     		'template' => 'imva_devguide_cleartemp.tpl',
     		'block'    => 'imva_header',
@@ -116,6 +122,11 @@ $aModule = array(
     		'template' => 'imva_devguide_cleartemp.tpl',
     		'block'    => 'imva_footer',
     		'file'     => 'out/blocks/imva_footer.tpl'
+    	),
+    	array(
+			'template' => 'imva_devguide_cleartemp.tpl',
+			'block'    => 'imva_devguide_confirm',
+			'file'     => 'out/blocks/dialogue.tpl'
     	),
 		array(
     		'template' => 'imva_devguide_rebuildviews.tpl',
@@ -127,5 +138,28 @@ $aModule = array(
     		'block'    => 'imva_footer',
     		'file'     => 'out/blocks/imva_footer.tpl'
     	),
+    	array(
+			'template' => 'imva_devguide_rebuildviews.tpl',
+			'block'    => 'imva_devguide_confirm',
+			'file'     => 'out/blocks/dialogue.tpl'
+    	),
+    ),
+    'settings'	=>	array(
+    	array(
+    		'group'			=>	'imva_devguide_behaviour',
+    		'name'			=>	'imva_devguide_requestonaction',
+    		'type'			=>	'bool',
+    		'value'			=>	true,
+    		'position'		=>	1,
+    	),
+    	/*
+    	array(
+			'group'			=>	'imva_devguide_logging',
+			'name'			=>	'imva_devguide_enablelogging',
+			'type'			=>	'bool',
+			'value'			=>	false,
+			'position'		=>	1,
+    	),
+    	*/
     ),
 );

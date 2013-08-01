@@ -1,11 +1,17 @@
 [{block name='imva_header'}][{/block}]
-<div class="content">
 
-[{if $success}]
+<h1>[{oxmultilang ident='imva_devguide_rebuildviews'}]</h1>
+
+[{if $oView->blSuccess}]
 	<p class="msg suc">[{oxmultilang ident='IMVA_DEVGUIDE_RV_CLEARED'}]</p>
-[{else}]
+[{else}]	
+	[{if !$oView->oServ->getP('confirm')}]
+		[{block name='imva_devguide_confirm'}][{/block}]
+	[{/if}]
+[{/if}]
+
+[{if $oView->blFail}]
 	<p class="msg err">[{oxmultilang ident='IMVA_DEVGUIDE_RV_FAIL'}]</p>
 [{/if}]
 
-</div>
 [{block name='imva_footer'}][{/block}]
