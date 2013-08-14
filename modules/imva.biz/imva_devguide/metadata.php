@@ -46,8 +46,8 @@
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/2/8-8/1
- * v 0.8
+ * 13/2/8-8/14
+ * v 0.8.1
  *
  */
 
@@ -68,7 +68,7 @@ $aModule = array(
 			ein zus&auml;tzliches Men&uuml;. Das Modul hat keinen Einfluss auf den regul&auml;ren Shopbetrieb.</p>',
 	),
 	'thumbnail'		=> 'out/src/imva-Logo-90.png',
-	'version'		=> '0.8',
+	'version'		=> '0.8.1',
 	'author'		=> 'Johannes Ackermann',
 	'url'			=> 'http://imva.biz',
 	'email' 		=> 'imva@imva.biz',

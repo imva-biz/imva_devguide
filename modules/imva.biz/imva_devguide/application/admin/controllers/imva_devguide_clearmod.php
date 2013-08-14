@@ -47,8 +47,8 @@
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-8/1
- * v 0.8
+ * 13/7/5-8/14
+ * v 0.8.1
  *
  */
 
@@ -157,6 +157,11 @@ class imva_devguide_clearmod extends oxAdminView
 		
 		$sSelect .= ';';
 		oxDb::getDb(true)->execute($sSelect);
+		
+		
+		
+		// Cleanup cached configuration
+		$this->_clearCachedConfig();
 	}
 	
 	
@@ -190,7 +195,7 @@ class imva_devguide_clearmod extends oxAdminView
 		$sSelect = "('".$this->genId()."', '".$this->_sShopId."', '', 'aModulePaths', 'aarr', 0x4dba32ab76d7c8ce5252f1dfe4d11b2888ebf17bac57a9cffdfd92e55a416852b8466ac310ced77be57f977af5d49f853804ebb4cc034105d36e7ab74319401135de264a2c12f8d033fc4cd04392c5cd2d9355f79b6c136d7515928f40ebfcece2fea47fce134e3dc1057f87923ec6ed810a3e2c36ca24024a6c4b63ac25a9025105adcf0229c406d417d1326ecefc9a5dce77133cfd1d1c10ee31df91b1e868d74ecbcd597d9f613e586bdda320105a5c1101582efa9009ce989dd6be93f6c819425b02c7358b93b65b05996df9b3dc04c0bc85665af238a1a33073cb0502b1f201ad8e98171b928d06dad765851e2aab89204c1cc53fd1d33857c1c78977703011be05be5dfdb80c08b5a6b967d0c3b06647c5db54dea7a4c129124c2a6b25f8cf14c96042bd3b156d77b9d1fc41ad30dee30ea6852cb331e938d1a1f9971bed53f237fadf6c234cd3963742758e16b6f9dca512ff1d4002453859a7aa77b3d409694ee3166b7f49325556588e6454b9333e8a4fe58cd969947f8a553dce23e7a4a06b9aaaca2c13120a7701a7ade1e9911a083c3215a634c2d25e61af5acb15c52bbb27842539c44ab6910d3eda09302cd9f5a9fba0249cf289d306fad03c309ca485fb40b662060c28ff4a47ade38c64bbdb71f3d6ccf408816fb25b38142704326b16f1f2658623e680c0153c628baa002a19b036d9452b17c49f7eced3d35d3be5666d7d6cab2ae66f56ad1a15c0965493a6c311d70cdc786e55d95fe856f227291747b7cc0354707ed473029762a38e40f0895ec2add6da1a9b50699f87b39b7e6de3bba748f189155bada1bd29d082064b996565b1816904a93601bd793eeef7ccbabf3940a07f40f1e64e2f692cd7da66747bfe7552633a27b19751f050cabd4bca5cce48aae1bedc99ec64f61a523c487dc107030cc293a08d5b6743bdd435f2509ef21e24a0b7d81709120204f95c67198e3ad31915ed2b513b53f9a49f03b918949e3320b23da08e8742e87679275af8981d9fa2186ad0efce0f0cdf76eb7a4874493d7b36845d9e41082550926d93c47f266b31296f81b789b193276d7318f4a6668375fd16f18f245d48ad96aa65f4f780b3b276357da71c2655a6bd2ea564cb9537546bc8c3e100b134fc4faf1504c3d43b06ea756fa861828990bda534068ef531713596b20c6a19f480372e65bcda6b0cf242ad523548023ee3091b278b982b1aec6973973b56de6225d2cb9ad7367dc53f50b5d64fa7f454b0afa5159b06ad34fd21f777ddd7711823dc6f90d291916b616c8cf18b5d342f215123458b705724f7586d8272e8a2962395c587c29fd87aad1f35410569, '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);		
 
-		$sSelect = "('".$this->genId()."', '".$this->_sShopId."', '', 'aModuleVersions', 'aarr', 0x4dba322c774f5434e31d93d69a8ad6f167b2af82484a81f5989364f09949ef729882287d75, '')";
+		$sSelect = "('".$this->genId()."', '".$this->_sShopId."', '', 'aModuleVersions', 'aarr', 0x4dba322c774f5434e31d93d69a8ad6f167b2af82484a81f5989364f0744fe9749e8464f60b9686, '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		
@@ -236,5 +241,27 @@ class imva_devguide_clearmod extends oxAdminView
 		
 		// Set Success Flag
 		$this->blSuccess = true;
+	}
+	
+	
+	
+	/**
+	 * Clears the cached module configuration from shop cache directory.
+	 * 
+	 * @param null
+	 * @return boolean
+	 */
+	private function _clearCachedConfig()
+	{		
+		$aFileSuffixes = array('adisabledmodules','amodulepaths','amodulefiles','amodules');	// Suffixes of cache files.
+		$sPath = $this->getConfig()->getConfigParam('sCompileDir');
+		
+		foreach ($aFileSuffixes as $sFileSuffix){
+			$sFileName = 'config.'.$this->_sShopId.'.'.$sFileSuffix.'.txt';	// Naming shape of cache files.
+		
+			if (file_exists($sPath.$sFileName)){
+				@unlink($sPath.$sFileName);
+			}
+		}
 	}
 }

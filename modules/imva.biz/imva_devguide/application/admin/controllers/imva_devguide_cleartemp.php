@@ -71,7 +71,7 @@ class imva_devguide_cleartemp extends oxAdminView
 	public function __construct()
 	{
 		parent::__construct();		
-		$this->oServ = oxNew('imva_devguide_service');				// Service
+		$this->oServ = oxNew('imva_devguide_service');		// Service
 	}
 	
 	
