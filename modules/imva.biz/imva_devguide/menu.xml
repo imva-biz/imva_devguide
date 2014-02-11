@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-15"?>
 <OX>
-    <OXMENU id="NAVIGATION_ESHOPADMIN">
+    <OXMENU id="imva_modules_group">
         <MAINMENU id="imva_devguide">
-             <SUBMENU id="imva_devguide_main" cl="imva_devguide_main" rights="malladmin" disableForDemoShop="0" />
+             <SUBMENU id="imva_services_information" cl="imva_devguide_main" rights="malladmin" disableForDemoShop="0" />
 			 <SUBMENU id="imva_devguide_cleartemp" cl="imva_devguide_cleartemp" rights="malladmin" disableForDemoShop="0" />
 			 <SUBMENU id="imva_devguide_rebuildviews" cl="imva_devguide_rebuildviews" rights="malladmin" disableForDemoShop="0" />
 			 <SUBMENU id="imva_devguide_clearmod" cl="imva_devguide_clearmod" rights="malladmin" disableForDemoShop="0" />

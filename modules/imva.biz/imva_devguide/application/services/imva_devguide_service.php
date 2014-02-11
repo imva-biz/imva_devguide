@@ -43,11 +43,11 @@
  * 
  * 
  *
- * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
+ * (c) 2013-2014 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-8/1
- * v 0.8
+ * 13/7/5-14/1/23
+ * v 0.8.3
  *
  */
 
