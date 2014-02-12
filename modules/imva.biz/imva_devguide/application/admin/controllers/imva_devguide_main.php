@@ -47,14 +47,13 @@
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-8/1
- * v 0.8
+ * 13/7/5-14/2/12
+ * v 0.8.5
  *
  */
 
 class imva_devguide_main extends oxAdminView
 {
-	private $_sTemplate			=	'imva_devguide_main.tpl';		// Template
 	public $oServ				=	null;							// Devguide Service
 	
 	
@@ -66,9 +65,9 @@ class imva_devguide_main extends oxAdminView
 	 * @param null
 	 * @return null
 	 */
-	public function __construct()
+	public function init()
 	{
-		parent::__construct();
+		parent::init();
 		$this->oServ = oxNew('imva_devguide_service');				// Service
 	}
 	
@@ -81,6 +80,6 @@ class imva_devguide_main extends oxAdminView
 	public function render()
 	{
 		parent::render();		
-		return $this->_sTemplate;
+		return 'imva_devguide_main.tpl';
 	}
 }

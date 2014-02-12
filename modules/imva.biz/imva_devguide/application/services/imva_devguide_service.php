@@ -46,8 +46,8 @@
  * (c) 2013-2014 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-14/1/23
- * v 0.8.3
+ * 13/7/5-14/2/11
+ * v 0.8.5
  *
  */
 
@@ -86,51 +86,69 @@ class imva_devguide_service extends oxbase
 	 */
 	public function askMe()
 	{
-		$blReturn = $this->oConf->getConfigParam('imva_devguide_requestonaction');
+		$blReturn = oxRegistry::getConfig()->getConfigParam('imva_devguide_requestonaction');
 		return $blReturn;
 	}
 	
 	
 	
 	/**
-	 * CONFIG/POST/GET/REQUEST parameter getter
+	 * Is auto-reaktivation enabled?
+	 * 
+	 * @param null
+	 * @return boolean
+	 */
+	public function isAutoRevive()
+	{
+		$blReturn = oxRegistry::getConfig()->getConfigParam('imva_devguide_enableautorevive');
+		return $blReturn;
+	}
+	
+	
+	
+	/**
+	 * POST/GET parameter getter
 	 * 
 	 * @param string
 	 * @return string
 	 */
 	public function getP($sString = '')
 	{
-		return $this->oConf->getRequestParameter($sString);
+		return oxRegistry::getConfig()->getRequestParameter($sString);
 	}
 	
 	
 	
 	/**
 	 * Name of the current class
-	 * For use with forms.
+	 * For usage with forms.
 	 * 
 	 * @param null
 	 * @return string
 	 */
 	public function getCurrentCl()
 	{
-		return oxConfig::getInstance()->getActiveView()->getClassName();
+		return oxRegistry::getConfig()->getActiveView()->getClassName();
 	}
 	
 	
 	
 	/**
-	 * Shop edition
-	 * Multishop feature for Enterprise Edition only
+	 * Determines, wheather this installation has subshops.
 	 * 
 	 * @param null
-	 * @return string
+	 * @return boolean
 	 */
-	public function isEE()
+	public function hasSubshops()
 	{
-		if (oxConfig::getInstance()->getActiveShop()->oxshops__oxedition->value == 'EE'){
-			return true;
+		$iShops = oxDb::getDb()->getOne("SELECT COUNT(OXID) FROM oxshops");
+		if ($iShops > 1){
+			$blRet = true;
 		}
-		return false;
+		else{
+			$blRet = false;
+		}
+		
+		return $blRet;
 	}
 }

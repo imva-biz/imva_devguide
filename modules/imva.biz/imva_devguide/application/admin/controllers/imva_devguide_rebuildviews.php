@@ -54,7 +54,6 @@
 
 class imva_devguide_rebuildviews extends oxAdminView
 {
-	private $_sTemplate	=	'imva_devguide_rebuildviews.tpl';	// Template
 	public $blSuccess	=	false;							// Successful?
 	public $blFail		=	false;							// Failure
 	public $oServ		=	null;							// Devguide Service
@@ -68,9 +67,9 @@ class imva_devguide_rebuildviews extends oxAdminView
 	 * @param null
 	 * @return null
 	 */
-	public function __construct()
+	public function init()
 	{
-		parent::__construct();
+		parent::init();
 		$this->oServ = oxNew('imva_devguide_service');				// Service
 	}
 	
@@ -93,7 +92,7 @@ class imva_devguide_rebuildviews extends oxAdminView
 			echo 'ERROR_PARADOX';
 		}
 		
-		return $this->_sTemplate;
+		return 'imva_devguide_rebuildviews.tpl';
 	}
 	
 	

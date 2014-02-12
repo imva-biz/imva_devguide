@@ -2,7 +2,7 @@
 
 /**
  * imva.biz Developer's Guide
- * Main Class
+ * tmp Cleanup Module
  * 
  * 
  * 
@@ -47,14 +47,13 @@
  * (c) 2013 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-31
- * v 0.8
+ * 13/7/5-14/2/11
+ * v 0.8.5
  *
  */
 
 class imva_devguide_cleartemp extends oxAdminView
 {
-	private $_sTemplate	=	'imva_devguide_cleartemp.tpl';	// Template
 	public $blSuccess	=	false;							// Successful?
 	public $blFail		=	false;							// Failure
 	public $oServ		=	null;							// Devguide Service
@@ -63,14 +62,14 @@ class imva_devguide_cleartemp extends oxAdminView
 	
 	/**
 	 * Construct
-	 * 
+	 *
 	 * Provice Service.
 	 * @param null
 	 * @return null
 	 */
-	public function __construct()
+	public function init()
 	{
-		parent::__construct();		
+		parent::init();
 		$this->oServ = oxNew('imva_devguide_service');		// Service
 	}
 	
@@ -78,50 +77,50 @@ class imva_devguide_cleartemp extends oxAdminView
 	
 	/**
 	 * Render
-	 * 
+	 *
 	 * @param null
 	 * @return string
-	 */	
+	 */
 	public function render()
 	{
 		parent::render();
-		
+	
 		// Determine, whether dialogues are enabled and confirmed OR not enabled
-		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm')) or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null)){			
+		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm')) or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null)){
 			$this->_clearTemp();
 		}
-		
+	
 		if ($this->blSuccess and $this->blFail){
 			echo 'ERROR_PARADOX';
 		}
-		
-		return $this->_sTemplate;
+	
+		return 'imva_devguide_cleartemp.tpl';
 	}
 	
 	
 	
 	/**
 	 * Delete contents from /tmp/
-	 * 
+	 *
 	 * @param null
 	 * @return null
 	 */
 	private function _clearTemp()
 	{
 		// Compile dir
-		$sTempDir = $this->getConfig()->getConfigParam('sCompileDir');
-		
+		$sTempDir = oxRegistry::getConfig()->getConfigParam('sCompileDir');
+	
 		// tmp
 		$this->_clearDir($sTempDir);
-		
+	
 		// tmp/smarty
 		$this->_clearDir($sTempDir.'/smarty/');
-		
+	
 		// Create new .htaccess
 		$oFile = fopen($sTempDir.'/.htaccess','w+');
-		fwrite($oFile,'Deny From All');
+		fwrite($oFile,"# disabling file access\n<FilesMatch .*>\norder allow,deny\ndeny from all\n</FilesMatch>\n\nOptions -Indexes\n");
 		fclose($oFile);
-		
+	
 		// Set Success Flag
 		$this->blSuccess = true;
 	}
@@ -130,7 +129,7 @@ class imva_devguide_cleartemp extends oxAdminView
 	
 	/**
 	 * Clear directory
-	 * 
+	 *
 	 * @param string
 	 * @return null
 	 */

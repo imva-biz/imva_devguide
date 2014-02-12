@@ -46,14 +46,18 @@
  * (c) 2013-2014 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-14/1/24
- * v 0.8.3
+ * 13/7/5-14/2/11
+ * v 0.8.5
  *
  */
 
 $sLangName  = "English";
 $aLang = array(
 		'charset'										=>	'UTF-8',
+		
+		// Group
+		'imva_modules_group'							=>	'imva.biz modules',
+		'imva_services_information'						=>	'Information',
 	
 		// Titles
 		'imva_devguide'									=>	'Developer\'s Guide',
@@ -64,6 +68,7 @@ $aLang = array(
 		// Configuration
 		'SHOP_MODULE_GROUP_imva_devguide_behaviour'		=>	'Behaviour',
 		'SHOP_MODULE_imva_devguide_requestonaction'		=>	'Ask me before running a task',
+		'SHOP_MODULE_imva_devguide_enableautorevive'	=>	'Re-activate this module after resetting the whole module configuration.',
 		'SHOP_MODULE_GROUP_imva_devguide_logging'		=>	'Logging',
 		'SHOP_MODULE_imva_devguide_enablelogging'		=>	'Log events and actions',
 		
@@ -83,6 +88,8 @@ $aLang = array(
 		
 		// Views
 		'IMVA_DEVGUIDE_TITLE'							=>	'imva.biz: &quot;Entwicklungshelfer&quot;',
+		'IMVA_DEVGUIDE_CLEARMOD_NOREVIVE'				=>	'Re-activation after resetting is disabled, so this line is the last output of this module.
+															This behaviour is completely normal in this case.',
 		'IMVA_DEVGUIDE_CLEARMOD_CLEARED'				=>	'All modules have been reset;',
 		'IMVA_DEVGUIDE_CLEARMOD_CLEARALL'				=>	'Reset in all subshops.',
 		'IMVA_DEVGUIDE_CLEARMOD_CLEAREDALL'				=>	'All modules have been reset;',
@@ -91,7 +98,8 @@ $aLang = array(
 		'IMVA_DEVGUIDE_CLEARTEMP_CLEARED'				=>	'Cache (/tmp/ directory) has been cleared.',
 		'IMVA_DEVGUIDE_CLEARTEMP_FAIL'					=>	'Error clearing /tmp/. Check the permissions.',
 		'IMVA_DEVGUIDE_RV_CLEARED'						=>	'Database views have been rebuilt.',
-		'IMVA_DEVGUIDE_RV_FAIL'							=>	'Error rebuilding database views.',
+		'IMVA_DEVGUIDE_RV_FAIL'							=>	'Error rebuilding database views. It this persists, either a database
+															table may be missing or the database structure is damaged.',
 		
 		// Footer
 		'IMVA_DEVGUIDE_MANUAL'							=>	'User manual',

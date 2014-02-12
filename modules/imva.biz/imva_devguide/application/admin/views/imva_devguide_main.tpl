@@ -15,11 +15,11 @@
 	<li><a href="[{$oViewConf->getSelfLink()}]cl=imva_devguide_cleartemp">[{oxmultilang ident='imva_devguide_cleartemp'}]</a></li>
 	<li><a href="[{$oViewConf->getSelfLink()}]cl=imva_devguide_rebuildviews">[{oxmultilang ident='imva_devguide_rebuildviews'}]</a></li>
 	<li><a href="[{$oViewConf->getSelfLink()}]cl=imva_devguide_clearmod">[{oxmultilang ident='imva_devguide_clearmod'}]</a></li>
-	[{*if $oView->oServ->isEE()}]
+	[{if $oView->oServ->hasSubshops()}]
 	<ul>
 		<li><a href="[{$oViewConf->getSelfLink()}]cl=imva_devguide_clearmod&amp;shops=all">[{oxmultilang ident='IMVA_DEVGUIDE_CLEARMOD_ALL'}]</a></li>
 	</ul>
-	[{/if*}]
+	[{/if}]
 </ul>
 
 [{block name='imva_footer'}][{/block}]

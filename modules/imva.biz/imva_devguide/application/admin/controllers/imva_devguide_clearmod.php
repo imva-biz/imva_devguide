@@ -48,18 +48,17 @@
  * @author Johannes Ackermann
  *
  * 13/7/5-14/2/11
- * v 0.8.3
+ * v 0.8.5
  *
  */
 
 class imva_devguide_clearmod extends oxAdminView
 {
-	private $_sTemplate	=	'imva_devguide_clearmod.tpl';			// Template
-	private $_sShopId	=	'oxbaseshop';							// The shop ID. Prepared for usage in EE (maybe soon)
-	public $blSuccess	=	false;									// Successful?
-	public $blFail		=	false;									// Failure
-	public $blAllcleared=	false;									// Status
-	public $oServ		=	null;									// Devguide Service
+	private $_sShopId	=	null;								// The shop ID. Prepared for usage in EE (maybe soon)
+	public $blSuccess	=	false;								// Successful?
+	public $blFail		=	false;								// Failure
+	public $blAllcleared=	false;								// Status
+	public $oServ		=	null;								// Devguide Service
 	
 	
 	
@@ -70,11 +69,11 @@ class imva_devguide_clearmod extends oxAdminView
 	 * @param null
 	 * @return null
 	 */
-	public function __construct()
+	public function init()
 	{
-		parent::__construct();
-		$this->oServ = oxNew('imva_devguide_service');					// Service
-		$this->_sShopId = $this->getConfig()->getActiveShop()->getId();	// Fill (sub)-shop ID
+		parent::init();
+		$this->oServ = oxNew('imva_devguide_service');			// Service
+		$this->_sShopId = oxRegistry::getConfig()->getShopId();	// Fill (sub)-shop ID
 	}
 	
 	
@@ -98,17 +97,19 @@ class imva_devguide_clearmod extends oxAdminView
 				$this->blAllcleared = true;
 			}
 			else{
-				$this->_clearModuleCache($this->_sShopId);
+				$this->_clearModuleCache(oxRegistry::getConfig()->getShopId());
 			}
 			
-			//$this->_reviveDevguide();
+			if ($this->oServ->isAutoRevive()){
+				$this->_reviveDevguide();
+			}
 		}
 		
 		if ($this->blSuccess and $this->blFail){
 			echo 'ERROR_PARADOX';
 		}
 		
-		return $this->_sTemplate;
+		return 'imva_devguide_clearmod.tpl';
 	}
 	
 	
@@ -130,6 +131,7 @@ class imva_devguide_clearmod extends oxAdminView
 	 * Clear module cache
 	 * Cleans all module configuration entries from the database.
 	 * Use with shop ID to clear only modules for a certain subshop (OXID EE only).
+	 * No shop ID bypassed expects 
 	 * 
 	 * @param string
 	 * @return null
@@ -206,40 +208,40 @@ class imva_devguide_clearmod extends oxAdminView
 		// Insert into oxtplblocks
 		$sSelectHead = "INSERT INTO `oxtplblocks` (`OXID`, `OXACTIVE`, `OXSHOPID`, `OXTEMPLATE`, `OXBLOCKNAME`, `OXPOS`, `OXFILE`, `OXMODULE`, `OXTIMESTAMP`) VALUES ";
 		
-		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_footer', '1', 'views/blocks/imva_footer.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_footer', '1', 'views/blocks/imva_footer.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
-		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_header', '1', 'views/blocks/imva_header.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_header', '1', 'views/blocks/imva_header.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
-		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_confirm', '1', 'views/blocks/dialogue.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_confirm', '1', 'views/blocks/dialogue.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		
-		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_clearmod.tpl', 'imva_footer', '1', 'views/blocks/imva_footer.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_clearmod.tpl', 'imva_footer', '1', 'views/blocks/imva_footer.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
-		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_clearmod.tpl', 'imva_header', '1', 'views/blocks/imva_header.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_clearmod.tpl', 'imva_header', '1', 'views/blocks/imva_header.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 
-		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_confirm', '1', 'views/blocks/dialogue.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_confirm', '1', 'views/blocks/dialogue.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		
-		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_main.tpl', 'imva_footer', '1', 'views/blocks/imva_footer.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_main.tpl', 'imva_footer', '1', 'views/blocks/imva_footer.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
-		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_main.tpl', 'imva_header', '1', 'views/blocks/imva_header.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_main.tpl', 'imva_header', '1', 'views/blocks/imva_header.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		
-		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_footer', '1', 'views/blocks/imva_footer.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_footer', '1', 'views/blocks/imva_footer.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
-		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_header', '1', 'views/blocks/imva_header.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_header', '1', 'views/blocks/imva_header.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
-		$sSelect = "('".$this->genId()."', '1', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_confirm', '1', 'views/blocks/dialogue.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_confirm', '1', 'views/blocks/dialogue.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		// Set Success Flag
@@ -257,7 +259,7 @@ class imva_devguide_clearmod extends oxAdminView
 	private function _clearCachedConfig()
 	{		
 		$aFileSuffixes = array('adisabledmodules','amodulepaths','amodulefiles','amodules');	// Suffixes of cache files.
-		$sPath = $this->getConfig()->getConfigParam('sCompileDir');
+		$sPath = oxRegistry::getConfig()->getConfigParam('sCompileDir');
 		
 		foreach ($aFileSuffixes as $sFileSuffix){
 			$sFileName = 'config.'.$this->_sShopId.'.'.$sFileSuffix.'.txt';	// Naming shape of cache files.

@@ -47,7 +47,7 @@
  * @author Johannes Ackermann
  *
  * 13/2/8-14/2/11
- * v 0.8.4
+ * v 0.8.5
  *
  */
 
@@ -61,21 +61,23 @@ $aModule = array(
 	'title'			=> '<img src="../modules/imva.biz/imva_devguide/out/src/imva-Logo-12.png" alt=".iI" title="imva.biz" /> Developer\'s Guide',
 	'description'	=> array(
 		'en'	=>	'<p>imva.biz Developer\'s Guide supports developers in their work on the shop by providing one-click quick
-			access to often executed actions.<br />This module extends the shop admin with a new menu and does not affect the
-			regular shop operation.</p>',
+			access to often executed actions.<br>This module extends the shop admin with a new menu and does not affect the
+			regular shop operation.<br>
+			We recommend you to keep dialogues enabled when using the module in a productive environment.</p>',
 		'de'	=>	'<p>Developer\'s Guide, der &bdquo;Entwicklungshelfer&rdquo; unterst&uuml;tzt Entwickler bei der Arbeit am Shop,
-			indem er h&auml;ufig durchgef&uuml;hrte Aktionen mit nur einem Klick ausf&uuml;hrt.<br />Dieses Modul erweitert den Shop-Admin um
-			ein zus&auml;tzliches Men&uuml;. Das Modul hat keinen Einfluss auf den regul&auml;ren Shopbetrieb.</p>',
+			indem er h&auml;ufig ben&ouml;tigte Aktionen mit nur einem Klick ausf&uuml;hrt.<br>Dieses Modul erweitert den Shop-Admin um
+			ein zus&auml;tzliches Men&uuml;. Das Modul hat keinen Einfluss auf den regul&auml;ren Shopbetrieb.<br>
+			Wir empfehlen, im Produktivbetrieb zumindest die R&uuml;ckfragen aktiviert zu lassen.</p>',
 	),
 	'thumbnail'		=> 'out/src/imva-Logo-90.png',
-	'version'		=> '0.8.4',
+	'version'		=> '0.8.5',
 	'author'		=> 'Johannes Ackermann',
 	'url'			=> 'http://imva.biz',
 	'email' 		=> 'imva@imva.biz',
 	'extend'		=> array(
 	),
 	'files' => array(
-		'imva_devguide_service'				=>	'imva.biz/imva_devguide/application/services/imva_devguide_service.php',
+		'imva_devguide_service'				=>	'imva.biz/imva_devguide/application/services/imva_devguide_service.php',	// functions used by all module classes
 		'imva_devguide_main'				=>	'imva.biz/imva_devguide/application/admin/controllers/imva_devguide_main.php',
 		'imva_devguide_clearmod'			=>	'imva.biz/imva_devguide/application/admin/controllers/imva_devguide_clearmod.php',
 		'imva_devguide_cleartemp'			=>	'imva.biz/imva_devguide/application/admin/controllers/imva_devguide_cleartemp.php',
@@ -151,6 +153,13 @@ $aModule = array(
     		'type'			=>	'bool',
     		'value'			=>	true,
     		'position'		=>	1,
+    	),
+    	array(
+			'group'			=>	'imva_devguide_behaviour',
+			'name'			=>	'imva_devguide_enableautorevive',
+			'type'			=>	'bool',
+			'value'			=>	false,
+			'position'		=>	1,
     	),
     	/*
     	array(
