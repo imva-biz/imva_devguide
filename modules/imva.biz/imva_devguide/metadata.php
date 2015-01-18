@@ -5,9 +5,9 @@
  *
  *
  *
- * For redistribution in the provicer's network only.
+ * For redistribution in the provider's network only.
  *
- * Weitergabe außerhalb des Anbieternetzwerkes verboten.
+ * Weitergabe auÃŸerhalb des Anbieternetzwerkes verboten.
  *
  *
  *
@@ -24,30 +24,30 @@
  *
  *
  * Diese Software ist geistiges Eigentum von imva.biz respektive ihres Autors und ist durch das
- * Urheberrecht geschützt. Diese Software wird ohne irgendwelche Garantien und "wie sie ist"
+ * Urheberrecht geschÃ¼tzt. Diese Software wird ohne irgendwelche Garantien und "wie sie ist"
  * angeboten.
  *
- * Sie sind berechtigt, diese Software frei zu nutzen und auf Ihre Bedürfnisse anzupassen.
+ * Sie sind berechtigt, diese Software frei zu nutzen und auf Ihre BedÃ¼rfnisse anzupassen.
  *
- * Jegliche Modifikation, Vervielfältigung, Redistribution, Übertragung zum Zwecke der
- * Weiterentwicklung außerhalb der Netzwerke des Anbieters ist untersagt und stellt einen Verstoß
+ * Jegliche Modifikation, VervielfÃ¤ltigung, Redistribution, Ãœbertragung zum Zwecke der
+ * Weiterentwicklung auÃŸerhalb der Netzwerke des Anbieters ist untersagt und stellt einen VerstoÃŸ
  * gegen die Lizenzvereinbarung dar.
  *
- * Mit der Übernahme dieser Software akzeptieren Sie die zwischen Ihnen und dem Herausgeber
+ * Mit der Ãœbernahme dieser Software akzeptieren Sie die zwischen Ihnen und dem Herausgeber
  * festgehaltenen Bedingungen. Der Bruch dieser Bedingungen kann Schadensersatzforderungen nach
  * sich ziehen.
  *
  *
  *
- * (EULA-13/7)
+ * (EULA-13/7-OS)
  *
  *
  *
- * (c) 2013-2014imva.biz, Johannes Ackermann, ja@imva.biz
+ * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/2/8-14/2/11
- * v 0.8.5
+ * 13/2/8-15/1/18
+ * v 0.9.2
  *
  */
 
@@ -57,8 +57,8 @@ $sMetadataVersion = '1.1';
  * Module information
  */
 $aModule = array(
-	'id'			=> 'imva_devguide',
-	'title'			=> '<img src="../modules/imva.biz/imva_devguide/out/src/imva-Logo-12.png" alt=".iI" title="imva.biz" /> Developer\'s Guide',
+	'id'			=> 'imva.bizimva_devguide',
+	'title'			=> '<img src="../modules/imva.biz/imva_devguide/out/img/imva-Logo-12.png" alt=".iI" title="imva.biz" /> Developer\'s Guide',
 	'description'	=> array(
 		'en'	=>	'<p>imva.biz Developer\'s Guide supports developers in their work on the shop by providing one-click quick
 			access to often executed actions.<br>This module extends the shop admin with a new menu and does not affect the
@@ -69,8 +69,8 @@ $aModule = array(
 			ein zus&auml;tzliches Men&uuml;. Das Modul hat keinen Einfluss auf den regul&auml;ren Shopbetrieb.<br>
 			Wir empfehlen, im Produktivbetrieb zumindest die R&uuml;ckfragen aktiviert zu lassen.</p>',
 	),
-	'thumbnail'		=> 'out/src/imva-Logo-90.png',
-	'version'		=> '0.8.5',
+	'thumbnail'		=> 'out/img/imva-Logo-90.png',
+	'version'		=> '0.9.2',
 	'author'		=> 'Johannes Ackermann',
 	'url'			=> 'http://imva.biz',
 	'email' 		=> 'imva@imva.biz',
@@ -78,72 +78,72 @@ $aModule = array(
 	),
 	'files' => array(
 		'imva_devguide_service'				=>	'imva.biz/imva_devguide/application/services/imva_devguide_service.php',	// functions used by all module classes
-		'imva_devguide_main'				=>	'imva.biz/imva_devguide/application/admin/controllers/imva_devguide_main.php',
-		'imva_devguide_clearmod'			=>	'imva.biz/imva_devguide/application/admin/controllers/imva_devguide_clearmod.php',
-		'imva_devguide_cleartemp'			=>	'imva.biz/imva_devguide/application/admin/controllers/imva_devguide_cleartemp.php',
-		'imva_devguide_rebuildviews'		=>	'imva.biz/imva_devguide/application/admin/controllers/imva_devguide_rebuildviews.php',
+		'imva_devguide_main'				=>	'imva.biz/imva_devguide/application/controllers/admin/imva_devguide_main.php',
+		'imva_devguide_clearmod'			=>	'imva.biz/imva_devguide/application/controllers/admin/imva_devguide_clearmod.php',
+		'imva_devguide_cleartemp'			=>	'imva.biz/imva_devguide/application/controllers/admin/imva_devguide_cleartemp.php',
+		'imva_devguide_rebuildviews'		=>	'imva.biz/imva_devguide/application/controllers/admin/imva_devguide_rebuildviews.php',
 	),
 	'templates'	=>	array(
-		'imva_devguide_main.tpl'			=>	'imva.biz/imva_devguide/application/admin/views/imva_devguide_main.tpl',
-		'imva_devguide_clearmod.tpl'		=>	'imva.biz/imva_devguide/application/admin/views/imva_devguide_clearmod.tpl',
-		'imva_devguide_cleartemp.tpl'		=>	'imva.biz/imva_devguide/application/admin/views/imva_devguide_cleartemp.tpl',
-		'imva_devguide_rebuildviews.tpl'	=>	'imva.biz/imva_devguide/application/admin/views/imva_devguide_rebuildviews.tpl',
+		'imva_devguide_main.tpl'			=>	'imva.biz/imva_devguide/views/admin/imva_devguide_main.tpl',
+		'imva_devguide_clearmod.tpl'		=>	'imva.biz/imva_devguide/views/admin/imva_devguide_clearmod.tpl',
+		'imva_devguide_cleartemp.tpl'		=>	'imva.biz/imva_devguide/views/admin/imva_devguide_cleartemp.tpl',
+		'imva_devguide_rebuildviews.tpl'	=>	'imva.biz/imva_devguide//views/admin/imva_devguide_rebuildviews.tpl',
 	),
 	'blocks'	=>	array(
 		array(
     		'template' => 'imva_devguide_main.tpl',
     		'block'    => 'imva_header',
-    		'file'     => 'views/blocks/imva_header.tpl'
+    		'file'     => 'views/blocks/imva_devguide_header.tpl'
     	),
 		array(
     		'template' => 'imva_devguide_main.tpl',
     		'block'    => 'imva_footer',
-    		'file'     => 'views/blocks/imva_footer.tpl'
+    		'file'     => 'views/blocks/imva_devguide_footer.tpl'
     	),
     	array(
     		'template' => 'imva_devguide_clearmod.tpl',
     		'block'    => 'imva_header',
-			'file'     => 'views/blocks/imva_header.tpl'
+			'file'     => 'views/blocks/imva_devguide_header.tpl'
     	),
     	array(
     		'template' => 'imva_devguide_clearmod.tpl',
     		'block'    => 'imva_footer',
-    		'file'     => 'views/blocks/imva_footer.tpl'
+    		'file'     => 'views/blocks/imva_devguide_footer.tpl'
     	),
     	array(
 			'template' => 'imva_devguide_clearmod.tpl',
 			'block'    => 'imva_devguide_confirm',
-			'file'     => 'views/blocks/dialogue.tpl'
+			'file'     => 'views/blocks/imva_devguide_dialogue.tpl'
     	),
 		array(
     		'template' => 'imva_devguide_cleartemp.tpl',
     		'block'    => 'imva_header',
-    		'file'     => 'views/blocks/imva_header.tpl'
+    		'file'     => 'views/blocks/imva_devguide_header.tpl'
     	),
 		array(
     		'template' => 'imva_devguide_cleartemp.tpl',
     		'block'    => 'imva_footer',
-    		'file'     => 'views/blocks/imva_footer.tpl'
+    		'file'     => 'views/blocks/imva_devguide_footer.tpl'
     	),
     	array(
 			'template' => 'imva_devguide_cleartemp.tpl',
 			'block'    => 'imva_devguide_confirm',
-			'file'     => 'views/blocks/dialogue.tpl'
+			'file'     => 'views/blocks/imva_devguide_dialogue.tpl'
     	),
 		array(
     		'template' => 'imva_devguide_rebuildviews.tpl',
     		'block'    => 'imva_header',
-    		'file'     => 'views/blocks/imva_header.tpl'
+    		'file'     => 'views/blocks/imva_devguide_header.tpl'
     	),
 		array(
     		'template' => 'imva_devguide_rebuildviews.tpl',
     		'block'    => 'imva_footer',
-    		'file'     => 'views/blocks/imva_footer.tpl'
+    		'file'     => 'views/blocks/imva_devguide_footer.tpl'
     	),
     	array(
 			'template' => 'imva_devguide_rebuildviews.tpl',
 			'block'    => 'imva_devguide_confirm',
-			'file'     => 'views/blocks/dialogue.tpl'
+			'file'     => 'views/blocks/imva_devguide_dialogue.tpl'
     	),
     ),
     'settings'	=>	array(

@@ -1,6 +1,8 @@
 imva_devguide
 =============
-Developer's Guide // "Entwicklungshelfer" for Oxid Developers
+Developer's Guide // "Entwicklungshelfer" for OXID Developers
+
+v0.9.2
 
 
 
@@ -20,9 +22,9 @@ Available at http://www.ackis-oxid.de/2013/entwicklungshelfer-fr-oxid-entwickler
 
 
 
-Updating to Version 0.8
+Updating from Version 0.7.x
 
-Before updating to Version 0.8 of the module, delete the directory modules/imva.biz/imva_devguide.
+Before updating to the latest version of the module, delete the directory modules/imva.biz/imva_devguide.
 Log in to the admin and go to `Extensions -> Modules`. When asked if you want to delete the module configuration, accept.
 Copy the new module files to the modules directory and activate the module again.
 
