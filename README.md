@@ -1,12 +1,12 @@
 #imva_devguide
 =============
-##Developer's Guide // "Entwicklungshelfer" for Oxid Developers
+##Developer's Guide // "Entwicklungshelfer" for OXID eShop Developers
 
 
 
 ##Installation
 
-*	Copy the contents of /modules/ to your shop's module directory.
+*	Copy the contents of modules/ to your shop's module directory.
 *	In the shop admin, go to `Extensions => Modules` and select "imva.biz: Developer's Guide"
 *	In the section below click "activate".
 
