@@ -5,9 +5,9 @@
  * 
  * 
  * 
- * For redistribution in the provicer's network only.
+ * For redistribution in the provider's network only.
  *
- * Weitergabe außerhalb des Anbieternetzwerkes verboten.
+ * Weitergabe auÃŸerhalb des Anbieternetzwerkes verboten.
  *
  *
  *
@@ -24,30 +24,30 @@
  *
  *
  * Diese Software ist geistiges Eigentum von imva.biz respektive ihres Autors und ist durch das
- * Urheberrecht geschützt. Diese Software wird ohne irgendwelche Garantien und "wie sie ist"
+ * Urheberrecht geschÃ¼tzt. Diese Software wird ohne irgendwelche Garantien und "wie sie ist"
  * angeboten.
  *
- * Sie sind berechtigt, diese Software frei zu nutzen und auf Ihre Bedürfnisse anzupassen.
+ * Sie sind berechtigt, diese Software frei zu nutzen und auf Ihre BedÃ¼rfnisse anzupassen.
  *
- * Jegliche Modifikation, Vervielfältigung, Redistribution, Übertragung zum Zwecke der
- * Weiterentwicklung außerhalb der Netzwerke des Anbieters ist untersagt und stellt einen Verstoß
+ * Jegliche Modifikation, VervielfÃ¤ltigung, Redistribution, Ãœbertragung zum Zwecke der
+ * Weiterentwicklung auÃŸerhalb der Netzwerke des Anbieters ist untersagt und stellt einen VerstoÃŸ
  * gegen die Lizenzvereinbarung dar.
  *
- * Mit der Übernahme dieser Software akzeptieren Sie die zwischen Ihnen und dem Herausgeber
+ * Mit der Ãœbernahme dieser Software akzeptieren Sie die zwischen Ihnen und dem Herausgeber
  * festgehaltenen Bedingungen. Der Bruch dieser Bedingungen kann Schadensersatzforderungen nach
  * sich ziehen.
  *
  *
  *
- * (EULA-13/7)
+ * (EULA-13/7-OS)
  * 
  * 
  *
  * (c) 2013-2014 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-14/2/11
- * v 0.8.5
+ * 13/7/5-15/1/18
+ * v 0.9.2
  *
  */
 
@@ -94,7 +94,7 @@ $aLang = array(
 															Verhalten v&ouml;llig normal.',
 		'IMVA_DEVGUIDE_CLEARMOD_CLEARED'				=>	'Alle Module im gew&auml;hlten Shop wurden zur&uuml;ckgesetzt;',
 		'IMVA_DEVGUIDE_CLEARMOD_CLEARALL'				=>	'Auf alle Subshops anwenden.',
-		'IMVA_DEVGUIDE_CLEARMOD_CLEAREDALL'				=>	'Alle Module in allen Shops wurden zurückgesetzt;',
+		'IMVA_DEVGUIDE_CLEARMOD_CLEAREDALL'				=>	'Alle Module in allen Shops wurden zur&uuml;ckgesetzt;',
 		'IMVA_DEVGUIDE_CLEARMOD_RESTORED'				=>	'das Modul &bdquo;Entwicklungshelfer&rdquo; wurde automatisch reaktiviert.',
 		'IMVA_DEVGUIDE_CLEARMOD_FAIL'					=>	'Die Modulkonfiguration konnte nicht zur&uuml;ckgesetzt werden.',
 		'IMVA_DEVGUIDE_CLEARTEMP_CLEARED'				=>	'Der Cache (/tmp/-Verzeichnis) wurde geleert.',

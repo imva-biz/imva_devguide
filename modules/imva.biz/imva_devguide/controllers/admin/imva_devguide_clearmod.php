@@ -6,9 +6,9 @@
  * 
  * 
  * 
- * For redistribution in the provicer's network only.
+ * For redistribution in the provider's network only.
  *
- * Weitergabe außerhalb des Anbieternetzwerkes verboten.
+ * Weitergabe auÃŸerhalb des Anbieternetzwerkes verboten.
  *
  *
  *
@@ -25,16 +25,16 @@
  *
  *
  * Diese Software ist geistiges Eigentum von imva.biz respektive ihres Autors und ist durch das
- * Urheberrecht geschützt. Diese Software wird ohne irgendwelche Garantien und "wie sie ist"
+ * Urheberrecht geschÃ¼tzt. Diese Software wird ohne irgendwelche Garantien und "wie sie ist"
  * angeboten.
  *
- * Sie sind berechtigt, diese Software frei zu nutzen und auf Ihre Bedürfnisse anzupassen.
+ * Sie sind berechtigt, diese Software frei zu nutzen und auf Ihre BedÃ¼rfnisse anzupassen.
  *
- * Jegliche Modifikation, Vervielfältigung, Redistribution, Übertragung zum Zwecke der
- * Weiterentwicklung außerhalb der Netzwerke des Anbieters ist untersagt und stellt einen Verstoß
+ * Jegliche Modifikation, VervielfÃ¤ltigung, Redistribution, Ãœbertragung zum Zwecke der
+ * Weiterentwicklung auÃŸerhalb der Netzwerke des Anbieters ist untersagt und stellt einen VerstoÃŸ
  * gegen die Lizenzvereinbarung dar.
  *
- * Mit der Übernahme dieser Software akzeptieren Sie die zwischen Ihnen und dem Herausgeber
+ * Mit der Ãœbernahme dieser Software akzeptieren Sie die zwischen Ihnen und dem Herausgeber
  * festgehaltenen Bedingungen. Der Bruch dieser Bedingungen kann Schadensersatzforderungen nach
  * sich ziehen.
  *
@@ -44,11 +44,11 @@
  * 
  * 
  *
- * (c) 2013-2014 imva.biz, Johannes Ackermann, ja@imva.biz
+ * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-14/2/11
- * v 0.8.5
+ * 13/7/5-15/1/18
+ * v 0.9.2
  *
  */
 
@@ -208,40 +208,40 @@ class imva_devguide_clearmod extends oxAdminView
 		// Insert into oxtplblocks
 		$sSelectHead = "INSERT INTO `oxtplblocks` (`OXID`, `OXACTIVE`, `OXSHOPID`, `OXTEMPLATE`, `OXBLOCKNAME`, `OXPOS`, `OXFILE`, `OXMODULE`, `OXTIMESTAMP`) VALUES ";
 		
-		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_footer', '1', 'views/blocks/imva_footer.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_footer', '1', 'views/blocks/imva_devguide_footer.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
-		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_header', '1', 'views/blocks/imva_header.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_header', '1', 'views/blocks/imva_devguide_header.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
-		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_confirm', '1', 'views/blocks/dialogue.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_confirm', '1', 'views/blocks/imva_devguide_dialogue.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		
-		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_clearmod.tpl', 'imva_footer', '1', 'views/blocks/imva_footer.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_footer', '1', 'views/blocks/imva_devguide_footer.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
-		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_clearmod.tpl', 'imva_header', '1', 'views/blocks/imva_header.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_header', '1', 'views/blocks/imva_devguide_header.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 
-		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_confirm', '1', 'views/blocks/dialogue.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_devguide_confirm', '1', 'views/blocks/imva_devguide_dialogue.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		
-		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_main.tpl', 'imva_footer', '1', 'views/blocks/imva_footer.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_main.tpl', 'imva_devguide_footer', '1', 'views/blocks/imva_devguide_footer.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
-		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_main.tpl', 'imva_header', '1', 'views/blocks/imva_header.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_main.tpl', 'imva_devguide_header', '1', 'views/blocks/imva_devguide_header.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		
-		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_footer', '1', 'views/blocks/imva_footer.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_footer', '1', 'views/blocks/imva_devguide_footer.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
-		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_header', '1', 'views/blocks/imva_header.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_header', '1', 'views/blocks/imva_devguide_header.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
-		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_confirm', '1', 'views/blocks/dialogue.tpl', 'imva_devguide', '')";
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_devguide_confirm', '1', 'views/blocks/imva_devguide_dialogue.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		// Set Success Flag

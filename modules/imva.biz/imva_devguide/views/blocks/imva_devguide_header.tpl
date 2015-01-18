@@ -7,6 +7,9 @@
 	<meta name="author" content="imva.biz" />
 	<meta name="copyright" content="2012-[{"Y"|date}]" />
 	<meta name="robots" content="nofollow" />
+	
+	[{oxstyle include=$oViewConf->getModuleUrl('imva.bizimva_asr_gen','out/src/css/imva_devguide.css')}]
+	
 	<link rel="stylesheet" type="text/css" href="http://src.imva.biz/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="http://src.imva.biz/css/fonts/default.css" />
 	<link rel="stylesheet" type="text/css" href="http://src.imva.biz/css/imva-biz-style.css" />

@@ -5,9 +5,9 @@
  * 
  * 
  * 
- * For redistribution in the provicer's network only.
+ * For redistribution in the provider's network only.
  *
- * Weitergabe auﬂerhalb des Anbieternetzwerkes verboten.
+ * Weitergabe au√üerhalb des Anbieternetzwerkes verboten.
  *
  *
  *
@@ -24,30 +24,30 @@
  *
  *
  * Diese Software ist geistiges Eigentum von imva.biz respektive ihres Autors und ist durch das
- * Urheberrecht gesch¸tzt. Diese Software wird ohne irgendwelche Garantien und "wie sie ist"
+ * Urheberrecht gesch√ºtzt. Diese Software wird ohne irgendwelche Garantien und "wie sie ist"
  * angeboten.
  *
- * Sie sind berechtigt, diese Software frei zu nutzen und auf Ihre Bed¸rfnisse anzupassen.
+ * Sie sind berechtigt, diese Software frei zu nutzen und auf Ihre Bed√ºrfnisse anzupassen.
  *
- * Jegliche Modifikation, Vervielf‰ltigung, Redistribution, ‹bertragung zum Zwecke der
- * Weiterentwicklung auﬂerhalb der Netzwerke des Anbieters ist untersagt und stellt einen Verstoﬂ
+ * Jegliche Modifikation, Vervielf√§ltigung, Redistribution, √úbertragung zum Zwecke der
+ * Weiterentwicklung au√üerhalb der Netzwerke des Anbieters ist untersagt und stellt einen Versto√ü
  * gegen die Lizenzvereinbarung dar.
  *
- * Mit der ‹bernahme dieser Software akzeptieren Sie die zwischen Ihnen und dem Herausgeber
+ * Mit der √úbernahme dieser Software akzeptieren Sie die zwischen Ihnen und dem Herausgeber
  * festgehaltenen Bedingungen. Der Bruch dieser Bedingungen kann Schadensersatzforderungen nach
  * sich ziehen.
  *
  *
  *
- * (EULA-13/7)
+ * (EULA-13/7-OS)
  * 
  * 
  *
  * (c) 2013-2014 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-14/2/11
- * v 0.8.5
+ * 13/7/5-15/1/18
+ * v 0.9.2
  *
  */
 
@@ -93,7 +93,7 @@ class imva_devguide_service extends oxbase
 	
 	
 	/**
-	 * Is auto-reaktivation enabled?
+	 * Is auto-reactivation enabled?
 	 * 
 	 * @param null
 	 * @return boolean
@@ -135,6 +135,7 @@ class imva_devguide_service extends oxbase
 	
 	/**
 	 * Determines, wheather this installation has subshops.
+	 * @see As seen in imva_service
 	 * 
 	 * @param null
 	 * @return boolean
