@@ -7,7 +7,7 @@
  * 
  * For redistribution in the provicer's network only.
  *
- * Weitergabe auï¿½erhalb des Anbieternetzwerkes verboten.
+ * Weitergabe außerhalb des Anbieternetzwerkes verboten.
  *
  *
  *
@@ -24,16 +24,16 @@
  *
  *
  * Diese Software ist geistiges Eigentum von imva.biz respektive ihres Autors und ist durch das
- * Urheberrecht geschï¿½tzt. Diese Software wird ohne irgendwelche Garantien und "wie sie ist"
+ * Urheberrecht geschützt. Diese Software wird ohne irgendwelche Garantien und "wie sie ist"
  * angeboten.
  *
- * Sie sind berechtigt, diese Software frei zu nutzen und auf Ihre Bedï¿½rfnisse anzupassen.
+ * Sie sind berechtigt, diese Software frei zu nutzen und auf Ihre Bedürfnisse anzupassen.
  *
- * Jegliche Modifikation, Vervielfï¿½ltigung, Redistribution, ï¿½bertragung zum Zwecke der
- * Weiterentwicklung auï¿½erhalb der Netzwerke des Anbieters ist untersagt und stellt einen Verstoï¿½
+ * Jegliche Modifikation, Vervielfältigung, Redistribution, Übertragung zum Zwecke der
+ * Weiterentwicklung außerhalb der Netzwerke des Anbieters ist untersagt und stellt einen Verstoß
  * gegen die Lizenzvereinbarung dar.
  *
- * Mit der ï¿½bernahme dieser Software akzeptieren Sie die zwischen Ihnen und dem Herausgeber
+ * Mit der Übernahme dieser Software akzeptieren Sie die zwischen Ihnen und dem Herausgeber
  * festgehaltenen Bedingungen. Der Bruch dieser Bedingungen kann Schadensersatzforderungen nach
  * sich ziehen.
  *
@@ -46,8 +46,8 @@
  * (c) 2013-2014 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/1/18
- * v 0.9.2
+ * 13/7/5-14/2/11
+ * v 0.8.5
  *
  */
 
@@ -93,7 +93,7 @@ class imva_devguide_service extends oxbase
 	
 	
 	/**
-	 * Is auto-reactivation enabled?
+	 * Is auto-reaktivation enabled?
 	 * 
 	 * @param null
 	 * @return boolean
@@ -135,7 +135,6 @@ class imva_devguide_service extends oxbase
 	
 	/**
 	 * Determines, wheather this installation has subshops.
-	 * @see As seen in imva_service
 	 * 
 	 * @param null
 	 * @return boolean
