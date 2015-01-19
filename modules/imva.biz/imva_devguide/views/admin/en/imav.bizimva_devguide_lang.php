@@ -75,6 +75,8 @@ $aLang = array(
 		// Dialogue
 		'IMVA_DEVGUIDE_CONFIRM'							=>	'Are you sure?',
 		'IMVA_DEVGUIDE_CONFIRM_YES'						=>	'Yes',
+		'IMVA_DEVGUIDE_CONFIRM_CANCEL'					=>	'Cancel',
+		'IMVA_DEVGUIDE_CANCELLED'						=>	'Die Aktion wurde abgebrochen.',
 		
 		// Main View
 		'IMVA_DEVGUIDE_CLEARMOD_ALL'					=>	'... in all subshops',

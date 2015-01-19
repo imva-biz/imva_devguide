@@ -100,6 +100,59 @@ ul.nav li{
 }
 
 /**
+ * boxes
+ */
+.msg{
+	border:2px;
+	padding:8px;
+	text-shadow:#bbb 2px 2px 3px;
+}
+.msg.hnt{
+	border:2px solid #bbb;
+	box-shadow:#bbb 1px 1px 2px 1px;
+}
+.msg.err{
+	border:2px solid #f26363;
+	box-shadow:#f26363 1px 1px 2px 1px;
+}
+.msg.suc{
+	border:2px solid #2cff3b;
+	box-shadow:#2cff3b 1px 1px 2px 1px;
+}
+.msg.wrn{
+	border:2px solid #e4d20d;
+	box-shadow:#bbb 1px 1px 2px 1px;
+}
+
+.btn{
+	border:1px solid #666;
+	background:0;
+	padding:2px 12px 2px 12px;
+	box-shadow:#bbb 2px 2px 3px;
+	text-align:center;
+}
+.btn.green{
+	color:#333;
+	border:solid #4dbf5b;
+	background-image: linear-gradient(to bottom, #93E67E 0%, #BFEFC7 100%);
+}
+.btn.green:hover{
+	border:solid #369641;
+	background:0;
+}
+
+.btn.red{
+	color:#fff;
+	border:solid #c94c4c;
+	background-image: linear-gradient(to bottom, #E66165 0%, #EFACA7 100%);
+}
+.btn.red:hover{
+	color:#333;
+	border:solid #bd1d1d;
+	background:0;
+}
+
+/**
  * Formatters
  */
 .hint{
