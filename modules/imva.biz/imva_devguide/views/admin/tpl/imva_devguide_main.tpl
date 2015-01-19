@@ -2,12 +2,13 @@
 
 <h1>[{oxmultilang ident='IMVA_DEVGUIDE_TITLE'}]</h1>
 <p>[{oxmultilang ident='IMVA_DEVGUIDE_MAIN_INTRO'}]</p>
+
 [{if $oView->oServ->askMe()}]
 	[{oxmultilang ident='IMVA_DEVGUIDE_MAIN_WITHDIALOGUE'}]
 [{else}]
 	[{oxmultilang ident='IMVA_DEVGUIDE_MAIN_NODIALOGUE'}]
 [{/if}]
-<br />[{oxmultilang ident='IMVA_DEVGUIDE_MAIN_BEHAVIOUR'}]
+<br>[{oxmultilang ident='IMVA_DEVGUIDE_MAIN_BEHAVIOUR'}]
 <i>[{oxmultilang ident='SHOP_MODULE_imva_devguide_requestonaction'}]</i>.
 </p>
 

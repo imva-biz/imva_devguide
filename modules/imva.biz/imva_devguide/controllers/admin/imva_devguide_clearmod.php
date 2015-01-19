@@ -48,7 +48,7 @@
  * @author Johannes Ackermann
  *
  * 13/7/5-15/1/18
- * v 0.9.2
+ * v 0.9.4
  *
  */
 
@@ -107,6 +107,10 @@ class imva_devguide_clearmod extends oxAdminView
 		
 		if ($this->blSuccess and $this->blFail){
 			echo 'ERROR_PARADOX';
+		}
+		
+		if ($this->oServ->getP('blCancelled')){
+			$this->blCancelled = true;
 		}
 		
 		return 'imva_devguide_clearmod.tpl';

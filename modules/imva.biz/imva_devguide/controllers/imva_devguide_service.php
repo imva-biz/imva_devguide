@@ -47,7 +47,7 @@
  * @author Johannes Ackermann
  *
  * 13/7/5-15/1/19
- * v 0.9.2.1
+ * v 0.9.3.1
  *
  */
 
@@ -71,9 +71,9 @@ class imva_devguide_service extends oxbase
 		$this->oConf = $this->getConfig();
 		
 		// Get the module version
-		$oTmpModuleObj = oxNew('oxmodule');
-		$oTmpModuleObj->load('imva_devguide');
-		$this->sModuleVersion = $oTmpModuleObj->getInfo('version');
+		$oModule = oxNew('oxmodule');
+		$oModule->load('imva.bizimva_devguide');
+		$this->sModuleVersion = $oModule->getInfo('version');
 	}
 
 	

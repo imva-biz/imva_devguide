@@ -47,8 +47,8 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/1/18
- * v 0.9.2
+ * 13/7/5-15/1/19
+ * v 0.9.4
  *
  */
 
@@ -56,6 +56,7 @@ class imva_devguide_cleartemp extends oxAdminView
 {
 	public $blSuccess	=	false;							// Successful?
 	public $blFail		=	false;							// Failure
+	public $blCancelled	=	false;							// Cancelled
 	public $oServ		=	null;							// Devguide Service
 	
 	
@@ -85,13 +86,17 @@ class imva_devguide_cleartemp extends oxAdminView
 	{
 		parent::render();
 	
-		// Determine, whether dialogues are enabled and confirmed OR not enabled
+		// Determine whether dialogues are enabled and confirmed OR not enabled
 		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm')) or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null)){
 			$this->_clearTemp();
 		}
 	
 		if ($this->blSuccess and $this->blFail){
 			echo 'ERROR_PARADOX';
+		}
+		
+		if ($this->oServ->getP('blCancelled')){
+			$this->blCancelled = true;
 		}
 	
 		return 'imva_devguide_cleartemp.tpl';
@@ -114,7 +119,19 @@ class imva_devguide_cleartemp extends oxAdminView
 		$this->_clearDir($sTempDir);
 	
 		// tmp/smarty
-		$this->_clearDir($sTempDir.'/smarty/');
+		if (file_exists($sTempDir.'/smarty/')){
+			$this->_clearDir($sTempDir.'/smarty/');
+		}
+	
+		// tmp/css
+		if (file_exists($sTempDir.'/css/')){
+			$this->_clearDir($sTempDir.'/css/');
+		}
+	
+		// tmp/less
+		if (file_exists($sTempDir.'/less/')){
+			$this->_clearDir($sTempDir.'/less/');
+		}
 	
 		// Create new .htaccess
 		$oFile = fopen($sTempDir.'/.htaccess','w+');

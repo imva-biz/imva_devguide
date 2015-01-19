@@ -47,7 +47,7 @@
  * @author Johannes Ackermann
  *
  * 13/2/8-15/1/19
- * v 0.9.3
+ * v 0.9.4
  *
  */
 
@@ -70,24 +70,31 @@ $aModule = array(
 			Wir empfehlen, im Produktivbetrieb zumindest die R&uuml;ckfragen aktiviert zu lassen.</p>',
 	),
 	'thumbnail'		=> 'out/img/imva-Logo-90.png',
-	'version'		=> '0.9.3',
+	'version'		=> '0.9.4',
 	'author'		=> 'Johannes Ackermann',
 	'url'			=> 'http://imva.biz',
 	'email' 		=> 'imva@imva.biz',
 	'extend'		=> array(
 	),
-	'files' => array(
-		'imva_devguide_service'				=>	'imva.biz/imva_devguide/services/imva_devguide_service.php',	// functions used by all module classes
+	'files'		=> array(
+		// functions used by all module classes
+		'imva_devguide_service'				=>	'imva.biz/imva_devguide/controllers/imva_devguide_service.php',
+		
+		// controllers
 		'imva_devguide_main'				=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_main.php',
 		'imva_devguide_clearmod'			=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_clearmod.php',
 		'imva_devguide_cleartemp'			=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_cleartemp.php',
 		'imva_devguide_rebuildviews'		=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_rebuildviews.php',
 	),
+    'events'       => array(
+    ),
 	'templates'	=>	array(
-		'imva_devguide_main.tpl'			=>	'imva.biz/imva_devguide/views/admin/imva_devguide_main.tpl',
-		'imva_devguide_clearmod.tpl'		=>	'imva.biz/imva_devguide/views/admin/imva_devguide_clearmod.tpl',
-		'imva_devguide_cleartemp.tpl'		=>	'imva.biz/imva_devguide/views/admin/imva_devguide_cleartemp.tpl',
-		'imva_devguide_rebuildviews.tpl'	=>	'imva.biz/imva_devguide/views/admin/imva_devguide_rebuildviews.tpl',
+		'imva_devguide_main.tpl'			=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_main.tpl',
+		'imva_devguide_clearmod.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_clearmod.tpl',
+		'imva_devguide_cleartemp.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_cleartemp.tpl',
+		'imva_devguide_rebuildviews.tpl'	=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_rebuildviews.tpl',
+		'imva_devguide_cancelled.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/inc/imva_devguide_cancelled.tpl',
+		'imva_devguide_redo.tpl'			=>	'imva.biz/imva_devguide/views/admin/tpl/inc/imva_devguide_redo.tpl',
 	),
 	'blocks'	=>	array(
 		array(

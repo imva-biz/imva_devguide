@@ -77,6 +77,7 @@ $aLang = array(
 		'IMVA_DEVGUIDE_CONFIRM_YES'						=>	'Ja',
 		'IMVA_DEVGUIDE_CONFIRM_CANCEL'					=>	'Abbrechen',
 		'IMVA_DEVGUIDE_CANCELLED'						=>	'Die Aktion wurde abgebrochen.',
+		'IMVA_DEVGUIDE_REDO'							=>	'Wiederholen',
 		
 		// Main View
 		'IMVA_DEVGUIDE_CLEARMOD_ALL'					=>	'... in allen Subshops',
@@ -99,7 +100,7 @@ $aLang = array(
 		'IMVA_DEVGUIDE_CLEARMOD_CLEAREDALL'				=>	'Alle Module in allen Shops wurden zur&uuml;ckgesetzt;',
 		'IMVA_DEVGUIDE_CLEARMOD_RESTORED'				=>	'das Modul &bdquo;Entwicklungshelfer&rdquo; wurde automatisch reaktiviert.',
 		'IMVA_DEVGUIDE_CLEARMOD_FAIL'					=>	'Die Modulkonfiguration konnte nicht zur&uuml;ckgesetzt werden.',
-		'IMVA_DEVGUIDE_CLEARTEMP_CLEARED'				=>	'Der Cache (/tmp/-Verzeichnis) wurde geleert.',
+		'IMVA_DEVGUIDE_CLEARTEMP_CLEARED'				=>	'Der Template-Cache (tmp/-Verzeichnis) wurde geleert.',
 		'IMVA_DEVGUIDE_CLEARTEMP_FAIL'					=>	'Fehler beim Leeren von /tmp/. Schreibrechte pr&uuml;fen.',
 		'IMVA_DEVGUIDE_RV_CLEARED'						=>	'Die Datenbankviews wurden neu aufgebaut.',
 		'IMVA_DEVGUIDE_RV_FAIL'							=>	'Fehler beim Neugenerieren der Datenbankviews. Falls dieses Problem wiedeholt,

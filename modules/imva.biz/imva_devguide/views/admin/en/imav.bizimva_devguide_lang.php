@@ -76,7 +76,8 @@ $aLang = array(
 		'IMVA_DEVGUIDE_CONFIRM'							=>	'Are you sure?',
 		'IMVA_DEVGUIDE_CONFIRM_YES'						=>	'Yes',
 		'IMVA_DEVGUIDE_CONFIRM_CANCEL'					=>	'Cancel',
-		'IMVA_DEVGUIDE_CANCELLED'						=>	'Die Aktion wurde abgebrochen.',
+		'IMVA_DEVGUIDE_CANCELLED'						=>	'The procedure has been cancelled.',
+		'IMVA_DEVGUIDE_REDO'							=>	'Redo',
 		
 		// Main View
 		'IMVA_DEVGUIDE_CLEARMOD_ALL'					=>	'... in all subshops',
@@ -97,7 +98,7 @@ $aLang = array(
 		'IMVA_DEVGUIDE_CLEARMOD_CLEAREDALL'				=>	'All modules have been reset;',
 		'IMVA_DEVGUIDE_CLEARMOD_RESTORED'				=>	'the &quot;Entwicklungshelfer&quot; module has been re-activated.',
 		'IMVA_DEVGUIDE_CLEARMOD_FAIL'					=>	'Could not reset the module configuration.',
-		'IMVA_DEVGUIDE_CLEARTEMP_CLEARED'				=>	'Cache (/tmp/ directory) has been cleared.',
+		'IMVA_DEVGUIDE_CLEARTEMP_CLEARED'				=>	'Template cache (tmp/ directory) has been cleared.',
 		'IMVA_DEVGUIDE_CLEARTEMP_FAIL'					=>	'Error clearing /tmp/. Check the permissions.',
 		'IMVA_DEVGUIDE_RV_CLEARED'						=>	'Database views have been rebuilt.',
 		'IMVA_DEVGUIDE_RV_FAIL'							=>	'Error rebuilding database views. It this persists, either a database
