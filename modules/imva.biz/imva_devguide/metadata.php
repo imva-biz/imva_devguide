@@ -47,7 +47,7 @@
  * @author Johannes Ackermann
  *
  * 13/2/8-15/1/20
- * v 0.9.5
+ * v 0.9.5.1
  *
  */
 
@@ -70,7 +70,7 @@ $aModule = array(
 			Wir empfehlen, im Produktivbetrieb zumindest die R&uuml;ckfragen aktiviert zu lassen.</p>',
 	),
 	'thumbnail'		=> 'out/img/imva-Logo-90.png',
-	'version'		=> '0.9.5',
+	'version'		=> '0.9.5.1',
 	'author'		=> 'Johannes Ackermann',
 	'url'			=> 'http://imva.biz',
 	'email' 		=> 'imva@imva.biz',

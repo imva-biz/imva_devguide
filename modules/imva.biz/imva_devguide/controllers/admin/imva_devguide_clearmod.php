@@ -48,7 +48,7 @@
  * @author Johannes Ackermann
  *
  * 13/7/5-15/1/20
- * v 0.9.5
+ * v 0.9.5.1
  *
  */
 
@@ -74,6 +74,7 @@ class imva_devguide_clearmod extends imva_devguide_base
 	
 	/**
 	 * Render
+	 * 
 	 * @return string
 	 */	
 	public function render()
@@ -97,14 +98,6 @@ class imva_devguide_clearmod extends imva_devguide_base
 			if ($this->oServ->isAutoRevive()){
 				$this->_reviveDevguide();
 			}
-		}
-		
-		if ($this->blSuccess and $this->blFail){
-			echo 'ERROR_PARADOX';
-		}
-		
-		if ($this->oServ->getP('blCancelled')){
-			$this->blCancelled = true;
 		}
 		
 		return 'imva_devguide_clearmod.tpl';

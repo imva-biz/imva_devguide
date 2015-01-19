@@ -62,7 +62,7 @@ class imva_devguide_base extends oxAdminView
 	
 	
 	/**
-	 * Construct
+	 * Init
 	 *
 	 * Provice Service.
 	 * @param null
@@ -72,5 +72,25 @@ class imva_devguide_base extends oxAdminView
 	{
 		parent::init();
 		$this->oServ = oxNew('imva_devguide_service');		// Service
+	}
+	
+	
+	
+	/**
+	 * Render
+	 * 
+	 * @return string
+	 */
+	public function render()
+	{
+		parent::render();
+
+		if ($this->blSuccess and $this->blFail){
+			echo 'ERROR_PARADOX';
+		}
+		
+		if ($this->oServ->getP('blCancelled')){
+			$this->blCancelled = true;
+		}
 	}
 }

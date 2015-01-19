@@ -48,7 +48,7 @@
  * @author Johannes Ackermann
  *
  * 13/7/5-15/1/20
- * v 0.9.4
+ * v 0.9.5.1
  *
  */
 
@@ -64,6 +64,7 @@ class imva_devguide_main extends imva_devguide_base
 	public function render()
 	{
 		parent::render();		
+		
 		return 'imva_devguide_main.tpl';
 	}
 }

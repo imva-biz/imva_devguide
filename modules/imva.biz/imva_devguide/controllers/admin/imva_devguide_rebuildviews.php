@@ -48,7 +48,7 @@
  * @author Johannes Ackermann
  *
  * 13/7/5-15/1/18
- * v 0.9.4
+ * v 0.9.5.1
  *
  */
 
@@ -68,14 +68,6 @@ class imva_devguide_rebuildviews extends imva_devguide_base
 		// Determine, whether dialogues are enabled and confirmed OR not enabled
 		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm')) or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null)){
 			$this->_rebuildViews();
-		}
-
-		if ($this->blSuccess and $this->blFail){
-			echo 'ERROR_PARADOX';
-		}
-		
-		if ($this->oServ->getP('blCancelled')){
-			$this->blCancelled = true;
 		}
 		
 		return 'imva_devguide_rebuildviews.tpl';
