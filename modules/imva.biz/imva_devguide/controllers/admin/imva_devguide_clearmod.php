@@ -47,23 +47,18 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/1/18
- * v 0.9.4
+ * 13/7/5-15/1/20
+ * v 0.9.5
  *
  */
 
-class imva_devguide_clearmod extends oxAdminView
+class imva_devguide_clearmod extends imva_devguide_base
 {
-	private $_sShopId	=	null;								// The shop ID. Prepared for usage in EE (maybe soon)
-	public $blSuccess	=	false;								// Successful?
-	public $blFail		=	false;								// Failure
-	public $blAllcleared=	false;								// Status
-	public $oServ		=	null;								// Devguide Service
-	
+
 	
 	
 	/**
-	 * Construct
+	 * Init
 	 * 
 	 * Provice Service.
 	 * @param null
@@ -72,7 +67,6 @@ class imva_devguide_clearmod extends oxAdminView
 	public function init()
 	{
 		parent::init();
-		$this->oServ = oxNew('imva_devguide_service');			// Service
 		$this->_sShopId = oxRegistry::getConfig()->getShopId();	// Fill (sub)-shop ID
 	}
 	

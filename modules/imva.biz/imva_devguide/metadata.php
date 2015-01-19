@@ -46,8 +46,8 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/2/8-15/1/19
- * v 0.9.4
+ * 13/2/8-15/1/20
+ * v 0.9.5
  *
  */
 
@@ -70,14 +70,13 @@ $aModule = array(
 			Wir empfehlen, im Produktivbetrieb zumindest die R&uuml;ckfragen aktiviert zu lassen.</p>',
 	),
 	'thumbnail'		=> 'out/img/imva-Logo-90.png',
-	'version'		=> '0.9.4',
+	'version'		=> '0.9.5',
 	'author'		=> 'Johannes Ackermann',
 	'url'			=> 'http://imva.biz',
 	'email' 		=> 'imva@imva.biz',
-	'extend'		=> array(
-	),
 	'files'		=> array(
 		// functions used by all module classes
+		'imva_devguide_base'				=>	'imva.biz/imva_devguide/controllers/imva_devguide_base.php',
 		'imva_devguide_service'				=>	'imva.biz/imva_devguide/controllers/imva_devguide_service.php',
 		
 		// controllers
@@ -85,6 +84,8 @@ $aModule = array(
 		'imva_devguide_clearmod'			=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_clearmod.php',
 		'imva_devguide_cleartemp'			=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_cleartemp.php',
 		'imva_devguide_rebuildviews'		=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_rebuildviews.php',
+	),
+	'extend'		=> array(
 	),
     'events'       => array(
     ),

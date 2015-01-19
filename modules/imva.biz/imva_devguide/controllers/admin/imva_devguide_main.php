@@ -47,29 +47,13 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/1/18
- * v 0.9.2
+ * 13/7/5-15/1/20
+ * v 0.9.4
  *
  */
 
-class imva_devguide_main extends oxAdminView
+class imva_devguide_main extends imva_devguide_base
 {
-	public $oServ				=	null;							// Devguide Service
-	
-	
-	
-	/**
-	 * Construct
-	 *
-	 * Provice Service.
-	 * @param null
-	 * @return null
-	 */
-	public function init()
-	{
-		parent::init();
-		$this->oServ = oxNew('imva_devguide_service');				// Service
-	}
 	
 	
 	

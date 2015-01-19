@@ -47,32 +47,13 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/1/19
- * v 0.9.4
+ * 13/7/5-15/1/20
+ * v 0.9.5
  *
  */
 
-class imva_devguide_cleartemp extends oxAdminView
+class imva_devguide_cleartemp extends imva_devguide_base
 {
-	public $blSuccess	=	false;							// Successful?
-	public $blFail		=	false;							// Failure
-	public $blCancelled	=	false;							// Cancelled
-	public $oServ		=	null;							// Devguide Service
-	
-	
-	
-	/**
-	 * Construct
-	 *
-	 * Provice Service.
-	 * @param null
-	 * @return null
-	 */
-	public function init()
-	{
-		parent::init();
-		$this->oServ = oxNew('imva_devguide_service');		// Service
-	}
 	
 	
 	
