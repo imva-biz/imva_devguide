@@ -60,10 +60,11 @@ $aLang = array(
 		'imva_services_information'						=>	'Information',
 	
 		// Titles
-		'imva_devguide'									=>	'Developer\'s Guide',
+		'imva_devguide'									=>	'Developer&rsquo;s Guide',
 		'imva_devguide_cleartemp'						=>	'Clear cache',
 		'imva_devguide_rebuildviews'					=>	'Rebuild Views',
 		'imva_devguide_clearmod'						=>	'Reset modules',
+		'imva_devguide_logviewer'						=>	'View logfiles',
 		
 		// Configuration
 		'SHOP_MODULE_GROUP_imva_devguide_behaviour'		=>	'Behaviour',
@@ -103,6 +104,10 @@ $aLang = array(
 		'IMVA_DEVGUIDE_RV_CLEARED'						=>	'Database views have been rebuilt.',
 		'IMVA_DEVGUIDE_RV_FAIL'							=>	'Error rebuilding database views. It this persists, either a database
 															table may be missing or the database structure is damaged.',
+		'IMVA_DEVGUIDE_LOGVIEWER_CLEARFILE'				=>	'Clear',
+		'IMVA_DEVGUIDE_LOGVIEWER_ELMISSEMPTY'			=>	'The selected file is empty.',
+		'IMVA_DEVGUIDE_LOGVIEWER_FAIL'					=>	'Cannot read the selected file.
+															It either does not exist or access was denied.',
 		
 		// Footer
 		'IMVA_DEVGUIDE_MANUAL'							=>	'User manual',

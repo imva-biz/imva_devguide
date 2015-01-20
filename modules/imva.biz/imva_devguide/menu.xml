@@ -11,6 +11,7 @@
 			 <SUBMENU id="imva_devguide_cleartemp" cl="imva_devguide_cleartemp" rights="malladmin" disableForDemoShop="0" />
 			 <SUBMENU id="imva_devguide_rebuildviews" cl="imva_devguide_rebuildviews" rights="malladmin" disableForDemoShop="0" />
 			 <SUBMENU id="imva_devguide_clearmod" cl="imva_devguide_clearmod" rights="malladmin" disableForDemoShop="1" />
+			 <SUBMENU id="imva_devguide_logviewer" cl="imva_devguide_logviewer" rights="malladmin" disableForDemoShop="1" />
         </MAINMENU>
     </OXMENU>
 </OX>

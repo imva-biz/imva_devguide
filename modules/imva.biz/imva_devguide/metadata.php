@@ -47,7 +47,7 @@
  * @author Johannes Ackermann
  *
  * 13/2/8-15/1/20
- * v 0.9.5.1
+ * v 0.9.10
  *
  */
 
@@ -58,19 +58,25 @@ $sMetadataVersion = '1.1';
  */
 $aModule = array(
 	'id'			=> 'imva.bizimva_devguide',
-	'title'			=> '<img src="../modules/imva.biz/imva_devguide/out/img/imva-Logo-12.png" alt=".iI" title="imva.biz" /> Developer&rsquo;s Guide',
+	'title'			=> array(
+		'de'	=>	'<img src="../modules/imva.biz/imva_devguide/out/img/imva-Logo-12.png" alt=".iI" title="imva.biz" /> Entwicklungshelfer',
+		'en'	=>	'<img src="../modules/imva.biz/imva_devguide/out/img/imva-Logo-12.png" alt=".iI" title="imva.biz" /> Developer&rsquo;s Guide',
+	),
 	'description'	=> array(
-		'en'	=>	'<p>imva.biz Developer&rsquo;s Guide supports developers in their work on the shop by providing one-click quick
-			access to often executed actions.<br>This module extends the shop admin with a new menu and does not affect the
+		'en'	=>	'<p>imva.biz Developer&rsquo;s Guide (also named <i>Entwicklungshelfer</i>, &quot;development aid worker&quot;)
+			supports developers in their work on the shop by providing one-click quick
+			access to often executed actions. Very useful for module and template development!<br>
+			This module extends the shop admin with a new menu and does not affect the
 			regular shop operation.<br>
-			We recommend you to keep dialogues enabled when using the module in a productive environment.</p>',
-		'de'	=>	'<p>Developer&rsquo;s Guide, der &bdquo;Entwicklungshelfer&rdquo; unterst&uuml;tzt Entwickler bei der Arbeit am Shop,
-			indem er h&auml;ufig ben&ouml;tigte Aktionen mit nur einem Klick ausf&uuml;hrt.<br>Dieses Modul erweitert den Shop-Admin um
+			We recommend you to keep dialogues enabled when using the module in a <b>productive environment</p> or even better, not to enable this module.</p>',
+		'de'	=>	'<p>Der Entwicklungshelfer unterst&uuml;tzt OXID-Entwickler bei der Arbeit am Shop,
+			indem er bei der Modul- und Templateentwicklung h&auml;ufig ben&ouml;tigte Aktionen mit nur einem Klick ausf&uuml;hrt.<br>
+			Dieses Modul erweitert den Shop-Admin um
 			ein zus&auml;tzliches Men&uuml;. Das Modul hat keinen Einfluss auf den regul&auml;ren Shopbetrieb.<br>
-			Wir empfehlen, im Produktivbetrieb zumindest die R&uuml;ckfragen aktiviert zu lassen.</p>',
+			Wir empfehlen, im <b>Produktivbetrieb</b> zumindest die R&uuml;ckfragen aktiviert zu lassen, besser jedoch, das Modul nicht zu aktivieren.</p>',
 	),
 	'thumbnail'		=> 'out/img/imva-Logo-90.png',
-	'version'		=> '0.9.5.1',
+	'version'		=> '0.9.10',
 	'author'		=> 'Johannes Ackermann',
 	'url'			=> 'http://imva.biz',
 	'email' 		=> 'imva@imva.biz',
@@ -80,6 +86,7 @@ $aModule = array(
 		'imva_devguide_service'				=>	'imva.biz/imva_devguide/controllers/imva_devguide_service.php',
 		
 		// controllers
+		'imva_devguide_logviewer'			=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_logviewer.php',
 		'imva_devguide_main'				=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_main.php',
 		'imva_devguide_clearmod'			=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_clearmod.php',
 		'imva_devguide_cleartemp'			=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_cleartemp.php',
@@ -90,14 +97,29 @@ $aModule = array(
     'events'       => array(
     ),
 	'templates'	=>	array(
+		// views w/ controllers
+		'imva_devguide_logviewer.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_logviewer.tpl',
 		'imva_devguide_main.tpl'			=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_main.tpl',
 		'imva_devguide_clearmod.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_clearmod.tpl',
 		'imva_devguide_cleartemp.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_cleartemp.tpl',
 		'imva_devguide_rebuildviews.tpl'	=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_rebuildviews.tpl',
+			
+		// snippets
 		'imva_devguide_cancelled.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/inc/imva_devguide_cancelled.tpl',
 		'imva_devguide_redo.tpl'			=>	'imva.biz/imva_devguide/views/admin/tpl/inc/imva_devguide_redo.tpl',
 	),
 	'blocks'	=>	array(
+		array(
+    		'template' => 'imva_devguide_logviewer.tpl',
+    		'block'    => 'imva_header',
+    		'file'     => 'views/blocks/imva_devguide_header.tpl'
+    	),
+		array(
+    		'template' => 'imva_devguide_logviewer.tpl',
+    		'block'    => 'imva_footer',
+    		'file'     => 'views/blocks/imva_devguide_footer.tpl'
+    	),
+			
 		array(
     		'template' => 'imva_devguide_main.tpl',
     		'block'    => 'imva_header',
@@ -108,6 +130,7 @@ $aModule = array(
     		'block'    => 'imva_footer',
     		'file'     => 'views/blocks/imva_devguide_footer.tpl'
     	),
+			
     	array(
     		'template' => 'imva_devguide_clearmod.tpl',
     		'block'    => 'imva_header',
@@ -123,6 +146,7 @@ $aModule = array(
 			'block'    => 'imva_devguide_confirm',
 			'file'     => 'views/blocks/imva_devguide_dialogue.tpl'
     	),
+			
 		array(
     		'template' => 'imva_devguide_cleartemp.tpl',
     		'block'    => 'imva_header',
@@ -138,6 +162,7 @@ $aModule = array(
 			'block'    => 'imva_devguide_confirm',
 			'file'     => 'views/blocks/imva_devguide_dialogue.tpl'
     	),
+			
 		array(
     		'template' => 'imva_devguide_rebuildviews.tpl',
     		'block'    => 'imva_header',

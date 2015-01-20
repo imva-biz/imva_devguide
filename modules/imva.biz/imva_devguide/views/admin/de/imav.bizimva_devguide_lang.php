@@ -47,7 +47,7 @@
  * @author Johannes Ackermann
  *
  * 13/7/5-15/1/18
- * v 0.9.2
+ * v 0.9.10
  *
  */
 
@@ -60,10 +60,11 @@ $aLang = array(
 		'imva_services_information'						=>	'Informationen',
 	
 		// Titles
-		'imva_devguide'									=>	'Entwicklerassistent',
+		'imva_devguide'									=>	'Entwicklungshelfer',
 		'imva_devguide_cleartemp'						=>	'Cache leeren',
 		'imva_devguide_rebuildviews'					=>	'Views neu aufbauen',
 		'imva_devguide_clearmod'						=>	'Module zur&uuml;cksetzen',
+		'imva_devguide_logviewer'						=>	'Logfiles ansehen',
 		
 		// Configuration
 		'SHOP_MODULE_GROUP_imva_devguide_behaviour'		=>	'Verhalten',
@@ -106,6 +107,10 @@ $aLang = array(
 		'IMVA_DEVGUIDE_RV_FAIL'							=>	'Fehler beim Neugenerieren der Datenbankviews. Falls dieses Problem wiedeholt,
 															auftritt, wurde m&ouml;glicherweise eine Tabelle nicht gefunden oder die Struktur
 															ist fehlerhaft.',
+		'IMVA_DEVGUIDE_LOGVIEWER_CLEARFILE'				=>	'Datei leeren',
+		'IMVA_DEVGUIDE_LOGVIEWER_ELMISSEMPTY'			=>	'Die gewählte Datei ist leer.',
+		'IMVA_DEVGUIDE_LOGVIEWER_FAIL'					=>	'Die gewählte Datei kann nicht gelesen werden.
+															Möglicherweise existiert sie nicht oder der Zugriff ist nicht erlaubt.',
 		
 		// Footer
 		'IMVA_DEVGUIDE_MANUAL'							=>	'Benutzerhandbuch',
