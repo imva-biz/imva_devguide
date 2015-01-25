@@ -53,11 +53,11 @@
 
 class imva_devguide_base extends oxAdminView
 {
-	private $_sShopId	=	null;								// The shop ID. Prepared for usage in EE
-	public $blSuccess	=	false;								// Successful?
-	public $blFail		=	false;								// Failure
-	public $blAllcleared=	false;								// Status
-	public $oServ		=	null;								// Devguide Service
+	private $_sShopId		=	null;								// The shop ID. Prepared for usage in EE
+	public $blSuccess		=	false;								// Successful?
+	public $blFail			=	false;								// Failure
+	public $blAllcleared	=	false;								// Status
+	public $oServ			=	null;								// Devguide Service
 	
 	
 	

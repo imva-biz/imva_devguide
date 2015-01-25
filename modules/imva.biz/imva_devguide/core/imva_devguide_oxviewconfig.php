@@ -2,7 +2,6 @@
 
 /**
  * imva.biz Developer's Guide
- * Logfile Viewer
  * 
  * 
  * 
@@ -52,86 +51,24 @@
  *
  */
 
-class imva_devguide_logviewer extends imva_devguide_base
+class imva_devguide_oxviewconfig extends imva_devguide_oxviewconfig_parent
 {
+    /**
+     * Returns the path of a module file. Fix: Make it work for HTTPS.
+     * 
+     * @param string $sModule
+     * @param string $sFile
+     */
 	
-	
-	
-	/**
-	 * Render
-	 *
-	 * @param null
-	 * @return string
-	 */
-	public function render()
-	{
-		parent::render();
+	public function getModuleUrl($sModule, $sFile = '')
+    {
+		$sUrl = parent::getModuleUrl($sModule, $sFile);
 		
-		// Determine whether dialogues are enabled and confirmed OR not enabled
-		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm')) or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null)){
-			$this->_clearLogfile();
+		// The patch. Pull request created. See @https://github.com/bertrandjackermann/oxideshop_ce/compare/oxbertrand-oxidce
+		if (($this->getConfig()->getConfigParam('sAdminSSLURL') != null) && ($this->isAdmin())){
+			$sUrl = str_replace('http:','https:',$sUrl);
 		}
-	
-		return 'imva_devguide_logviewer.tpl';
-	}
-	
-	
-	
-	/**
-	 * Show EXCEPTION_LOG.txt
-	 * 
-	 * @return string
-	 */
-	public function showExceptionlog()
-	{
-		$sLogfile = oxRegistry::getConfig()->getConfigParam('sShopDir').'log/EXCEPTION_LOG.txt';
 		
-		if (filesize($sLogfile) > 0){
-			$oLogfile = fopen($sLogfile, 'r');
-			return fread($oLogfile, filesize($sLogfile));
-		}
-		else{
-			return false;
-		}
-	}
-	
-	
-	
-	/**
-	 * Clear EXCEPTION_LOG.txt
-	 * 
-	 * @return boolean
-	 */
-	private function _clearLogfile()
-	{
-		$sLogfile = oxRegistry::getConfig()->getConfigParam('sShopDir').'log/EXCEPTION_LOG.txt';
-		
-		$oLogfile = fopen($sLogfile, 'w');
-		file_put_contents($oLogfile, '');
-		
-		return true;
-	}
-	
-	
-	
-	/**
-	 * Returns the Apache error.log
-	 * 
-	 * @return string|0|1, whereas string = contents of file, 0 = not configured, 1 = access denied
-	 */
-	public function showErrorlog()
-	{
-		$sErrorlog = oxRegistry::getConfig()->getConfigParam('imva_devguide_pathtoerrorlog');
-		
-		if (($sErrorlog != '') and (filesize($sErrorlog) > 0)){
-			$oLogfile = fopen($sErrorlog, 'r');
-			return fread($oLogfile, filesize($sErrorlog));
-		}
-		elseif (!file_exists($sErrorlog)){
-			return 1;
-		}
-		else{
-			return 0;
-		}
-	}
+		return $sUrl;
+    }
 }

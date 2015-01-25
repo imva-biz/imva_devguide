@@ -47,8 +47,8 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/1/20
- * v 0.9.5.1
+ * 13/7/5-15/1/25
+ * v 0.9.11
  *
  */
 
@@ -60,7 +60,7 @@ class imva_devguide_clearmod extends imva_devguide_base
 	/**
 	 * Init
 	 * 
-	 * Provice Service.
+	 * Provide Service.
 	 * @param null
 	 * @return null
 	 */
@@ -199,6 +199,14 @@ class imva_devguide_clearmod extends imva_devguide_base
 		// Insert into oxtplblocks
 		$sSelectHead = "INSERT INTO `oxtplblocks` (`OXID`, `OXACTIVE`, `OXSHOPID`, `OXTEMPLATE`, `OXBLOCKNAME`, `OXPOS`, `OXFILE`, `OXMODULE`, `OXTIMESTAMP`) VALUES ";
 		
+
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_main.tpl', 'imva_devguide_footer', '1', 'views/blocks/imva_devguide_footer.tpl', 'imva_devguide', '')";
+		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
+		
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_main.tpl', 'imva_devguide_header', '1', 'views/blocks/imva_devguide_header.tpl', 'imva_devguide', '')";
+		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
+		
+		
 		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_footer', '1', 'views/blocks/imva_devguide_footer.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
@@ -219,13 +227,6 @@ class imva_devguide_clearmod extends imva_devguide_base
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		
-		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_main.tpl', 'imva_devguide_footer', '1', 'views/blocks/imva_devguide_footer.tpl', 'imva_devguide', '')";
-		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
-		
-		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_main.tpl', 'imva_devguide_header', '1', 'views/blocks/imva_devguide_header.tpl', 'imva_devguide', '')";
-		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
-		
-		
 		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_footer', '1', 'views/blocks/imva_devguide_footer.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
@@ -233,6 +234,16 @@ class imva_devguide_clearmod extends imva_devguide_base
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_devguide_confirm', '1', 'views/blocks/imva_devguide_dialogue.tpl', 'imva_devguide', '')";
+		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
+		
+		
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_logviewer.tpl', 'imva_devguide_footer', '1', 'views/blocks/imva_devguide_footer.tpl', 'imva_devguide', '')";
+		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
+		
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_logviewer.tpl', 'imva_devguide_header', '1', 'views/blocks/imva_devguide_header.tpl', 'imva_devguide', '')";
+		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
+		
+		$sSelect = "('".$this->genId()."', '.$this->_sShopId.', '".$this->_sShopId."', 'imva_devguide_logviewer.tpl', 'imva_devguide_devguide_confirm', '1', 'views/blocks/imva_devguide_dialogue.tpl', 'imva_devguide', '')";
 		oxDb::getDb(true)->execute($sSelectHead.$sSelect);
 		
 		// Set Success Flag

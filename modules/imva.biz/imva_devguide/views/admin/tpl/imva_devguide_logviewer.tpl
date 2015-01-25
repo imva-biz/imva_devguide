@@ -19,13 +19,15 @@
 <hr>
 
 <h2>error.log</h2>
-[{if $oView->showErrorlog()}]	
-	<div class="y_scroll" style="height: 300px; border: 2px solid #333; pading: 8px;">
+
+[{if $oView->showErrorlog() == 0}]
+	<p>[{oxmultilang ident='IMVA_DEVGUIDE_LOGVIEWER_NOTCONF'}]</p>
+[{elseif $oView->showErrorlog() == 1}]
+	<p>[{oxmultilang ident='IMVA_DEVGUIDE_LOGVIEWER_FAIL'}]</p>
+[{else}]
+	<div class="y_scroll" style="height: 300px; border: 2px solid #333; padding: 8px;">
 		<pre class="mg_10">[{$oView->showErrorlog()}]</pre>
 	</div>
-[{else}]
-	<p>[{oxmultilang ident='IMVA_DEVGUIDE_LOGVIEWER_FAIL'}]</p>
 [{/if}]
-
 
 [{block name='imva_footer'}][{/block}]

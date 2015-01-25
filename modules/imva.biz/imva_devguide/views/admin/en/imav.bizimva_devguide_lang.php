@@ -89,6 +89,8 @@ $aLang = array(
 		'IMVA_DEVGUIDE_MAIN_BEHAVIOUR'					=>	'In order to change this behaviour, open
 															<i>Extensions&rarr;Modules&rarr;Settings</i>
 															and change the option',
+		'SHOP_MODULE_GROUP_imva_devguide_settings'		=>	'More settings',
+		'SHOP_MODULE_imva_devguide_pathtoerrorlog'		=>	'Absolute path to the webserver\'s error.log file',
 		
 		// Views
 		'IMVA_DEVGUIDE_TITLE'							=>	'imva.biz: &quot;Entwicklungshelfer&quot;',
@@ -99,20 +101,23 @@ $aLang = array(
 		'IMVA_DEVGUIDE_CLEARMOD_CLEAREDALL'				=>	'All modules have been reset;',
 		'IMVA_DEVGUIDE_CLEARMOD_RESTORED'				=>	'the &quot;Entwicklungshelfer&quot; module has been re-activated.',
 		'IMVA_DEVGUIDE_CLEARMOD_FAIL'					=>	'Could not reset the module configuration.',
+		'IMVA_DEVGUIDE_CLEARTEMP_DESCR'					=>	'This option will clear the Smarty template cache and the database cache.',
 		'IMVA_DEVGUIDE_CLEARTEMP_CLEARED'				=>	'Template cache (tmp/ directory) has been cleared.',
 		'IMVA_DEVGUIDE_CLEARTEMP_FAIL'					=>	'Error clearing /tmp/. Check the permissions.',
+		'IMVA_DEVGUIDE_CLEARMOD_WARNING'				=>	'This option will disable all modules and reset the configuration.',
+		'IMVA_DEVGUIDE_RV_DESCR'						=>	'Rebuilds the database view tables so taht new fields can be accessed through models.',
 		'IMVA_DEVGUIDE_RV_CLEARED'						=>	'Database views have been rebuilt.',
 		'IMVA_DEVGUIDE_RV_FAIL'							=>	'Error rebuilding database views. It this persists, either a database
 															table may be missing or the database structure is damaged.',
 		'IMVA_DEVGUIDE_LOGVIEWER_CLEARFILE'				=>	'Clear',
 		'IMVA_DEVGUIDE_LOGVIEWER_ELMISSEMPTY'			=>	'The selected file is empty.',
+		'IMVA_DEVGUIDE_LOGVIEWER_NOTCONF'				=>	'Not configured. Open the module configuration in
+															<i>Extensions&rarr;Modules&rarr;Settings</i>
+															and enter the path to the error.log file.',
 		'IMVA_DEVGUIDE_LOGVIEWER_FAIL'					=>	'Cannot read the selected file.
 															It either does not exist or access was denied.',
 		
 		// Footer
 		'IMVA_DEVGUIDE_MANUAL'							=>	'User manual',
-		'IMVA_DEVGUIDE_FOOTER_DONATE1'					=>	'Was this module helpful for you? Maybe you want to consider a ',
-		'IMVA_DEVGUIDE_FOOTER_DONATE2'					=>	'donation',
-		'IMVA_DEVGUIDE_FOOTER_DONATE3'					=>	'? ;-)',
 		
 );

@@ -21,6 +21,7 @@
 		<li><a href="[{$oViewConf->getSelfLink()}]cl=imva_devguide_clearmod&amp;shops=all">[{oxmultilang ident='IMVA_DEVGUIDE_CLEARMOD_ALL'}]</a></li>
 	</ul>
 	[{/if}]
+	<li><a href="[{$oViewConf->getSelfLink()}]cl=imva_devguide_logviewer">[{oxmultilang ident='imva_devguide_logviewer'}]</a></li>
 </ul>
 
 [{block name='imva_footer'}][{/block}]

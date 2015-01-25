@@ -9,7 +9,7 @@
 	<meta name="robots" content="nofollow">
 	
 	<link rel="stylesheet" type="text/css" href="[{$oViewConf->getModuleUrl('imva.bizimva_devguide','out/src/css/imva_devguide.css')}]">
-	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Style-Type" content="text/css">
 </head>
 
 <body>

@@ -46,8 +46,8 @@
  * (c) 2013-2014 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/1/18
- * v 0.9.10
+ * 13/7/5-15/1/25
+ * v 0.9.11
  *
  */
 
@@ -72,6 +72,8 @@ $aLang = array(
 		'SHOP_MODULE_imva_devguide_enableautorevive'	=>	'Nach dem Zur&uuml;cksetzen der Modulkonfiguration dieses Modul reaktivieren',
 		'SHOP_MODULE_GROUP_imva_devguide_logging'		=>	'Aufzeichnen',
 		'SHOP_MODULE_imva_devguide_enablelogging'		=>	'Durchgef&uuml;hrte Aktionen und Ereignisse aufzeichnen',
+		'SHOP_MODULE_GROUP_imva_devguide_settings'		=>	'Weitere Einstellungen',
+		'SHOP_MODULE_imva_devguide_pathtoerrorlog'		=>	'Absoluter Pfad zur error.log-Datei des Webservers',
 		
 		// Dialogue
 		'IMVA_DEVGUIDE_CONFIRM'							=>	'Sind Sie sicher?',
@@ -101,21 +103,24 @@ $aLang = array(
 		'IMVA_DEVGUIDE_CLEARMOD_CLEAREDALL'				=>	'Alle Module in allen Shops wurden zur&uuml;ckgesetzt;',
 		'IMVA_DEVGUIDE_CLEARMOD_RESTORED'				=>	'das Modul &bdquo;Entwicklungshelfer&rdquo; wurde automatisch reaktiviert.',
 		'IMVA_DEVGUIDE_CLEARMOD_FAIL'					=>	'Die Modulkonfiguration konnte nicht zur&uuml;ckgesetzt werden.',
-		'IMVA_DEVGUIDE_CLEARTEMP_CLEARED'				=>	'Der Template-Cache (tmp/-Verzeichnis) wurde geleert.',
+		'IMVA_DEVGUIDE_CLEARTEMP_DESCR'					=>	'Hierdurch werden der Smarty-Template- und der Datenbank-Cache geleert.',
+		'IMVA_DEVGUIDE_CLEARTEMP_CLEARED'				=>	'Der Smarty-Template- und der Datenbank-Cache (tmp/-Verzeichnis) wurden geleert.',
 		'IMVA_DEVGUIDE_CLEARTEMP_FAIL'					=>	'Fehler beim Leeren von /tmp/. Schreibrechte pr&uuml;fen.',
+		'IMVA_DEVGUIDE_CLEARMOD_WARNING'				=>	'Hierdurch werden alle Module deaktiviert und die Konfiguration zurückgesetzt.',
+		'IMVA_DEVGUIDE_RV_DESCR'						=>	'Generiert die Datenbank-Views, sodass neu angelegte Felder von Models angesprochen werden können.',
 		'IMVA_DEVGUIDE_RV_CLEARED'						=>	'Die Datenbankviews wurden neu aufgebaut.',
 		'IMVA_DEVGUIDE_RV_FAIL'							=>	'Fehler beim Neugenerieren der Datenbankviews. Falls dieses Problem wiedeholt,
 															auftritt, wurde m&ouml;glicherweise eine Tabelle nicht gefunden oder die Struktur
 															ist fehlerhaft.',
 		'IMVA_DEVGUIDE_LOGVIEWER_CLEARFILE'				=>	'Datei leeren',
 		'IMVA_DEVGUIDE_LOGVIEWER_ELMISSEMPTY'			=>	'Die gewählte Datei ist leer.',
+		'IMVA_DEVGUIDE_LOGVIEWER_NOTCONF'				=>	'Nicht konfiguriert. Öffnen Sie die Moduleinstellungen unter
+															<i>Erweiterungen&rarr;Module&rarr;Einstellungen</i>
+															und geben Sie den Pfad zur Datei error.log ein.',
 		'IMVA_DEVGUIDE_LOGVIEWER_FAIL'					=>	'Die gewählte Datei kann nicht gelesen werden.
-															Möglicherweise existiert sie nicht oder der Zugriff ist nicht erlaubt.',
+															Möglicherweise existiert sie nicht oder der Zugriff wurde verweigert.',
 		
 		// Footer
 		'IMVA_DEVGUIDE_MANUAL'							=>	'Benutzerhandbuch',
-		'IMVA_DEVGUIDE_FOOTER_DONATE1'					=>	'Hat Ihnen dieses Modul geholfen? Wie w&auml;re es mit einer ',
-		'IMVA_DEVGUIDE_FOOTER_DONATE2'					=>	'Spende',
-		'IMVA_DEVGUIDE_FOOTER_DONATE3'					=>	'? ;-)',
 		
 );

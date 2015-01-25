@@ -19,8 +19,9 @@
 			[{/if}]
 		[{/if}]
 		[{include file='imva_devguide_redo.tpl'}]
-	[{else}]	
+	[{else}]
 		[{if !$oView->oServ->getP('confirm')}]
+			<p class="msg wrn">[{oxmultilang ident='IMVA_DEVGUIDE_CLEARMOD_WARNING'}]</p>
 			[{block name='imva_devguide_confirm'}][{/block}]
 		[{/if}]
 	[{/if}]

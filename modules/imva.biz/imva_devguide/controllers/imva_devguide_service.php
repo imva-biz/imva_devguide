@@ -46,15 +46,16 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/1/19
- * v 0.9.3.1
+ * 13/7/5-15/1/25
+ * v 0.9.11
  *
  */
 
 class imva_devguide_service extends oxbase
 {
-	public $sModuleVersion = '';		// Module Version (for template)
-	public $oConf = null;				// oxconfig
+	public $sModuleId		=	null;							// Module ID, for later usage in imva_services
+	public $sModuleVersion	=	null;							// Module Version (for template)
+	public $oConf			=	null;							// oxconfig
 	
 	
 	
@@ -68,11 +69,13 @@ class imva_devguide_service extends oxbase
 	{
 		parent::__construct();
 		
+		$this->sModuleId = 'imva.bizimva_devguide';
+		
 		$this->oConf = $this->getConfig();
 		
 		// Get the module version
-		$oModule = oxNew('oxmodule');
-		$oModule->load('imva.bizimva_devguide');
+		$oModule = oxNew('oxModule');
+		$oModule->load($this->sModuleId);		
 		$this->sModuleVersion = $oModule->getInfo('version');
 	}
 
@@ -86,8 +89,7 @@ class imva_devguide_service extends oxbase
 	 */
 	public function askMe()
 	{
-		$blReturn = oxRegistry::getConfig()->getConfigParam('imva_devguide_requestonaction');
-		return $blReturn;
+		return $this->oConf->getConfigParam('imva_devguide_requestonaction');
 	}
 	
 	
@@ -100,8 +102,7 @@ class imva_devguide_service extends oxbase
 	 */
 	public function isAutoRevive()
 	{
-		$blReturn = oxRegistry::getConfig()->getConfigParam('imva_devguide_enableautorevive');
-		return $blReturn;
+		return $this->oConf->getConfigParam('imva_devguide_enableautorevive');
 	}
 	
 	
@@ -114,7 +115,7 @@ class imva_devguide_service extends oxbase
 	 */
 	public function getP($sString = '')
 	{
-		return oxRegistry::getConfig()->getRequestParameter($sString);
+		return $this->oConf->getRequestParameter($sString);
 	}
 	
 	
@@ -128,7 +129,7 @@ class imva_devguide_service extends oxbase
 	 */
 	public function getCurrentCl()
 	{
-		return oxRegistry::getConfig()->getActiveView()->getClassName();
+		return $this->oConf->getActiveView()->getClassName();
 	}
 	
 	
@@ -151,5 +152,23 @@ class imva_devguide_service extends oxbase
 		}
 		
 		return $blRet;
+	}
+	
+	
+	
+	/**
+	 * Get hyperlinks for footer
+	 * 
+	 * @param string
+	 * @return string
+	 */
+	public function getFooterLink($sInfo)
+	{
+		$aUrls = array(
+				'manuf'		=>	'http://imva.biz?ref=devguide',
+				'manual'	=>	'http://www.ackis-oxid.de/tag/developers-guide/',
+		);
+		
+		return $aUrls[$sInfo];
 	}
 }
