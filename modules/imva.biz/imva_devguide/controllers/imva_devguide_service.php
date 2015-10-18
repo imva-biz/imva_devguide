@@ -69,7 +69,7 @@ class imva_devguide_service extends oxbase
 	{
 		parent::__construct();
 		
-		$this->sModuleId = 'imva.bizimva_devguide';
+		$this->sModuleId = 'imva_devguide';
 		
 		$this->oConf = $this->getConfig();
 		

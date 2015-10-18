@@ -1,4 +1,4 @@
-[{block name='imva_header'}][{/block}]
+[{block name='imva_devguide_header'}][{/block}]
 
 <h1>[{oxmultilang ident='IMVA_DEVGUIDE_TITLE'}]</h1>
 <p>[{oxmultilang ident='IMVA_DEVGUIDE_MAIN_INTRO'}]</p>
@@ -24,4 +24,4 @@
 	<li><a href="[{$oViewConf->getSelfLink()}]cl=imva_devguide_logviewer">[{oxmultilang ident='imva_devguide_logviewer'}]</a></li>
 </ul>
 
-[{block name='imva_footer'}][{/block}]
+[{block name='imva_devguide_footer'}][{/block}]

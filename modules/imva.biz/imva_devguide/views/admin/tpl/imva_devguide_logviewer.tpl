@@ -1,4 +1,4 @@
-[{block name='imva_header'}][{/block}]
+[{block name='imva_devguide_header'}][{/block}]
 
 <h1>[{oxmultilang ident='IMVA_DEVGUIDE_TITLE'}]</h1>
 
@@ -30,4 +30,4 @@
 	</div>
 [{/if}]
 
-[{block name='imva_footer'}][{/block}]
+[{block name='imva_devguide_footer'}][{/block}]

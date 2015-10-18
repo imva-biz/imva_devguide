@@ -8,7 +8,7 @@
 	<meta name="copyright" content="2012-[{"Y"|date}]">
 	<meta name="robots" content="nofollow">
 	
-	<link rel="stylesheet" type="text/css" href="[{$oViewConf->getModuleUrl('imva.bizimva_devguide','out/src/css/imva_devguide.css')}]">
+	<link rel="stylesheet" type="text/css" href="[{$oViewConf->getModuleUrl('imva_devguide','out/src/css/imva_devguide.css')}]">
 	<meta http-equiv="Content-Style-Type" content="text/css">
 </head>
 

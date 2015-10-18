@@ -46,8 +46,8 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/1/20
- * v 0.9.5
+ * 13/7/5-15/10/18
+ * v 0.9.12
  *
  */
 
@@ -85,11 +85,13 @@ class imva_devguide_base extends oxAdminView
 	{
 		parent::render();
 
-		if ($this->blSuccess and $this->blFail){
+		if ($this->blSuccess and $this->blFail)
+		{
 			echo 'ERROR_PARADOX';
 		}
 		
-		if ($this->oServ->getP('blCancelled')){
+		if ($this->oServ->getP('blCancelled'))
+		{
 			$this->blCancelled = true;
 		}
 	}

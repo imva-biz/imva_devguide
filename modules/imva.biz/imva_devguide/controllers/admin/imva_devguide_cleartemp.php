@@ -47,8 +47,8 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/1/20
- * v 0.9.5.1
+ * 13/7/5-15/10/18
+ * v 0.9.12
  *
  */
 
@@ -68,7 +68,8 @@ class imva_devguide_cleartemp extends imva_devguide_base
 		parent::render();
 	
 		// Determine whether dialogues are enabled and confirmed OR not enabled
-		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm')) or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null)){
+		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm')) or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null))
+		{
 			$this->_clearTemp();
 		}
 	
@@ -92,17 +93,20 @@ class imva_devguide_cleartemp extends imva_devguide_base
 		$this->_clearDir($sTempDir);
 	
 		// tmp/smarty
-		if (file_exists($sTempDir.'/smarty/')){
+		if (file_exists($sTempDir.'/smarty/'))
+		{
 			$this->_clearDir($sTempDir.'/smarty/');
 		}
 	
 		// tmp/css
-		if (file_exists($sTempDir.'/css/')){
+		if (file_exists($sTempDir.'/css/'))
+		{
 			$this->_clearDir($sTempDir.'/css/');
 		}
 	
 		// tmp/less
-		if (file_exists($sTempDir.'/less/')){
+		if (file_exists($sTempDir.'/less/'))
+		{
 			$this->_clearDir($sTempDir.'/less/');
 		}
 	
@@ -127,8 +131,10 @@ class imva_devguide_cleartemp extends imva_devguide_base
 	{
 		if (is_dir($sPath)){
 			if ($oDirH = opendir($sPath)){
-				while (($sFile = readdir($oDirH)) !== false){
-					if ($sFile != '.' and $sFile != '..'){ // don't do for . and ..
+				while (($sFile = readdir($oDirH)) !== false)
+				{
+					if ($sFile != '.' and $sFile != '..')
+					{ // don't do for . and ..
 						@unlink($sPath.$sFile); // suppress warnings
 					}
 				}

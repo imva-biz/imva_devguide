@@ -47,8 +47,8 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 15/1/25
- * v 0.9.11
+ * 15/1/25-10/18
+ * v 0.9.12
  *
  */
 
@@ -68,7 +68,8 @@ class imva_devguide_logviewer extends imva_devguide_base
 		parent::render();
 		
 		// Determine whether dialogues are enabled and confirmed OR not enabled
-		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm')) or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null)){
+		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm')) or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null))
+		{
 			$this->_clearLogfile();
 		}
 	
@@ -86,13 +87,17 @@ class imva_devguide_logviewer extends imva_devguide_base
 	{
 		$sLogfile = oxRegistry::getConfig()->getConfigParam('sShopDir').'log/EXCEPTION_LOG.txt';
 		
-		if (filesize($sLogfile) > 0){
+		if (filesize($sLogfile) > 0)
+		{
 			$oLogfile = fopen($sLogfile, 'r');
-			return fread($oLogfile, filesize($sLogfile));
+			$sRet = fread($oLogfile, filesize($sLogfile));
 		}
-		else{
-			return false;
+		else
+		{
+			$sRet = false;
 		}
+		
+		return $sRet;
 	}
 	
 	
@@ -107,7 +112,7 @@ class imva_devguide_logviewer extends imva_devguide_base
 		$sLogfile = oxRegistry::getConfig()->getConfigParam('sShopDir').'log/EXCEPTION_LOG.txt';
 		
 		$oLogfile = fopen($sLogfile, 'w');
-		file_put_contents($oLogfile, '');
+		@file_put_contents($oLogfile, '');
 		
 		return true;
 	}
@@ -123,15 +128,20 @@ class imva_devguide_logviewer extends imva_devguide_base
 	{
 		$sErrorlog = oxRegistry::getConfig()->getConfigParam('imva_devguide_pathtoerrorlog');
 		
-		if (($sErrorlog != '') and (filesize($sErrorlog) > 0)){
+		if (($sErrorlog != '') and (@filesize($sErrorlog) > 0))
+		{
 			$oLogfile = fopen($sErrorlog, 'r');
-			return fread($oLogfile, filesize($sErrorlog));
+			$sRet = fread($oLogfile, filesize($sErrorlog));
 		}
-		elseif (!file_exists($sErrorlog)){
-			return 1;
+		elseif (!file_exists($sErrorlog))
+		{
+			$sRet = 1;
 		}
-		else{
-			return 0;
+		else
+		{
+			$sRet = 0;
 		}
+		
+		return $sRet;
 	}
 }

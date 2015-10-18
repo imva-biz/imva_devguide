@@ -47,8 +47,8 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/1/18
- * v 0.9.5.1
+ * 13/7/5-15/10/18
+ * v 0.9.12
  *
  */
 
@@ -66,7 +66,8 @@ class imva_devguide_rebuildviews extends imva_devguide_base
 		parent::render();
 		
 		// Determine, whether dialogues are enabled and confirmed OR not enabled
-		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm')) or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null)){
+		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm')) or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null))
+		{
 			$this->_rebuildViews();
 		}
 		
@@ -83,10 +84,13 @@ class imva_devguide_rebuildviews extends imva_devguide_base
 	 */
 	private function _rebuildViews()
 	{
-        if (oxRegistry::getSession()->getVariable('malladmin')){
+        if (oxRegistry::getSession()->getVariable('malladmin'))
+        {
 			$oMetaData = oxNew('oxDbMetaDataHandler');
 			$this->blSuccess = $oMetaData->updateViews();	// Set Success Flag
-        }else{
+        }
+        else
+        {
         	$this->blFail = true;							// On failure
         }
 	}
