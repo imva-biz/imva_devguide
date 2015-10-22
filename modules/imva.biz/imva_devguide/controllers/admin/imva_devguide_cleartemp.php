@@ -47,8 +47,8 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/10/18
- * v 0.9.12
+ * 13/7/5-15/10/19
+ * v 0.9.13
  *
  */
 

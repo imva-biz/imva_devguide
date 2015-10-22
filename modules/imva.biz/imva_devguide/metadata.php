@@ -46,8 +46,8 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/2/8-15/10/18
- * v 0.9.12
+ * 13/2/8-15/10/22
+ * v 0.9.20
  *
  */
 
@@ -80,7 +80,7 @@ $aModule = array(
 					einer Korrektur aktiviert zu lassen. <a href="https://github.com/OXID-eSales/oxideshop_ce/pull/208">Technische Details</a>.</p>',
 		),
 		'thumbnail'		=> 'out/img/imva-Logo-90.png',
-		'version'		=> '0.9.12',
+		'version'		=> '0.9.20',
 		'author'		=> 'Johannes Ackermann',
 		'url'			=> 'http://imva.biz',
 		'email' 		=> 'imva@imva.biz',
@@ -197,15 +197,15 @@ $aModule = array(
 						'group'			=>	'imva_devguide_behaviour',
 						'name'			=>	'imva_devguide_enableautorevive',
 						'type'			=>	'bool',
-						'value'			=>	false,
-						'position'		=>	1,
+						'value'			=>	true,
+						'position'		=>	2,
 		    	),
 		    	array(
 						'group'			=>	'imva_devguide_settings',
 						'name'			=>	'imva_devguide_pathtoerrorlog',
 						'type'			=>	'str',
-						'value'			=>	'',
-						'position'		=>	1,
+						'value'			=>	'/var/log/apache2/error.log',
+						'position'		=>	3,
 		    	),
 	    ),
 );

@@ -72,6 +72,8 @@ $aLang = array(
 		'SHOP_MODULE_imva_devguide_enableautorevive'	=>	'Re-activate this module after resetting the whole module configuration.',
 		'SHOP_MODULE_GROUP_imva_devguide_logging'		=>	'Logging',
 		'SHOP_MODULE_imva_devguide_enablelogging'		=>	'Log events and actions',
+		'SHOP_MODULE_GROUP_imva_devguide_settings'		=>	'Further settings',
+		'SHOP_MODULE_imva_devguide_pathtoerrorlog'		=>	'Absolute path to the error.log file of the webserver or any other text-formatted logfile',
 		
 		// Dialogue
 		'IMVA_DEVGUIDE_CONFIRM'							=>	'Are you sure?',
@@ -96,7 +98,7 @@ $aLang = array(
 		'IMVA_DEVGUIDE_TITLE'							=>	'imva.biz: &quot;Entwicklungshelfer&quot;',
 		'IMVA_DEVGUIDE_CLEARMOD_NOREVIVE'				=>	'Re-activation after resetting is disabled, so this line is the last output of this module.
 															This behaviour is completely normal in this case.',
-		'IMVA_DEVGUIDE_CLEARMOD_CLEARED'				=>	'All modules have been reset;',
+		'IMVA_DEVGUIDE_CLEARMOD_CLEARED'				=>	'All modules in the active shop have been reset;',
 		'IMVA_DEVGUIDE_CLEARMOD_CLEARALL'				=>	'Reset in all subshops.',
 		'IMVA_DEVGUIDE_CLEARMOD_CLEAREDALL'				=>	'All modules have been reset;',
 		'IMVA_DEVGUIDE_CLEARMOD_RESTORED'				=>	'the &quot;Entwicklungshelfer&quot; module has been re-activated.',
@@ -112,7 +114,7 @@ $aLang = array(
 		'IMVA_DEVGUIDE_LOGVIEWER_CLEARFILE'				=>	'Clear',
 		'IMVA_DEVGUIDE_LOGVIEWER_ELMISSEMPTY'			=>	'The selected file is empty.',
 		'IMVA_DEVGUIDE_LOGVIEWER_NOTCONF'				=>	'Not configured. Open the module configuration in
-															<i>Extensions&rarr;Modules&rarr;Settings</i>
+															<i>Extensions &raquo; Modules &raquo; Settings</i>
 															and enter the path to the error.log file.',
 		'IMVA_DEVGUIDE_LOGVIEWER_FAIL'					=>	'Cannot read the selected file.
 															It either does not exist or access was denied.',

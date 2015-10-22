@@ -46,8 +46,8 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/1/25
- * v 0.9.11
+ * 13/7/5-15/10/22
+ * v 0.9.20
  *
  */
 
@@ -56,6 +56,7 @@ class imva_devguide_service extends oxbase
 	public $sModuleId		=	null;							// Module ID, for later usage in imva_services
 	public $sModuleVersion	=	null;							// Module Version (for template)
 	public $oConf			=	null;							// oxconfig
+	public $oThisModule		=	null;							// oxModule instance for this module
 	
 	
 	
@@ -74,9 +75,9 @@ class imva_devguide_service extends oxbase
 		$this->oConf = $this->getConfig();
 		
 		// Get the module version
-		$oModule = oxNew('oxModule');
-		$oModule->load($this->sModuleId);		
-		$this->sModuleVersion = $oModule->getInfo('version');
+		$this->oThisModule = oxNew('oxModule');
+		$this->oThisModule->load($this->sModuleId);
+		$this->sModuleVersion = $this->oThisModule->getInfo('version');
 	}
 
 	

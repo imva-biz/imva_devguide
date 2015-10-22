@@ -46,8 +46,8 @@
  * (c) 2013-2014 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/1/25
- * v 0.9.11
+ * 13/7/5-15/10/22
+ * v 0.9.20
  *
  */
 
@@ -73,7 +73,7 @@ $aLang = array(
 		'SHOP_MODULE_GROUP_imva_devguide_logging'		=>	'Aufzeichnen',
 		'SHOP_MODULE_imva_devguide_enablelogging'		=>	'Durchgef&uuml;hrte Aktionen und Ereignisse aufzeichnen',
 		'SHOP_MODULE_GROUP_imva_devguide_settings'		=>	'Weitere Einstellungen',
-		'SHOP_MODULE_imva_devguide_pathtoerrorlog'		=>	'Absoluter Pfad zur error.log-Datei des Webservers',
+		'SHOP_MODULE_imva_devguide_pathtoerrorlog'		=>	'Absoluter Pfad zur error.log-Datei des Webservers oder einer anderen Logdatei im Textformat',
 		
 		// Dialogue
 		'IMVA_DEVGUIDE_CONFIRM'							=>	'Sind Sie sicher?',
@@ -90,7 +90,7 @@ $aLang = array(
 															werden.',
 		'IMVA_DEVGUIDE_MAIN_WITHDIALOGUE'				=>	'Bevor eine Aktion durchgef&uuml;hrt wird, wird eine R&uuml;ckfrage angezeigt.',
 		'IMVA_DEVGUIDE_MAIN_BEHAVIOUR'					=>	'Um dieses Verhalten zu &auml;ndern, &ouml;ffnen Sie
-															<i>Erweiterungen&rarr;Module&rarr;Einstellungen</i>
+															<i>Erweiterungen &raquo; Module &raquo; Einstellungen</i>
 															und &auml;ndern Sie die Einstellung',
 		
 		// Views
@@ -98,7 +98,7 @@ $aLang = array(
 		'IMVA_DEVGUIDE_CLEARMOD_NOREVIVE'				=>	'Die automatische Reaktivierung des Moduls ist nicht aktiv, daher erfolgen
 															unterhalb dieser Zeile keine weiteren Ausgaben. In diesem Fall ist dieses
 															Verhalten v&ouml;llig normal.',
-		'IMVA_DEVGUIDE_CLEARMOD_CLEARED'				=>	'Alle Module im gew&auml;hlten Shop wurden zur&uuml;ckgesetzt;',
+		'IMVA_DEVGUIDE_CLEARMOD_CLEARED'				=>	'Alle Module aktiven Shop wurden zur&uuml;ckgesetzt;',
 		'IMVA_DEVGUIDE_CLEARMOD_CLEARALL'				=>	'Auf alle Subshops anwenden.',
 		'IMVA_DEVGUIDE_CLEARMOD_CLEAREDALL'				=>	'Alle Module in allen Shops wurden zur&uuml;ckgesetzt;',
 		'IMVA_DEVGUIDE_CLEARMOD_RESTORED'				=>	'das Modul &bdquo;Entwicklungshelfer&rdquo; wurde automatisch reaktiviert.',
