@@ -27,5 +27,5 @@ Copy the new module files to the modules directory and activate the module again
 If problems occur, please follow the steps described in http://www.ackis-oxid.de/2013/module-kann-nicht-aktiviert-werden-in-oxid-eshop-beheben-modulkonfiguration-zurcksetzen/ .
 
 ##System Requirements
-*	Created for OXID eShop 4.7 and higher. (CE, PE, EE)
-*	Might also work in OXID eShop 4.6.
+*	Created for OXID eShop 4.8 and higher. (CE, PE, EE)
+*	Might also work in OXID eShop 4.7.
