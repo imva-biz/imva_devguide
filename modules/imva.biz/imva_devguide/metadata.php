@@ -203,7 +203,7 @@ $aModule = array(
 						'group'			=>	'imva_devguide_behaviour',
 						'name'			=>	'imva_devguide_revive3rdparty',
 						'type'			=>	'bool',
-						'value'			=>	true,
+						'value'			=>	false,
 						'position'		=>	3,
 		    	),
 		    	array(
