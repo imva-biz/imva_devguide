@@ -18,6 +18,14 @@
 				<p><a href="[{$oViewConf->getSelfLink()}]cl=imva_devguide_clearmod&amp;shops=all&amp;blconfirm=true">[{oxmultilang ident='IMVA_DEVGUIDE_CLEARMOD_CLEARALL'}]</a></p>
 			[{/if}]
 		[{/if}]
+		
+		[{if $oView->thirdPartyRevive}]
+			<p class="msg suc">[{oxmultilang ident='IMVA_DEVGUIDE_CLEARMOD_REVIVED3RDPARTY'}]
+			</p>
+		[{else}]
+			<p class="msg wrn">[{oxmultilang ident='IMVA_DEVGUIDE_CLEARMOD_NO3RDPARTY'}]</p>
+		[{/if}]
+		
 		[{include file='imva_devguide_redo.tpl'}]
 	[{else}]
 		[{if !$oView->oServ->getP('confirm')}]

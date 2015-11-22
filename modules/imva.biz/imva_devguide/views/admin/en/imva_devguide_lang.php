@@ -43,11 +43,11 @@
  * 
  * 
  *
- * (c) 2013-2014 imva.biz, Johannes Ackermann, ja@imva.biz
+ * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/1/18
- * v 0.9.2
+ * 13/7/5-15/11/22
+ * v 0.9.21
  *
  */
 
@@ -62,14 +62,20 @@ $aLang = array(
 		// Titles
 		'imva_devguide'									=>	'Developer&rsquo;s Guide',
 		'imva_devguide_cleartemp'						=>	'Clear cache',
-		'imva_devguide_rebuildviews'					=>	'Rebuild Views',
+		'imva_devguide_rebuildviews'					=>	'Rebuild views',
 		'imva_devguide_clearmod'						=>	'Reset modules',
 		'imva_devguide_logviewer'						=>	'View logfiles',
 		
 		// Configuration
 		'SHOP_MODULE_GROUP_imva_devguide_behaviour'		=>	'Behaviour',
 		'SHOP_MODULE_imva_devguide_requestonaction'		=>	'Ask me before running a task',
-		'SHOP_MODULE_imva_devguide_enableautorevive'	=>	'Re-activate this module after resetting the whole module configuration.',
+		'SHOP_MODULE_imva_devguide_enableautorevive'	=>	'Enable the auto-revive feature',
+		'HELP_SHOP_MODULE_imva_devguide_enableautorevive'=>	'Re-activates this module after resetting the whole module configuration.',
+		'SHOP_MODULE_imva_devguide_revive3rdparty'		=>	'Also reactivate the following modules if they exist:',
+		'HELP_SHOP_MODULE_imva_devguide_revive3rdparty'	=>	'In case this feature causes malfunction, disable the auto-revive feature.',
+		'SHOP_MODULE_imva_devguide_3rdpartymdllist'		=>	'Enter one module ID per line in order to use auto-revive.',
+		'HELP_SHOP_MODULE_imva_devguide_3rdpartymdllist'=>	'A module&rsquo;s ID can be found in its metadata.php file. The ID does not necessarily equal
+															the directory name!',
 		'SHOP_MODULE_GROUP_imva_devguide_logging'		=>	'Logging',
 		'SHOP_MODULE_imva_devguide_enablelogging'		=>	'Log events and actions',
 		'SHOP_MODULE_GROUP_imva_devguide_settings'		=>	'Further settings',
@@ -97,12 +103,15 @@ $aLang = array(
 		// Views
 		'IMVA_DEVGUIDE_TITLE'							=>	'imva.biz: &quot;Entwicklungshelfer&quot;',
 		'IMVA_DEVGUIDE_CLEARMOD_NOREVIVE'				=>	'Re-activation after resetting is disabled, so this line is the last output of this module.
-															This behaviour is completely normal in this case.',
+															This behaviour is completely normal in this case.
+															',
 		'IMVA_DEVGUIDE_CLEARMOD_CLEARED'				=>	'All modules in the active shop have been reset;',
 		'IMVA_DEVGUIDE_CLEARMOD_CLEARALL'				=>	'Reset in all subshops.',
 		'IMVA_DEVGUIDE_CLEARMOD_CLEAREDALL'				=>	'All modules have been reset;',
 		'IMVA_DEVGUIDE_CLEARMOD_RESTORED'				=>	'the &quot;Entwicklungshelfer&quot; module has been re-activated.',
+		'IMVA_DEVGUIDE_CLEARMOD_REVIVED3RDPARTY'		=>	'Drittanbietermodule wurden ebenfalls reaktiviert.',
 		'IMVA_DEVGUIDE_CLEARMOD_FAIL'					=>	'Could not reset the module configuration.',
+		'IMVA_DEVGUIDE_CLEARMOD_NO3RDPARTY'				=>	'The selected 3rd party modules were not reactivated.',
 		'IMVA_DEVGUIDE_CLEARTEMP_DESCR'					=>	'This option will clear the Smarty template cache and the database cache.',
 		'IMVA_DEVGUIDE_CLEARTEMP_CLEARED'				=>	'Template cache (tmp/ directory) has been cleared.',
 		'IMVA_DEVGUIDE_CLEARTEMP_FAIL'					=>	'Error clearing /tmp/. Check the permissions.',
@@ -110,7 +119,8 @@ $aLang = array(
 		'IMVA_DEVGUIDE_RV_DESCR'						=>	'Rebuilds the database view tables so taht new fields can be accessed through models.',
 		'IMVA_DEVGUIDE_RV_CLEARED'						=>	'Database views have been rebuilt.',
 		'IMVA_DEVGUIDE_RV_FAIL'							=>	'Error rebuilding database views. It this persists, either a database
-															table may be missing or the database structure is damaged.',
+															table may be missing or the database structure is damaged.
+															',
 		'IMVA_DEVGUIDE_LOGVIEWER_CLEARFILE'				=>	'Clear',
 		'IMVA_DEVGUIDE_LOGVIEWER_ELMISSEMPTY'			=>	'The selected file is empty.',
 		'IMVA_DEVGUIDE_LOGVIEWER_NOTCONF'				=>	'Not configured. Open the module configuration in

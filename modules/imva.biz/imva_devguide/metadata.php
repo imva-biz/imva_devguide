@@ -46,12 +46,12 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/2/8-15/10/22
- * v 0.9.20
+ * 13/2/8-15/11/21
+ * v 0.9.21
  *
  */
 
-$sMetadataVersion = '1.2';
+$sMetadataVersion = '1.1';
 
 /**
  * Module information
@@ -68,26 +68,25 @@ $aModule = array(
 					access to often executed actions. Very useful for module and template development!<br>
 					This module extends the shop admin with a new menu and does not affect the
 					regular shop operation.<br>
-					We recommend you to keep dialogues enabled when using the module in a <b>production environment</p> or even better, not to enable this module.</p>
-					<p><b>Hint:</b> This module version contains a patch for the shop system. It might be required to have it enabled for other modules to work properly.
+					We recommend you to keep dialogues enabled when using the module in a <b>production environment</p> or even better, not to
+					enable this module.</p>.
 					<a href="https://github.com/OXID-eSales/oxideshop_ce/pull/208">Technical details</a>.</p>',
 				'de'	=>	'<p>Der Entwicklungshelfer unterst&uuml;tzt OXID-Entwickler bei der Arbeit am Shop,
 					indem er bei der Modul- und Templateentwicklung h&auml;ufig ben&ouml;tigte Aktionen mit nur einem Klick ausf&uuml;hrt.<br>
 					Dieses Modul erweitert den Shop-Admin um
 					ein zus&auml;tzliches Men&uuml;. Das Modul hat keinen Einfluss auf den regul&auml;ren Shopbetrieb.<br>
-					Wir empfehlen, im <b>Produktivbetrieb</b> zumindest die R&uuml;ckfragen aktiviert zu lassen, besser jedoch, das Modul nicht zu aktivieren.</p>
-					<p><b>Hinweis:</b> Diese Modulversion enthält einen Patch für das Shopsystem. Möglicherweise ist es erforderlich, dieses Modul bis zur Bereitstellunge
-					einer Korrektur aktiviert zu lassen. <a href="https://github.com/OXID-eSales/oxideshop_ce/pull/208">Technische Details</a>.</p>',
+					Wir empfehlen, im <b>Produktivbetrieb</b> zumindest die R&uuml;ckfragen aktiviert zu lassen, besser jedoch, das Modul nicht
+					zu aktivieren.</p>',
 		),
 		'thumbnail'		=> 'out/img/imva-Logo-90.png',
-		'version'		=> '0.9.20',
+		'version'		=> '0.9.21',
 		'author'		=> 'Johannes Ackermann',
 		'url'			=> 'http://imva.biz',
 		'email' 		=> 'imva@imva.biz',
 		'files'		=> array(
 				// functions used by all module classes
-				'imva_devguide_base'				=>	'imva.biz/imva_devguide/controllers/imva_devguide_base.php',
-				'imva_devguide_service'				=>	'imva.biz/imva_devguide/controllers/imva_devguide_service.php',
+				'imva_devguide_base'				=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_base.php',
+				'imva_devguide_service'				=>	'imva.biz/imva_devguide/core/imva_devguide_service.php',
 				
 				// controllers
 				'imva_devguide_clearmod'			=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_clearmod.php',
@@ -201,11 +200,25 @@ $aModule = array(
 						'position'		=>	2,
 		    	),
 		    	array(
+						'group'			=>	'imva_devguide_behaviour',
+						'name'			=>	'imva_devguide_revive3rdparty',
+						'type'			=>	'bool',
+						'value'			=>	true,
+						'position'		=>	3,
+		    	),
+		    	array(
+						'group'			=>	'imva_devguide_behaviour',
+						'name'			=>	'imva_devguide_3rdpartymdllist',
+						'type'			=>	'arr',
+						'value'			=>	'',
+						'position'		=>	4,
+		    	),
+		    	array(
 						'group'			=>	'imva_devguide_settings',
 						'name'			=>	'imva_devguide_pathtoerrorlog',
 						'type'			=>	'str',
 						'value'			=>	'/var/log/apache2/error.log',
-						'position'		=>	3,
+						'position'		=>	1,
 		    	),
 	    ),
 );

@@ -46,8 +46,8 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/10/22
- * v 0.9.20
+ * 13/7/5-15/11/21
+ * v 0.9.21
  *
  */
 
@@ -104,6 +104,13 @@ class imva_devguide_service extends oxbase
 	public function isAutoRevive()
 	{
 		return $this->oConf->getConfigParam('imva_devguide_enableautorevive');
+	}
+	
+	
+	
+	public function revive3rdParty()
+	{
+		return $this->oConf->getConfigParam('imva_devguide_revive3rdparty');
 	}
 	
 	

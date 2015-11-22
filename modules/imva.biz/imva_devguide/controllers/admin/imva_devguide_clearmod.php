@@ -47,14 +47,19 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/10/22
- * v 0.9.20
+ * 13/7/5-15/11/22
+ * v 0.9.21
  *
  */
 
 class imva_devguide_clearmod extends imva_devguide_base
 {
 
+	
+
+	public $thirdPartyRevive		=	false;
+	public $aRevived3rdPartyModules	=	null;
+	
 	
 	
 	/**
@@ -67,19 +72,6 @@ class imva_devguide_clearmod extends imva_devguide_base
 	public function init()
 	{
 		parent::init();
-		$this->_sShopId = oxRegistry::getConfig()->getShopId();	// Fill (sub)-shop ID
-	}
-	
-	
-	
-	/**
-	 * Render
-	 * 
-	 * @return string
-	 */	
-	public function render()
-	{
-		parent::render();
 		
 		// Determine, whether dialogues are enabled and confirmed OR not enabled
 		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm'))
@@ -96,17 +88,27 @@ class imva_devguide_clearmod extends imva_devguide_base
 			}
 			else
 			{
-				$this->_clearModuleCache(oxRegistry::getConfig()->getShopId());
+				$this->_clearModuleCache($this->sShopId);
 			}
 			
+			// auto-revive modules
 			if ($this->oServ->isAutoRevive())
 			{
-				$this->_reviveDevguide();
+				$this->_revive();
 			}
 		}
-		
-		oxRegistry::getUtils()->logger('test');
-		
+	}
+	
+	
+	
+	/**
+	 * Render
+	 * 
+	 * @return string
+	 */	
+	public function render()
+	{
+		parent::render();		
 		return 'imva_devguide_clearmod.tpl';
 	}
 	
@@ -136,29 +138,48 @@ class imva_devguide_clearmod extends imva_devguide_base
 	 */
 	private function _clearModuleCache($sShopId = '')
 	{		
-		// Clear oxconfig from module settings
-		$sSelect = 'delete from oxconfig where oxvarname in ("aDisabledModules","aModuleEvents","aModuleFiles","aModuleFiles","aModulePaths","aModules","aModuleTemplates","aModuleVersions")';
+		$oDb = oxDb::getDb();
 		
-		if ($sShopId){
-			$sSelect .= ' and oxshopid = "'.$sShopId.'"';
+		$aModuleCfgFields = array(
+				'aDisabledModules',
+				'aModuleFiles',
+				'aModules',
+				'aModuleVersions',
+				'aModuleTemplates',
+				'aModuleEvents',
+				'aModulePaths'
+		);
+		
+		foreach ($aModuleCfgFields as $sField){
+			$oDb->startTransaction();
+			
+			$sSelect = 'delete from oxconfig where oxvarname = "'.$sField.'"';
+		
+			// empty if all subshops were selected
+			if ($sShopId){
+				$sSelect .= ' and oxshopid = "'.$sShopId.'"';
+			}
+			
+			$sSelect .= ';';
+			
+			$oDb->execute($sSelect);
+			$oDb->commitTransaction();
 		}
-		
-		$sSelect .= ';';
-		oxDb::getDb(true)->execute($sSelect);
 		
 		
 		
 		// Clear oxtplblocks from module settings
 		$sSelect = 'delete from oxtplblocks';
-				
+
+		// empty if all subshops were selected
 		if ($sShopId){
 			$sSelect .= ' where oxshopid = "'.$sShopId.'"';
 		}
 		
 		$sSelect .= ';';
-		oxDb::getDb(true)->execute($sSelect);
+		$oDb->execute($sSelect);
 		
-		
+		$this->_pause();
 		
 		// Cleanup cached configuration
 		$this->_clearCachedConfig();
@@ -172,14 +193,54 @@ class imva_devguide_clearmod extends imva_devguide_base
 	 * @param null
 	 * @return null
 	 */
-	private function _reviveDevguide(){		
+	private function _revive()
+	{		
+	    $this->blSuccess = $this->_activateModule('imva_devguide');
+	    
+	    if ($this->oServ->revive3rdParty()){
+	    	
+	    	$this->_clearModuleCache('oxbaseshop'); // --> bringt nichts, wenn Drittanbietermodule aktiviert werden sollen
+	    	$this->_activateModule('imva_devguide');
+	    	
+	    	$aReviveThese = $this->oServ->oConf->getConfigParam('imva_devguide_3rdpartymdllist');
+	    	
+	    	foreach ($aReviveThese as $sModuleID){
+	    		$this->_pause();
+	    		$this->_activateModule($sModuleID);
+	    	}
+	    	
+	    	$this->thirdPartyRevive = true;
+	    }
+	}
+	
+	
+	
+	/**
+	 * Revives a given module using the Module Installer
+	 * 
+	 * @param string
+	 * @return boolean
+	 */
+	private function _activateModule($sModuleId)
+	{
 		$oModule = oxNew('oxModule');
-		$oModule->load('imva_devguide');		
-	    $oModuleCache = oxNew('oxModuleCache', $oModule);
-	    $oModuleInstaller = oxNew('oxModuleInstaller', $oModuleCache);	    
-	    $oModuleInstaller->activate($oModule);
+		$oModule->load($sModuleId);
+		if ($oModule){
+		    $oModuleCache = oxNew('oxModuleCache', $oModule);
+		    $oModuleInstaller = oxNew('oxModuleInstaller', $oModuleCache);	    
+		    $oModuleInstaller->activate($oModule);
+		    
+		    $this->_pause();
+		    
+		    unset ($oModule,$oModuleCache,$oModuleInstaller);
+		    
+		    $blRtn = true;
+		}
+		else{
+			$blRtn = false;
+		}
 		
-	    $this->blSuccess = true;
+		return $blRtn;
 	}
 	
 	
@@ -196,12 +257,28 @@ class imva_devguide_clearmod extends imva_devguide_base
 		$sPath = oxRegistry::getConfig()->getConfigParam('sCompileDir');
 		
 		foreach ($aFileSuffixes as $sFileSuffix){
-			$sFileName = 'config.'.$this->_sShopId.'.'.$sFileSuffix.'.txt';	// Naming shape of cache files.
+			$sFileName = 'config.'.$this->sShopId.'.'.$sFileSuffix.'.txt';	// Naming shape of cache files.
 		
 			if (file_exists($sPath.$sFileName))
 			{
 				@unlink($sPath.$sFileName);
 			}
 		}
+		
+		$this->_pause();
+	}
+	
+	
+	
+	/**
+	 * Force pause for 0.25 seconds.
+	 * (e.g. to make sure all files have been deleted)
+	 * 
+	 * @param null
+	 * @return null
+	 */
+	private function _pause()
+	{
+		usleep(250000);
 	}
 }

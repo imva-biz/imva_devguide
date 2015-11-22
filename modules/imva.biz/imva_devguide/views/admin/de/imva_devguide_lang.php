@@ -43,11 +43,11 @@
  * 
  * 
  *
- * (c) 2013-2014 imva.biz, Johannes Ackermann, ja@imva.biz
+ * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/10/22
- * v 0.9.20
+ * 13/7/5-15/11/22
+ * v 0.9.21
  *
  */
 
@@ -69,7 +69,13 @@ $aLang = array(
 		// Configuration
 		'SHOP_MODULE_GROUP_imva_devguide_behaviour'		=>	'Verhalten',
 		'SHOP_MODULE_imva_devguide_requestonaction'		=>	'Vor dem Durchf&uuml;hren einer Aktion fragen',
-		'SHOP_MODULE_imva_devguide_enableautorevive'	=>	'Nach dem Zur&uuml;cksetzen der Modulkonfiguration dieses Modul reaktivieren',
+		'SHOP_MODULE_imva_devguide_enableautorevive'	=>	'Automatische Reaktivierung verwenden',
+		'HELP_SHOP_MODULE_imva_devguide_enableautorevive'=>	'Nach dem Zur&uuml;cksetzen der Modulkonfiguration wird dieses Modul reaktiviert.',
+		'SHOP_MODULE_imva_devguide_revive3rdparty'		=>	'Nachfolgend genannte Module anderer Anbieter ebenfalls aktivieren, sofern vorhanden:',
+		'HELP_SHOP_MODULE_imva_devguide_revive3rdparty'	=>	'Falls sich dieses Feature unerwartet verhält, deaktivieren Sie die automatische Reaktivierung.',
+		'SHOP_MODULE_imva_devguide_3rdpartymdllist'		=>	'Geben Sie zeilenweise die IDs der Module ein, die automatisch reaktiviert werden sollen.',
+		'HELP_SHOP_MODULE_imva_devguide_3rdpartymdllist'=>	'Die ID eines Moduls wird in der Datei metadata.php angegeben. Dabei handelt es sich
+															nicht zwingend um den Verzeichnisnamen!',
 		'SHOP_MODULE_GROUP_imva_devguide_logging'		=>	'Aufzeichnen',
 		'SHOP_MODULE_imva_devguide_enablelogging'		=>	'Durchgef&uuml;hrte Aktionen und Ereignisse aufzeichnen',
 		'SHOP_MODULE_GROUP_imva_devguide_settings'		=>	'Weitere Einstellungen',
@@ -91,7 +97,8 @@ $aLang = array(
 		'IMVA_DEVGUIDE_MAIN_WITHDIALOGUE'				=>	'Bevor eine Aktion durchgef&uuml;hrt wird, wird eine R&uuml;ckfrage angezeigt.',
 		'IMVA_DEVGUIDE_MAIN_BEHAVIOUR'					=>	'Um dieses Verhalten zu &auml;ndern, &ouml;ffnen Sie
 															<i>Erweiterungen &raquo; Module &raquo; Einstellungen</i>
-															und &auml;ndern Sie die Einstellung',
+															und &auml;ndern Sie die Einstellung
+															',
 		
 		// Views
 		'IMVA_DEVGUIDE_TITLE'							=>	'imva.biz: &bdquo;Entwicklungshelfer&rdquo;',
@@ -102,7 +109,9 @@ $aLang = array(
 		'IMVA_DEVGUIDE_CLEARMOD_CLEARALL'				=>	'Auf alle Subshops anwenden.',
 		'IMVA_DEVGUIDE_CLEARMOD_CLEAREDALL'				=>	'Alle Module in allen Shops wurden zur&uuml;ckgesetzt;',
 		'IMVA_DEVGUIDE_CLEARMOD_RESTORED'				=>	'das Modul &bdquo;Entwicklungshelfer&rdquo; wurde automatisch reaktiviert.',
+		'IMVA_DEVGUIDE_CLEARMOD_REVIVED3RDPARTY'		=>	'Drittanbietermodule wurden ebenfalls reaktiviert.',
 		'IMVA_DEVGUIDE_CLEARMOD_FAIL'					=>	'Die Modulkonfiguration konnte nicht zur&uuml;ckgesetzt werden.',
+		'IMVA_DEVGUIDE_CLEARMOD_NO3RDPARTY'				=>	'Die gewählten Drittanbietermodule wurden nicht reaktiviert.',
 		'IMVA_DEVGUIDE_CLEARTEMP_DESCR'					=>	'Hierdurch werden der Smarty-Template- und der Datenbank-Cache geleert.',
 		'IMVA_DEVGUIDE_CLEARTEMP_CLEARED'				=>	'Der Smarty-Template- und der Datenbank-Cache (tmp/-Verzeichnis) wurden geleert.',
 		'IMVA_DEVGUIDE_CLEARTEMP_FAIL'					=>	'Fehler beim Leeren von /tmp/. Schreibrechte pr&uuml;fen.',

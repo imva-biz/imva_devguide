@@ -46,7 +46,7 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 15/1/25
+ * 15/1/25-11-21
  * v 0.9.11
  *
  */
@@ -54,21 +54,13 @@
 class imva_devguide_oxviewconfig extends imva_devguide_oxviewconfig_parent
 {
     /**
-     * Returns the path of a module file. Fix: Make it work for HTTPS.
+     * Class not required since 0.9.21. Remains here for later use.
      * 
-     * @param string $sModule
-     * @param string $sFile
+     * @return boolean
      */
 	
-	public function getModuleUrl($sModule, $sFile = '')
-    {
-		$sUrl = parent::getModuleUrl($sModule, $sFile);
-		
-		// The patch. Pull request created. See @https://github.com/bertrandjackermann/oxideshop_ce/compare/oxbertrand-oxidce
-		if (($this->getConfig()->getConfigParam('sAdminSSLURL') != null) && ($this->isAdmin())){
-			$sUrl = str_replace('http:','https:',$sUrl);
-		}
-		
-		return $sUrl;
+	public function imva_devguide_dummy()
+    {		
+		return true;
     }
 }

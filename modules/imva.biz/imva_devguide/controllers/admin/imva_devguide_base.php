@@ -46,14 +46,14 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/10/18
- * v 0.9.12
+ * 13/7/5-15/11/22
+ * v 0.9.21
  *
  */
 
 class imva_devguide_base extends oxAdminView
 {
-	private $_sShopId		=	null;								// The shop ID. Prepared for usage in EE
+	public $sShopId			=	null;								// The shop ID. Prepared for usage in EE
 	public $blSuccess		=	false;								// Successful?
 	public $blFail			=	false;								// Failure
 	public $blAllcleared	=	false;								// Status
@@ -71,7 +71,8 @@ class imva_devguide_base extends oxAdminView
 	public function init()
 	{
 		parent::init();
-		$this->oServ = oxNew('imva_devguide_service');		// Service
+		$this->sShopId = oxRegistry::getConfig()->getShopId();	// Fill (sub)-shop ID
+		$this->oServ = oxNew('imva_devguide_service');			// Service
 	}
 	
 	
