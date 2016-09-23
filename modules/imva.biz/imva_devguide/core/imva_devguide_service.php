@@ -43,11 +43,11 @@
  * 
  * 
  *
- * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
+ * (c) 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/11/21
- * v 0.9.21
+ * 13/7/5-16/9/23
+ * v 0.9.22
  *
  */
 
@@ -105,9 +105,14 @@ class imva_devguide_service extends oxbase
 	{
 		return $this->oConf->getConfigParam('imva_devguide_enableautorevive');
 	}
-	
-	
-	
+
+
+
+    /**
+     * Check whether to auto-revive of 3rd party modules
+     *
+     * @return boolean
+     */
 	public function revive3rdParty()
 	{
 		return $this->oConf->getConfigParam('imva_devguide_revive3rdparty');
@@ -173,8 +178,8 @@ class imva_devguide_service extends oxbase
 	public function getFooterLink($sInfo)
 	{
 		$aUrls = array(
-				'manuf'		=>	'http://imva.biz?ref=devguide',
-				'manual'	=>	'http://www.ackis-oxid.de/tag/developers-guide/',
+				'manuf'		=>	'https://imva.biz?ref=devguide',
+				'manual'	=>	'https://www.ackis-oxid.de/tag/developers-guide/',
 		);
 		
 		return $aUrls[$sInfo];

@@ -47,8 +47,8 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/10/19
- * v 0.9.13
+ * 13/7/5-16/9/23
+ * v 0.9.22
  *
  */
 
@@ -58,7 +58,7 @@ class imva_devguide_cleartemp extends imva_devguide_base
 	
 	
 	/**
-	 * Render
+	 * Render view.
 	 *
 	 * @param null
 	 * @return string
@@ -79,70 +79,17 @@ class imva_devguide_cleartemp extends imva_devguide_base
 	
 	
 	/**
-	 * Delete contents from /tmp/
+	 * Delete contents from Compile Dir.
 	 *
 	 * @param null
 	 * @return null
 	 */
 	private function _clearTemp()
 	{
-		// Compile dir
-		$sTempDir = oxRegistry::getConfig()->getConfigParam('sCompileDir');
-	
-		// tmp
-		$this->_clearDir($sTempDir);
-	
-		// tmp/smarty
-		if (file_exists($sTempDir.'/smarty/'))
-		{
-			$this->_clearDir($sTempDir.'/smarty/');
-		}
-	
-		// tmp/css
-		if (file_exists($sTempDir.'/css/'))
-		{
-			$this->_clearDir($sTempDir.'/css/');
-		}
-	
-		// tmp/less
-		if (file_exists($sTempDir.'/less/'))
-		{
-			$this->_clearDir($sTempDir.'/less/');
-		}
-	
-		// Create new .htaccess
-		$oFile = fopen($sTempDir.'/.htaccess','w+');
-		fwrite($oFile,"# disabling file access\n<FilesMatch .*>\norder allow,deny\ndeny from all\n</FilesMatch>\n\nOptions -Indexes\n");
-		fclose($oFile);
-	
+        $imva_devguide_basefnc = oxNew('imva_devguide_basefunctions');
+        $imva_devguide_basefnc->imva_clearTemp();
+
 		// Set Success Flag
 		$this->blSuccess = true;
-	}
-	
-	
-	
-	/**
-	 * Clear directory
-	 *
-	 * @param string
-	 * @return null
-	 */
-	private function _clearDir($sPath)
-	{
-		if (is_dir($sPath)){
-			if ($oDirH = opendir($sPath)){
-				while (($sFile = readdir($oDirH)) !== false)
-				{
-					if ($sFile != '.' and $sFile != '..')
-					{ // don't do for . and ..
-						@unlink($sPath.$sFile); // suppress warnings
-					}
-				}
-				closedir($oDirH);
-			}
-		}
-		else{
-			$this->blFail = true;
-		}
 	}
 }
