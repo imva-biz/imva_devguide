@@ -24,7 +24,7 @@ familiarise with the configuration before using the module.
 *	Refresh the module administration page and if asked if you wish to remove existing associations, confirm.
 
 ##Install
-*	Copy the contents of modules/ to your shop's module directory.
+*	Copy the contents of `copy_this` to your shop's root directory (where `bootstrap.php` is located.
 *	The `metadata.php` file should be located in: `modules/imva.biz/imva_devguide`.
 *	In the shop admin, go to `Extensions => Modules` and select "imva.biz: Developer's Guide"
 *	In the section below click "activate".
