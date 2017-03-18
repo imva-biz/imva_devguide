@@ -14,3 +14,5 @@
 
 <body>
 <div class="content">
+
+[{assign var='DevguideService' value=$oView->getDevguideService()}]

@@ -46,8 +46,8 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/11/22
- * v 0.9.21
+ * 13/7/5-17/3/18
+ * v 0.10
  *
  */
 
@@ -71,7 +71,7 @@ $aLang = array(
 		'SHOP_MODULE_imva_devguide_requestonaction'		=>	'Vor dem Durchf&uuml;hren einer Aktion fragen',
 		'SHOP_MODULE_imva_devguide_enableautorevive'	=>	'Automatische Reaktivierung verwenden',
 		'HELP_SHOP_MODULE_imva_devguide_enableautorevive'=>	'Nach dem Zur&uuml;cksetzen der Modulkonfiguration wird dieses Modul reaktiviert.',
-		'SHOP_MODULE_imva_devguide_revive3rdparty'		=>	'Nachfolgend genannte Module anderer Anbieter ebenfalls aktivieren, sofern vorhanden:',
+		'SHOP_MODULE_imva_devguide_revive3rdparty'		=>	'<i>Alpha!</i> Nachfolgend genannte Module anderer Anbieter ebenfalls aktivieren, sofern vorhanden:',
 		'HELP_SHOP_MODULE_imva_devguide_revive3rdparty'	=>	'Falls sich dieses Feature unerwartet verhält, deaktivieren Sie die automatische Reaktivierung.',
 		'SHOP_MODULE_imva_devguide_3rdpartymdllist'		=>	'Geben Sie zeilenweise die IDs der Module ein, die automatisch reaktiviert werden sollen.',
 		'HELP_SHOP_MODULE_imva_devguide_3rdpartymdllist'=>	'Die ID eines Moduls wird in der Datei metadata.php angegeben. Dabei handelt es sich

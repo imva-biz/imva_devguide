@@ -32,8 +32,8 @@
  * (c) 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/2/8-16/9/23
- * v 0.9.22
+ * 13/2/8-17/3/18
+ * v 0.10
  *
  */
 
@@ -67,10 +67,10 @@ $aModule = array(
             zu aktivieren.</p>',
     ),
     'thumbnail'		=> 'out/img/imva-Logo-90.png',
-    'version'		=> '0.9.24',
+    'version'		=> '0.10',
     'author'		=> 'Johannes Ackermann',
     'url'			=> 'https://imva.biz',
-    'email' 		=> 'imva@imva.biz',
+    'email' 		=> 'kontakt@imva.biz',
     'files'		=> array(
         // functions used by all module classes
         'imva_devguide_base'				=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_base.php',
@@ -199,7 +199,7 @@ $aModule = array(
             'group'			=>	'imva_devguide_behaviour',
             'name'			=>	'imva_devguide_3rdpartymdllist',
             'type'			=>	'arr',
-            'value'			=>	'',
+            'value'			=>	null,
             'position'		=>	4,
         ),
         array(

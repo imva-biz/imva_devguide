@@ -32,8 +32,8 @@
  * (c) 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-16/9/23
- * v 0.9.22
+ * 13/7/5-17/3/18
+ * v 0.10
  *
  */
 
@@ -53,7 +53,10 @@ class imva_devguide_cleartemp extends imva_devguide_base
 		parent::render();
 	
 		// Determine whether dialogues are enabled and confirmed OR not enabled
-		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm')) or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null))
+		if (($this->getDevguideService()->askMe()
+                and $this->getDevguideService()->getP('blconfirm'))
+            or ($this->getDevguideService()->askMe() !== true
+                and $this->getDevguideService()->getP('blconfirm') == null))
 		{
 			$this->_clearTemp();
 		}

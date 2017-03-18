@@ -32,8 +32,8 @@
  * (c) 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/11/22
- * v 0.9.21
+ * 13/7/5-17/3/17
+ * v 0.10
  *
  */
 
@@ -59,27 +59,26 @@ class imva_devguide_clearmod extends imva_devguide_base
 		parent::init();
 		
 		// Determine, whether dialogues are enabled and confirmed OR not enabled
-		if (($this->oServ->askMe() and $this->oServ->getP('blconfirm'))
-				or ($this->oServ->askMe() !== true and $this->oServ->getP('blconfirm') == null))
+		if (($this->getDevguideService()->askMe()
+                and $this->getDevguideService()->getP('blconfirm'))
+                    or ($this->getDevguideService()->askMe() !== true
+                        and $this->getDevguideService()->getP('blconfirm') == null))
 		{
 			
 			$this->blSuccess = false;
 			
 			// Call clear function
-			if ($this->oServ->getP('shops') == 'all')
-			{
+			if ($this->getDevguideService()->getP('shops') == 'all'){
 				$this->_clearModuleCache();
 				$this->blAllcleared = true;
 			}
-			else
-			{
+			else{
 				$this->_clearModuleCache($this->sShopId);
 			}
 			
 			// auto-revive modules
-			if ($this->oServ->isAutoRevive())
-			{
-				$this->_revive();
+			if ($this->getDevguideService()->isAutoRevive()){
+			    $this->_revive();
 			}
 		}
 	}
@@ -122,49 +121,134 @@ class imva_devguide_clearmod extends imva_devguide_base
 	 * @return null
 	 */
 	private function _clearModuleCache($sShopId = '')
-	{		
-		$oDb = oxDb::getDb();
-		
-		$aModuleCfgFields = array(
-				'aDisabledModules',
-				'aModuleFiles',
-				'aModules',
-				'aModuleVersions',
-				'aModuleTemplates',
-				'aModuleEvents',
-				'aModulePaths'
-		);
-		
-		foreach ($aModuleCfgFields as $sField){
-			$oDb->startTransaction();
-			
-			$sSelect = 'delete from oxconfig where oxvarname = "'.$sField.'"';
-		
-			// empty if all subshops were selected
-			if ($sShopId){
-				$sSelect .= ' and oxshopid = "'.$sShopId.'"';
-			}
-			
-			$sSelect .= ';';
-			
-			$oDb->execute($sSelect);
-			$oDb->commitTransaction();
-		}
-		
-		
-		
-		// Clear oxtplblocks from module settings
-		$sSelect = 'delete from oxtplblocks';
+    {
+        $Db = oxDb::getDb(oxDb::FETCH_MODE_ASSOC);
 
-		// empty if all subshops were selected
-		if ($sShopId){
-			$sSelect .= ' where oxshopid = "'.$sShopId.'"';
-		}
-		
-		$sSelect .= ';';
-		$oDb->execute($sSelect);
-		
-		$this->_pause();
+        $aModuleCfgFields = array(
+            'aDisabledModules',
+            'aModuleFiles',
+            'aModules',
+            'aModuleVersions',
+            'aModuleTemplates',
+            'aModuleEvents',
+            'aModulePaths'
+        );
+
+        foreach ($aModuleCfgFields as $sField) {
+            $Db->startTransaction();
+
+            $sSelect = "DELETE FROM `oxconfig` WHERE `OXVARNAME` = '" . $sField . "'";
+
+            // empty if all subshops were selected
+            if ($sShopId) {
+                $sSelect .= " AND `OXSHOPID` = '" . $sShopId . "'";
+            }
+
+            $sSelect .= ";";
+
+            $Db->execute($sSelect);
+            $Db->commitTransaction();
+        }
+
+
+        // Clear oxtplblocks from module settings
+        $sSelect = "DELETE FROM `oxtplblocks`";
+
+        // empty if all subshops were selected
+        if ($sShopId) {
+            $sSelect .= " WHERE `OXSHOPID` = '".$sShopId."'";
+        }
+
+        $sSelect .= ';';
+		$Db->execute($sSelect);
+
+        // Cleanup cached configuration
+        $this->_clearCachedConfig();
+
+        //if ($this->getDevguideService()->isAutoRevive()) {
+
+            // Restore blocks
+            $Db->startTransaction();
+            $restoreBlocks = "
+                REPLACE INTO `oxtplblocks` (`OXID`, `OXACTIVE`, `OXSHOPID`, `OXTEMPLATE`, `OXBLOCKNAME`, `OXPOS`, `OXFILE`, `OXMODULE`) VALUES
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_confirm',	1,	'views/blocks/imva_devguide_dialogue.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_footer',	1,	'views/blocks/imva_devguide_footer.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_header',	1,	'views/blocks/imva_devguide_header.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_confirm',	1,	'views/blocks/imva_devguide_dialogue.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_footer',	1,	'views/blocks/imva_devguide_footer.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_header',	1,	'views/blocks/imva_devguide_header.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_confirm',	1,	'views/blocks/imva_devguide_dialogue.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_footer',	1,	'views/blocks/imva_devguide_footer.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_header',	1,	'views/blocks/imva_devguide_header.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_main.tpl', 'imva_devguide_footer',	1,	'views/blocks/imva_devguide_footer.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_main.tpl', 'imva_devguide_header',	1,	'views/blocks/imva_devguide_header.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_logviewer.tpl', 'imva_devguide_footer',	1,	'views/blocks/imva_devguide_footer.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_logviewer.tpl', 'imva_devguide_header',	1,	'views/blocks/imva_devguide_header.tpl',	'imva_devguide');
+            ";
+            
+
+            $Db->execute($restoreBlocks);
+            $Db->commitTransaction();
+
+            // Restore module config.
+            $DevguideConfigurations = array(
+                'aModulePaths' => array(
+                    'imva_devguide' => 'imva.biz/imva_devguide',
+                ),
+                'aModuleTemplates' => array(
+                    'imva_devguide' => array(
+                        'imva_devguide_clearmod.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_clearmod.tpl',
+                        'imva_devguide_cleartemp.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_cleartemp.tpl',
+                        'imva_devguide_logviewer.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_logviewer.tpl',
+                        'imva_devguide_main.tpl'			=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_main.tpl',
+                        'imva_devguide_rebuildviews.tpl'	=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_rebuildviews.tpl',
+                        'imva_devguide_cancelled.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/inc/imva_devguide_cancelled.tpl',
+                        'imva_devguide_redo.tpl'			=>	'imva.biz/imva_devguide/views/admin/tpl/inc/imva_devguide_redo.tpl',
+                    ),
+                ),
+                'aDisabledModules' => array(),
+                'aModuleFiles' => array(
+                    'imva_devguide' =>
+                        array(
+                            'imva_devguide_base' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_base.php',
+                            'imva_devguide_service' => 'imva.biz/imva_devguide/core/imva_devguide_service.php',
+                            'imva_devguide_basefunctions' => 'imva.biz/imva_devguide/core/imva_devguide_basefunctions.php',
+                            'imva_devguide_clearmod' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_clearmod.php',
+                            'imva_devguide_cleartemp' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_cleartemp.php',
+                            'imva_devguide_logviewer' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_logviewer.php',
+                            'imva_devguide_main' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_main.php',
+                            'imva_devguide_rebuildviews' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_rebuildviews.php',
+                        ),
+                ),
+                'aModuleEvents' => array(),
+                'aModuleVersions' => array(
+                    'imva_devguide' => '1.0.0',
+                ),
+                'aModules' => array(
+                    'oxviewconfig' => 'imva.biz/imva_devguide/core/imva_devguide_oxviewconfig',
+                ),
+            );
+
+            $shopId = oxRegistry::getConfig()->getActiveShop()->getId();
+
+            foreach ($DevguideConfigurations as $DevguideConfig => $item) {
+                $SqlStatement = "
+                    REPLACE INTO `oxconfig` (`OXID`, `OXSHOPID`, `OXVARNAME`, `OXVARTYPE`, `OXVARVALUE`)
+                    VALUES (
+                        '".md5('imva'.$DevguideConfig.$shopId.'24486')."',
+                        '".$shopId."',
+                        '".$DevguideConfig."',
+                        'aarr',
+                        ENCODE('".addslashes(serialize($DevguideConfigurations[$DevguideConfig]))."',
+                        '".oxRegistry::getConfig()->sConfigKey."')
+                    );
+                ";
+
+                $Db->execute($SqlStatement);
+            }
+
+            $this->blSuccess = true;
+//        }
 		
 		// Cleanup cached configuration
 		$this->_clearCachedConfig();
@@ -179,21 +263,18 @@ class imva_devguide_clearmod extends imva_devguide_base
 	 * @return null
 	 */
 	private function _revive()
-	{		
-	    $this->blSuccess = $this->_activateModule('imva_devguide');
-	    
-	    if ($this->oServ->revive3rdParty()){
-	    	
-	    	$this->_clearModuleCache('oxbaseshop'); // --> bringt nichts, wenn Drittanbietermodule aktiviert werden sollen
-	    	$this->_activateModule('imva_devguide');
-	    	
-	    	$aReviveThese = $this->oServ->oConf->getConfigParam('imva_devguide_3rdpartymdllist');
-	    	
+	{
+	    if ($this->getDevguideService()->revive3rdParty()){
+
+            // @ToDo: Not helpful when attempting to activate 3rd party modules
+            $this->_clearModuleCache(oxRegistry::getConfig()->getActiveShop()->getId());
+
+	    	$aReviveThese = oxRegistry::getConfig()->getConfigParam('imva_devguide_3rdpartymdllist');
+
 	    	foreach ($aReviveThese as $sModuleID){
-	    		$this->_pause();
 	    		$this->_activateModule($sModuleID);
 	    	}
-	    	
+
 	    	$this->thirdPartyRevive = true;
 	    }
 	}
@@ -211,21 +292,15 @@ class imva_devguide_clearmod extends imva_devguide_base
 		$oModule = oxNew('oxModule');
 		$oModule->load($sModuleId);
 		if ($oModule){
-		    $oModuleCache = oxNew('oxModuleCache', $oModule);
-		    $oModuleInstaller = oxNew('oxModuleInstaller', $oModuleCache);	    
+		    $oModuleInstaller = oxNew('oxModuleInstaller');
+		    $oModuleInstaller->deactivate($oModule);
 		    $oModuleInstaller->activate($oModule);
+		    unset($oModule, $oModuleCache, $oModuleInstaller);
 		    
-		    $this->_pause();
-		    
-		    unset ($oModule,$oModuleCache,$oModuleInstaller);
-		    
-		    $blRtn = true;
-		}
-		else{
-			$blRtn = false;
+		    return true;
 		}
 		
-		return $blRtn;
+		return false;
 	}
 	
 	
@@ -237,33 +312,24 @@ class imva_devguide_clearmod extends imva_devguide_base
 	 * @return boolean
 	 */
 	private function _clearCachedConfig()
-	{		
-		$aFileSuffixes = array('adisabledmodules','amodulepaths','amodulefiles','amodules');	// Suffixes of cache files.
-		$sPath = oxRegistry::getConfig()->getConfigParam('sCompileDir');
+	{
+        // Suffixes of cache files.
+	    $aFileSuffixes = array(
+		    'adisabledmodules',
+            'amodulepaths',
+            'amodulefiles',
+            'amodules'
+        );
+
+		$compileDir = oxRegistry::getConfig()->getConfigParam('sCompileDir');
 		
 		foreach ($aFileSuffixes as $sFileSuffix){
 			$sFileName = 'config.'.$this->sShopId.'.'.$sFileSuffix.'.txt';	// Naming shape of cache files.
 		
-			if (file_exists($sPath.$sFileName))
+			if (file_exists($compileDir.$sFileName))
 			{
-				@unlink($sPath.$sFileName);
+				@unlink($compileDir.$sFileName);
 			}
 		}
-		
-		$this->_pause();
-	}
-	
-	
-	
-	/**
-	 * Force pause for 0.25 seconds.
-	 * (e.g. to make sure all files have been deleted)
-	 * 
-	 * @param null
-	 * @return null
-	 */
-	private function _pause()
-	{
-		usleep(250000);
 	}
 }

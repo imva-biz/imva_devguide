@@ -46,8 +46,8 @@
  * (c) 2013-2015 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/11/22
- * v 0.9.21
+ * 13/7/5-17/3/18
+ * v 0.10
  *
  */
 
@@ -70,7 +70,7 @@ $aLang = array(
 		'SHOP_MODULE_GROUP_imva_devguide_behaviour'		=>	'Behaviour',
 		'SHOP_MODULE_imva_devguide_requestonaction'		=>	'Ask me before running a task',
 		'SHOP_MODULE_imva_devguide_enableautorevive'	=>	'Enable the auto-revive feature',
-		'HELP_SHOP_MODULE_imva_devguide_enableautorevive'=>	'Re-activates this module after resetting the whole module configuration.',
+		'HELP_SHOP_MODULE_imva_devguide_enableautorevive'=>	'<i>Alpha!</i> Re-activates this module after resetting the whole module configuration.',
 		'SHOP_MODULE_imva_devguide_revive3rdparty'		=>	'Also reactivate the following modules if they exist:',
 		'HELP_SHOP_MODULE_imva_devguide_revive3rdparty'	=>	'In case this feature causes malfunction, disable the auto-revive feature.',
 		'SHOP_MODULE_imva_devguide_3rdpartymdllist'		=>	'Enter one module ID per line in order to use auto-revive.',

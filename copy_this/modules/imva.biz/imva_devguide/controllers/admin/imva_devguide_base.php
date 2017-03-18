@@ -33,7 +33,7 @@
  * @author Johannes Ackermann
  *
  * 13/7/5-15/11/22
- * v 0.9.21
+ * v 0.10
  *
  */
 
@@ -43,7 +43,7 @@ class imva_devguide_base extends oxAdminView
 	public $blSuccess		=	false;								// Successful?
 	public $blFail			=	false;								// Failure
 	public $blAllcleared	=	false;								// Status
-	public $oServ			=	null;								// Devguide Service
+	private $_oServ			=	null;								// Devguide Service
 	
 	
 	
@@ -58,8 +58,23 @@ class imva_devguide_base extends oxAdminView
 	{
 		parent::init();
 		$this->sShopId = oxRegistry::getConfig()->getShopId();	// Fill (sub)-shop ID
-		$this->oServ = oxNew('imva_devguide_service');			// Service
 	}
+
+
+
+    /**
+     * Devguide Service getter.
+     *
+     * @return imva_devguide_service
+     */
+	public function getDevguideService()
+    {
+        if ($this->_oServ === null)
+        {
+            $this->_oServ = oxNew('imva_devguide_service');
+        }
+        return $this->_oServ;
+    }
 	
 	
 	
@@ -77,7 +92,7 @@ class imva_devguide_base extends oxAdminView
 			echo 'ERROR_PARADOX';
 		}
 		
-		if ($this->oServ->getP('blCancelled'))
+		if ($this->getDevguideService()->getP('blCancelled'))
 		{
 			$this->blCancelled = true;
 		}

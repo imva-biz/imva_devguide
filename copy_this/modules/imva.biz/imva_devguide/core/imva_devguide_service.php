@@ -32,8 +32,8 @@
  * (c) 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-16/9/23
- * v 0.9.22
+ * 13/7/5-17/3/18
+ * v 0.10
  *
  */
 
@@ -41,7 +41,6 @@ class imva_devguide_service extends oxbase
 {
 	public $sModuleId		=	null;							// Module ID, for later usage in imva_services
 	public $sModuleVersion	=	null;							// Module Version (for template)
-	public $oConf			=	null;							// oxconfig
 	public $oThisModule		=	null;							// oxModule instance for this module
 	
 	
@@ -57,8 +56,6 @@ class imva_devguide_service extends oxbase
 		parent::__construct();
 		
 		$this->sModuleId = 'imva_devguide';
-		
-		$this->oConf = $this->getConfig();
 		
 		// Get the module version
 		$this->oThisModule = oxNew('oxModule');
@@ -76,7 +73,7 @@ class imva_devguide_service extends oxbase
 	 */
 	public function askMe()
 	{
-		return $this->oConf->getConfigParam('imva_devguide_requestonaction');
+		return oxRegistry::getConfig()->getConfigParam('imva_devguide_requestonaction');
 	}
 	
 	
@@ -89,7 +86,7 @@ class imva_devguide_service extends oxbase
 	 */
 	public function isAutoRevive()
 	{
-		return $this->oConf->getConfigParam('imva_devguide_enableautorevive');
+		return oxRegistry::getConfig()->getConfigParam('imva_devguide_enableautorevive');
 	}
 
 
@@ -101,7 +98,7 @@ class imva_devguide_service extends oxbase
      */
 	public function revive3rdParty()
 	{
-		return $this->oConf->getConfigParam('imva_devguide_revive3rdparty');
+		return oxRegistry::getConfig()->getConfigParam('imva_devguide_revive3rdparty');
 	}
 	
 	
@@ -114,7 +111,7 @@ class imva_devguide_service extends oxbase
 	 */
 	public function getP($sString = '')
 	{
-		return $this->oConf->getRequestParameter($sString);
+		return oxRegistry::getConfig()->getRequestParameter($sString);
 	}
 	
 	
@@ -128,7 +125,7 @@ class imva_devguide_service extends oxbase
 	 */
 	public function getCurrentCl()
 	{
-		return $this->oConf->getActiveView()->getClassName();
+		return oxRegistry::getConfig()->getActiveView()->getClassName();
 	}
 	
 	
@@ -142,15 +139,12 @@ class imva_devguide_service extends oxbase
 	 */
 	public function hasSubshops()
 	{
-		$iShops = oxDb::getDb()->getOne("SELECT COUNT(OXID) FROM oxshops");
+		$iShops = oxDb::getDb()->getOne("SELECT COUNT(`OXID`) FROM `oxshops`;");
 		if ($iShops > 1){
-			$blRet = true;
-		}
-		else{
-			$blRet = false;
+			return true;
 		}
 		
-		return $blRet;
+		return false;
 	}
 	
 	
@@ -164,8 +158,8 @@ class imva_devguide_service extends oxbase
 	public function getFooterLink($sInfo)
 	{
 		$aUrls = array(
-				'manuf'		=>	'https://imva.biz?ref=devguide',
-				'manual'	=>	'https://www.ackis-oxid.de/tag/developers-guide/',
+            'manuf'		=>	'https://imva.biz?ref=devguide',
+            'manual'	=>	'https://www.ackis-oxid.de/tag/developers-guide/',
 		);
 		
 		return $aUrls[$sInfo];

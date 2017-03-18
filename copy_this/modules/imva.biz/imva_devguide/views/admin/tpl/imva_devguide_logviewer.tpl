@@ -5,7 +5,7 @@
 <h2>EXCEPTION_LOG.txt</h2>
 [{if $oView->showExceptionlog()}]
 	<a class="btn green" style="position: relative; top: -30px; left: 220px;"
-		href="[{$oViewConf->getSelfLink()}]cl=[{$oView->oServ->getCurrentCl()}]&amp;blconfirm=true">
+		href="[{$oViewConf->getSelfLink()}]cl=[{$DevguideService->getCurrentCl()}]&amp;blconfirm=true">
 			[{oxmultilang ident='IMVA_DEVGUIDE_LOGVIEWER_CLEARFILE'}]
 	</a>
 	

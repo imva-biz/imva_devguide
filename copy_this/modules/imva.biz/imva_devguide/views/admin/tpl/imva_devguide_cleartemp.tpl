@@ -9,7 +9,7 @@
 		<p class="msg suc">[{oxmultilang ident='IMVA_DEVGUIDE_CLEARTEMP_CLEARED'}]</p>
 		[{include file='imva_devguide_redo.tpl'}]
 	[{else}]	
-		[{if !$oView->oServ->getP('confirm')}]
+		[{if !$DevguideService->getP('confirm')}]
 			[{oxmultilang ident='IMVA_DEVGUIDE_CLEARTEMP_DESCR'}]
 			[{block name='imva_devguide_confirm'}][{/block}]
 		[{/if}]
