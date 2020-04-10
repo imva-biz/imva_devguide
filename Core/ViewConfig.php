@@ -29,55 +29,25 @@
  *
  * (EULA-13/7-OS)
  *
- * (c) 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
+ * (c) 2013-2020 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-17/3/18
- * v 0.10
- *
+ * 15/1/25-20/4/10
+ * v 2.0.0
  */
 
-class imva_devguide_cleartemp extends imva_devguide_base
-{
-	
-	
-	
-	/**
-	 * Render view.
-	 *
-	 * @param null
-	 * @return string
-	 */
-	public function render()
-	{
-		parent::render();
-	
-		// Determine whether dialogues are enabled and confirmed OR not enabled
-		if (($this->getDevguideService()->askMe()
-                and $this->getDevguideService()->getP('blconfirm'))
-            or ($this->getDevguideService()->askMe() !== true
-                and $this->getDevguideService()->getP('blconfirm') == null))
-		{
-			$this->_clearTemp();
-		}
-	
-		return 'imva_devguide_cleartemp.tpl';
-	}
-	
-	
-	
-	/**
-	 * Delete contents from Compile Dir.
-	 *
-	 * @param null
-	 * @return null
-	 */
-	private function _clearTemp()
-	{
-        $imva_devguide_basefnc = oxNew('imva_devguide_basefunctions');
-        $imva_devguide_basefnc->imva_clearTemp();
+namespace Imva\DevelopersGuide\Core;
 
-		// Set Success Flag
-		$this->blSuccess = true;
-	}
+class ViewConfig extends imva_devguide_oxviewconfig_parent
+{
+    /**
+     * Class not required since 0.9.21. Remains here for later use.
+     * 
+     * @return boolean
+     */
+	
+	public function imva_devguide_dummy()
+    {		
+		return true;
+    }
 }

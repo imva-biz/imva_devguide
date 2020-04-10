@@ -32,12 +32,13 @@
  * (c) 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-17/3/18
- * v 0.10
- *
+ * 13/7/5-20/4/10
+ * v 2.0.0
  */
 
-class imva_devguide_service extends oxbase
+namespace Imva\DevelopersGuide\Core;
+
+class service extends oxbase
 {
 	public $sModuleId		=	null;							// Module ID, for later usage in imva_services
 	public $sModuleVersion	=	null;							// Module Version (for template)

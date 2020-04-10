@@ -29,72 +29,58 @@
  *
  * (EULA-13/7-OS)
  *
- * (c) 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
+ * (c) 2013-2020 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/11/22
- * v 0.10
- *
+ * 13/7/5-20/4/10
+ * v 2.0
  */
 
-class imva_devguide_base extends oxAdminView
+namespace Imva\DevelopersGuide\Controller\Admin;
+
+class viewsRebuilder extends base
 {
-	public $sShopId			=	null;								// The shop ID. Prepared for usage in EE
-	public $blSuccess		=	false;								// Successful?
-	public $blFail			=	false;								// Failure
-	public $blAllcleared	=	false;								// Status
-	private $_oServ			=	null;								// Devguide Service
-	
-	
-	
-	/**
-	 * Init
-	 *
-	 * Provice Service.
-	 * @param null
-	 * @return null
-	 */
-	public function init()
-	{
-		parent::init();
-		$this->sShopId = oxRegistry::getConfig()->getShopId();	// Fill (sub)-shop ID
-	}
-
-
-
-    /**
-     * Devguide Service getter.
-     *
-     * @return imva_devguide_service
-     */
-	public function getDevguideService()
-    {
-        if ($this->_oServ === null)
-        {
-            $this->_oServ = oxNew('imva_devguide_service');
-        }
-        return $this->_oServ;
-    }
 	
 	
 	
 	/**
 	 * Render
-	 * 
 	 * @return string
-	 */
+	 */	
 	public function render()
 	{
 		parent::render();
-
-		if ($this->blSuccess and $this->blFail)
+		
+		// Determine, whether dialogues are enabled and confirmed OR not enabled
+		if (($this->getDevguideService()->askMe()
+                and $this->getDevguideService()->getP('blconfirm'))
+            or ($this->getDevguideService()->askMe() !== true
+                and $this->getDevguideService()->getP('blconfirm') == null))
 		{
-			echo 'ERROR_PARADOX';
+			$this->_rebuildViews();
 		}
 		
-		if ($this->getDevguideService()->getP('blCancelled'))
-		{
-			$this->blCancelled = true;
-		}
+		return 'imva_devguide_rebuildviews.tpl';
+	}
+	
+	
+	
+	/**
+	 * Rebuild Views
+	 * 
+	 * @param null
+	 * @return null
+	 */
+	private function _rebuildViews()
+	{
+        if (oxRegistry::getSession()->getVariable('malladmin'))
+        {
+			$oMetaData = oxNew('oxDbMetaDataHandler');
+			$this->blSuccess = $oMetaData->updateViews();	// Set Success Flag
+        }
+        else
+        {
+        	$this->blFail = true;							// On failure
+        }
 	}
 }

@@ -32,18 +32,19 @@
  * (c) 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 15/1/25-17/3/18
- * v 0.10
- *
+ * 13/7/5-20
+ * v 2.0.0
  */
 
-class imva_devguide_logviewer extends imva_devguide_base
+namespace Imva\DevelopersGuide\Controller\Admin;
+
+class CompiledirCleaner extends Base
 {
 	
 	
 	
 	/**
-	 * Render
+	 * Render view.
 	 *
 	 * @param null
 	 * @return string
@@ -51,85 +52,33 @@ class imva_devguide_logviewer extends imva_devguide_base
 	public function render()
 	{
 		parent::render();
-		
+	
 		// Determine whether dialogues are enabled and confirmed OR not enabled
 		if (($this->getDevguideService()->askMe()
                 and $this->getDevguideService()->getP('blconfirm'))
             or ($this->getDevguideService()->askMe() !== true
                 and $this->getDevguideService()->getP('blconfirm') == null))
 		{
-			$this->_clearLogfile();
+			$this->_clearTemp();
 		}
 	
-		return 'imva_devguide_logviewer.tpl';
+		return 'imva_devguide_cleartemp.tpl';
 	}
 	
 	
 	
 	/**
-	 * Show EXCEPTION_LOG.txt
-	 * 
-	 * @return string
+	 * Delete contents from Compile Dir.
+	 *
+	 * @param null
+	 * @return null
 	 */
-	public function showExceptionlog()
+	private function _clearTemp()
 	{
-		$sLogfile = oxRegistry::getConfig()->getConfigParam('sShopDir').'log/EXCEPTION_LOG.txt';
-		
-		if (filesize($sLogfile) > 0)
-		{
-			$oLogfile = fopen($sLogfile, 'r');
-			$sRet = fread($oLogfile, filesize($sLogfile));
-		}
-		else
-		{
-			$sRet = false;
-		}
-		
-		return $sRet;
-	}
-	
-	
-	
-	/**
-	 * Clear EXCEPTION_LOG.txt
-	 * 
-	 * @return boolean
-	 */
-	private function _clearLogfile()
-	{
-		$sLogfile = oxRegistry::getConfig()->getConfigParam('sShopDir').'log/EXCEPTION_LOG.txt';
-		
-		$oLogfile = fopen($sLogfile, 'w');
-		@file_put_contents($oLogfile, '');
-		
-		return true;
-	}
-	
-	
-	
-	/**
-	 * Returns the Apache error.log
-	 * 
-	 * @return string|0|1, whereas string = contents of file, 0 = not configured, 1 = access denied
-	 */
-	public function showErrorlog()
-	{
-		$sErrorlog = oxRegistry::getConfig()->getConfigParam('imva_devguide_pathtoerrorlog');
-		
-		if (($sErrorlog != '') and (@filesize($sErrorlog) > 0))
-		{
-			$oLogfile = fopen($sErrorlog, 'r');
-			$sRet = fread($oLogfile, filesize($sErrorlog));
-		}
-		elseif (!file_exists($sErrorlog))
-		{
-			$sRet = 1;
-		}
-		else
-		{
-			$sRet = 0;
-		}
-		
-		return $sRet;
+        $imva_devguide_basefnc = oxNew('base');
+        $imva_devguide_basefnc->imva_clearTemp();
+
+		// Set Success Flag
+		$this->blSuccess = true;
 	}
 }

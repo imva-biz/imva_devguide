@@ -29,15 +29,16 @@
  *
  * (EULA-13/7-OS)
  *
- * (c) 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
+ * (c) 2013-2020 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-17/3/17
- * v 0.10
- *
+ * 13/7/5-20/4/10
+ * v 2.0.0
  */
 
-class imva_devguide_clearmod extends imva_devguide_base
+namespace Imva\DevelopersGuide\Controller\Admin;
+
+class ModulesCleaner extends Base
 {
 
 	
@@ -210,14 +211,14 @@ class imva_devguide_clearmod extends imva_devguide_base
                 'aModuleFiles' => array(
                     'imva_devguide' =>
                         array(
-                            'imva_devguide_base' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_base.php',
-                            'imva_devguide_service' => 'imva.biz/imva_devguide/core/imva_devguide_service.php',
-                            'imva_devguide_basefunctions' => 'imva.biz/imva_devguide/core/imva_devguide_basefunctions.php',
-                            'imva_devguide_clearmod' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_clearmod.php',
-                            'imva_devguide_cleartemp' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_cleartemp.php',
-                            'imva_devguide_logviewer' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_logviewer.php',
-                            'imva_devguide_main' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_main.php',
-                            'imva_devguide_rebuildviews' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_rebuildviews.php',
+                            'base' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_base.php',
+                            'service' => 'imva.biz/imva_devguide/core/imva_devguide_service.php',
+                            'base' => 'imva.biz/imva_devguide/core/imva_devguide_basefunctions.php',
+                            'clearmod' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_clearmod.php',
+                            'cleartemp' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_cleartemp.php',
+                            'logviewer' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_logviewer.php',
+                            'main' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_main.php',
+                            'viewsRebuilder' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_rebuildviews.php',
                         ),
                 ),
                 'aModuleEvents' => array(),

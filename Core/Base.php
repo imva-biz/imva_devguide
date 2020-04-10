@@ -29,15 +29,16 @@
  *
  * (EULA-13/7-OS)
  *
- * (c) 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
+ * (c) 2013-2020 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 16/9/23
- * v 0.9.22
- *
+ * 16/9/23-20/4/10
+ * v 2.0.0
  */
 
-class imva_devguide_basefunctions extends oxUbase
+namespace Imva\DevelopersGuide\Core;
+
+class Base extends oxUbase
 {
 
 

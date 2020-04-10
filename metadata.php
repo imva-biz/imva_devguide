@@ -27,30 +27,29 @@
  * festgehaltenen Bedingungen. Der Bruch dieser Bedingungen kann Schadensersatzforderungen nach
  * sich ziehen.
  *
- * (EULA-13/7-OS)
+ * (EULA-13/7-OS]
  *
- * (c) 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
+ * (c] 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/2/8-17/3/18
- * v 0.10
- *
+ * 13/2/8-20/4/10
+ * v2.0.0
  */
 
-$sMetadataVersion = '1.1';
+$sMetadataVersion = '2.1';
 
 /**
  * Module information
  */
-$aModule = array(
-    'id'			=> 'imva_devguide',
-    'title'			=> array(
-        'de'	=>	'<img src="../modules/imva.biz/imva_devguide/out/img/imva-Logo-12.png" alt=".iI" title="imva.biz" />
-            Entwicklungshelfer',
-        'en'	=>	'<img src="../modules/imva.biz/imva_devguide/out/img/imva-Logo-12.png" alt=".iI" title="imva.biz" />
-            Developer&rsquo;s Guide',
-    ),
-    'description'	=> array(
+$aModule = [
+    'id'			=> 'imva.biz/developersguide',
+    'title'			=> [
+        'de'	=>	'<img src="../modules/imva.biz/developersguide/out/img/imva-Logo-12.png" alt="imva.biz-Logo" title="imva.biz" />
+            [In Bearbeitung] Entwicklungshelfer',
+        'en'	=>	'<img src="../modules/imva.biz/developersguide/out/img/imva-Logo-12.png" alt="imva.biz logo" title="imva.biz" />
+            [Work In Progress] Developer&rsquo;s Guide',
+    ],
+    'description'	=> [
         'en'	=>	'<p>imva.biz Developer&rsquo;s Guide (also named <i>Entwicklungshelfer</i>, &quot;development aid worker&quot;)
             supports developers in their work on the shop by providing one-click quick
             access to often executed actions. Very useful for module and template development!<br>
@@ -65,32 +64,32 @@ $aModule = array(
             ein zus&auml;tzliches Men&uuml;. Das Modul hat keinen Einfluss auf den regul&auml;ren Shopbetrieb.<br>
             Wir empfehlen, im <b>Produktivbetrieb</b> zumindest die R&uuml;ckfragen aktiviert zu lassen, besser jedoch, das Modul nicht
             zu aktivieren.</p>',
-    ),
+    ],
     'thumbnail'		=> 'out/img/imva-Logo-90.png',
-    'version'		=> '0.10',
+    'version'		=> '2.0.0',
     'author'		=> 'Johannes Ackermann',
     'url'			=> 'https://imva.biz',
     'email' 		=> 'kontakt@imva.biz',
-    'files'		=> array(
+    'files'		=> [
         // functions used by all module classes
-        'imva_devguide_base'				=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_base.php',
-        'imva_devguide_service'				=>	'imva.biz/imva_devguide/core/imva_devguide_service.php',
-        'imva_devguide_basefunctions'		=>	'imva.biz/imva_devguide/core/imva_devguide_basefunctions.php',
+        'base' =>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_base.php',
+        'service' =>	'imva.biz/imva_devguide/core/imva_devguide_service.php',
+        'base' =>	'imva.biz/imva_devguide/core/imva_devguide_basefunctions.php',
 
         // controllers
-        'imva_devguide_clearmod'			=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_clearmod.php',
-        'imva_devguide_cleartemp'			=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_cleartemp.php',
-        'imva_devguide_logviewer'			=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_logviewer.php',
-        'imva_devguide_main'				=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_main.php',
-        'imva_devguide_rebuildviews'		=>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_rebuildviews.php',
-    ),
-    'extend'		=> array(
+        'clearmod' =>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_clearmod.php',
+        'cleartemp' =>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_cleartemp.php',
+        'logviewer' =>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_logviewer.php',
+        'main' =>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_main.php',
+        'viewsRebuilder' =>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_rebuildviews.php',
+    ],
+    'extend'		=> [
         // patch
         'oxviewconfig'						=>	'imva.biz/imva_devguide/core/imva_devguide_oxviewconfig',
-    ),
-    'events'       => array(
-    ),
-    'templates'	=>	array(
+    ],
+    'events'       => [
+    ],
+    'templates'	=>	[
         // views w/ controllers
         'imva_devguide_clearmod.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_clearmod.tpl',
         'imva_devguide_cleartemp.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_cleartemp.tpl',
@@ -101,113 +100,113 @@ $aModule = array(
         // snippets
         'imva_devguide_cancelled.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/inc/imva_devguide_cancelled.tpl',
         'imva_devguide_redo.tpl'			=>	'imva.biz/imva_devguide/views/admin/tpl/inc/imva_devguide_redo.tpl',
-    ),
-    'blocks'	=>	array(
-        array(
+    ],
+    'blocks'	=>	[
+        [
             'template' => 'imva_devguide_logviewer.tpl',
             'block'    => 'imva_devguide_header',
             'file'     => 'views/blocks/imva_devguide_header.tpl'
-        ),
-        array(
+        ],
+        [
             'template' => 'imva_devguide_logviewer.tpl',
             'block'    => 'imva_devguide_footer',
             'file'     => 'views/blocks/imva_devguide_footer.tpl'
-        ),
+        ],
 
-        array(
+        [
             'template' => 'imva_devguide_main.tpl',
             'block'    => 'imva_devguide_header',
             'file'     => 'views/blocks/imva_devguide_header.tpl'
-        ),
-        array(
+        ],
+        [
             'template' => 'imva_devguide_main.tpl',
             'block'    => 'imva_devguide_footer',
             'file'     => 'views/blocks/imva_devguide_footer.tpl'
-        ),
+        ],
 
-        array(
+        [
             'template' => 'imva_devguide_clearmod.tpl',
             'block'    => 'imva_devguide_header',
             'file'     => 'views/blocks/imva_devguide_header.tpl'
-        ),
-        array(
+        ],
+        [
             'template' => 'imva_devguide_clearmod.tpl',
             'block'    => 'imva_devguide_footer',
             'file'     => 'views/blocks/imva_devguide_footer.tpl'
-        ),
-        array(
+        ],
+        [
             'template' => 'imva_devguide_clearmod.tpl',
             'block'    => 'imva_devguide_confirm',
             'file'     => 'views/blocks/imva_devguide_dialogue.tpl'
-        ),
+        ],
 
-        array(
+        [
             'template' => 'imva_devguide_cleartemp.tpl',
             'block'    => 'imva_devguide_header',
             'file'     => 'views/blocks/imva_devguide_header.tpl'
-        ),
-        array(
+        ],
+        [
             'template' => 'imva_devguide_cleartemp.tpl',
             'block'    => 'imva_devguide_footer',
             'file'     => 'views/blocks/imva_devguide_footer.tpl'
-        ),
-        array(
+        ],
+        [
             'template' => 'imva_devguide_cleartemp.tpl',
             'block'    => 'imva_devguide_confirm',
             'file'     => 'views/blocks/imva_devguide_dialogue.tpl'
-        ),
+        ],
 
-        array(
+        [
             'template' => 'imva_devguide_rebuildviews.tpl',
             'block'    => 'imva_devguide_header',
             'file'     => 'views/blocks/imva_devguide_header.tpl'
-        ),
-        array(
+        ],
+        [
             'template' => 'imva_devguide_rebuildviews.tpl',
             'block'    => 'imva_devguide_footer',
             'file'     => 'views/blocks/imva_devguide_footer.tpl'
-        ),
-        array(
+        ],
+        [
             'template' => 'imva_devguide_rebuildviews.tpl',
             'block'    => 'imva_devguide_confirm',
             'file'     => 'views/blocks/imva_devguide_dialogue.tpl'
-        ),
-    ),
-    'settings'	=>	array(
-        array(
+        ],
+    ],
+    'settings'	=>	[
+        [
             'group'			=>	'imva_devguide_behaviour',
             'name'			=>	'imva_devguide_requestonaction',
             'type'			=>	'bool',
             'value'			=>	true,
             'position'		=>	1,
-        ),
-        array(
+        ],
+        [
             'group'			=>	'imva_devguide_behaviour',
             'name'			=>	'imva_devguide_enableautorevive',
             'type'			=>	'bool',
             'value'			=>	true,
             'position'		=>	2,
-        ),
-        array(
+        ],
+        [
             'group'			=>	'imva_devguide_behaviour',
             'name'			=>	'imva_devguide_revive3rdparty',
             'type'			=>	'bool',
             'value'			=>	false,
             'position'		=>	3,
-        ),
-        array(
+        ],
+        [
             'group'			=>	'imva_devguide_behaviour',
             'name'			=>	'imva_devguide_3rdpartymdllist',
             'type'			=>	'arr',
             'value'			=>	null,
             'position'		=>	4,
-        ),
-        array(
+        ],
+        [
             'group'			=>	'imva_devguide_settings',
             'name'			=>	'imva_devguide_pathtoerrorlog',
             'type'			=>	'str',
             'value'			=>	'/var/log/apache2/error.log',
             'position'		=>	1,
-        ),
-    ),
-);
+        ],
+    ],
+];

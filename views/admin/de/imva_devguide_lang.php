@@ -61,10 +61,10 @@ $aLang = array(
 	
 		// Titles
 		'imva_devguide'									=>	'Entwicklungshelfer',
-		'imva_devguide_cleartemp'						=>	'Cache leeren',
-		'imva_devguide_rebuildviews'					=>	'Views neu aufbauen',
-		'imva_devguide_clearmod'						=>	'Module zur&uuml;cksetzen',
-		'imva_devguide_logviewer'						=>	'Logfiles ansehen',
+		'cleartemp' =>	'Cache leeren',
+		'viewsRebuilder' =>	'Views neu aufbauen',
+		'clearmod' =>	'Module zur&uuml;cksetzen',
+		'logviewer' =>	'Logfiles ansehen',
 		
 		// Configuration
 		'SHOP_MODULE_GROUP_imva_devguide_behaviour'		=>	'Verhalten',

@@ -32,24 +32,70 @@
  * (c) 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-15/1/20
- * v 0.9.5.1
- *
+ * 13/7/5-20/4/10
+ * v 2.0.0
  */
 
-class imva_devguide_main extends imva_devguide_base
+namespace Imva\DevelopersGuide\Controller\Admin;
+
+class Base extends oxAdminView
 {
+	public $sShopId			=	null;								// The shop ID. Prepared for usage in EE
+	public $blSuccess		=	false;								// Successful?
+	public $blFail			=	false;								// Failure
+	public $blAllcleared	=	false;								// Status
+	private $_oServ			=	null;								// Devguide Service
+	
+	
+	
+	/**
+	 * Init
+	 *
+	 * Provice Service.
+	 * @param null
+	 * @return null
+	 */
+	public function init()
+	{
+		parent::init();
+		$this->sShopId = oxRegistry::getConfig()->getShopId();	// Fill (sub)-shop ID
+	}
+
+
+
+    /**
+     * Devguide Service getter.
+     *
+     * @return service
+     */
+	public function getDevguideService()
+    {
+        if ($this->_oServ === null)
+        {
+            $this->_oServ = oxNew('service');
+        }
+        return $this->_oServ;
+    }
 	
 	
 	
 	/**
 	 * Render
+	 * 
 	 * @return string
-	 */	
+	 */
 	public function render()
 	{
-		parent::render();		
+		parent::render();
+
+		if ($this->blSuccess and $this->blFail)
+		{
+			echo 'ERROR_PARADOX';
+		}
 		
-		return 'imva_devguide_main.tpl';
+		if ($this->getDevguideService()->getP('blCancelled'))
+		{
+			$this->blCancelled = true;
+		}
 	}
 }

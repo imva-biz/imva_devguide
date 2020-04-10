@@ -1,20 +1,13 @@
-# imva_devguide
-==============
+# imva.biz: Developer's Guide (Work In Progress)
+
 ## Developer's Guide // "Entwicklungshelfer" for OXID eShop Developers
 
-*	Important note! If you already use an older version of the module, please read the (really short) update section.
-*	Installation instructions below.
-
-
+Please note that this extension is under development and will, probably not work!
 
 ## Purpose
 
 This module provides quick-access to functionalities often required by module and theme developers. Please
 familiarise with the configuration before using the module.
-
-
-
-
 
 ## Update
 
@@ -31,28 +24,18 @@ familiarise with the configuration before using the module.
 
 The available features will appear in the admin menu on the left hand side. If they don't appear, log in again.
 
-
-
 ## Description and user manual
 Available at http://www.ackis-oxid.de/2013/entwicklungshelfer-fr-oxid-entwickler-developers-guide/ .
 
-
-
 ## Features
-
-
 
 ### Clear cache
 
 *	Clears the compile directory of the shop, database file cache and compiled smarty templates.
 
-
-
 ### Rebuild views
 
 *	Updates the database views. This is necessary after modifying the database layout.
-
-
 
 ### Reset modules
 
@@ -62,11 +45,6 @@ Available at http://www.ackis-oxid.de/2013/entwicklungshelfer-fr-oxid-entwickler
 *	Contains an auto-revive feature to automatically enable this module again. Recommended.
 *	Can also re-activate 3rd party modules. Use this feature with precaution!
 
-
-
-## Updating from versions below 0.7.x
-If problems occur, please follow the steps described in http://www.ackis-oxid.de/2013/module-kann-nicht-aktiviert-werden-in-oxid-eshop-beheben-modulkonfiguration-zurcksetzen/ .
-
 ## System Requirements
-*	Created for OXID eShop 4.9 and higher. (CE, PE, EE)
-*	Might also work in OXID eShop 4.7 and 4.8.
+*	Created for OXID eShop 6.0 and higher. (CE, PE, EE)
+*   For legacy shops, please use what's currently on the master branch.
