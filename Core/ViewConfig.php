@@ -38,7 +38,7 @@
 
 namespace Imva\DevelopersGuide\Core;
 
-class ViewConfig extends imva_devguide_oxviewconfig_parent
+class ViewConfig extends ViewConfig_parent
 {
     /**
      * Class not required since 0.9.21. Remains here for later use.

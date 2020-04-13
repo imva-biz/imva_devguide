@@ -45,9 +45,9 @@ $aModule = [
     'id'			=> 'imva.biz/developersguide',
     'title'			=> [
         'de'	=>	'<img src="../modules/imva.biz/developersguide/out/img/imva-Logo-12.png" alt="imva.biz-Logo" title="imva.biz" />
-            [In Bearbeitung] Entwicklungshelfer',
+            Entwicklungshelfer',
         'en'	=>	'<img src="../modules/imva.biz/developersguide/out/img/imva-Logo-12.png" alt="imva.biz logo" title="imva.biz" />
-            [Work In Progress] Developer&rsquo;s Guide',
+            Developer&rsquo;s Guide',
     ],
     'description'	=> [
         'en'	=>	'<p>imva.biz Developer&rsquo;s Guide (also named <i>Entwicklungshelfer</i>, &quot;development aid worker&quot;)
@@ -70,106 +70,101 @@ $aModule = [
     'author'		=> 'Johannes Ackermann',
     'url'			=> 'https://imva.biz',
     'email' 		=> 'kontakt@imva.biz',
-    'files'		=> [
-        // functions used by all module classes
-        'base' =>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_base.php',
-        'service' =>	'imva.biz/imva_devguide/core/imva_devguide_service.php',
-        'base' =>	'imva.biz/imva_devguide/core/imva_devguide_basefunctions.php',
-
-        // controllers
-        'clearmod' =>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_clearmod.php',
-        'cleartemp' =>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_cleartemp.php',
-        'logviewer' =>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_logviewer.php',
-        'main' =>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_main.php',
-        'viewsRebuilder' =>	'imva.biz/imva_devguide/controllers/admin/imva_devguide_rebuildviews.php',
-    ],
     'extend'		=> [
         // patch
-        'oxviewconfig'						=>	'imva.biz/imva_devguide/core/imva_devguide_oxviewconfig',
+        \OxidEsales\Eshop\Core\ViewConfig::class
+            =>	\Imva\DevelopersGuide\Core\ViewConfig::class,
+    ],
+    'controllers'   =>  [
+        'imva_devguide_main'            =>  \Imva\DevelopersGuide\Controller\Admin\Main::class,
+        'imva_devguide_cleartemp'       =>  \Imva\DevelopersGuide\Controller\Admin\CompiledirCleaner::class,
+        'imva_devguide_rebuildviews'    =>  \Imva\DevelopersGuide\Controller\Admin\ViewsRebuilder::class,
+        'imva_devguide_clearmod'        =>  \Imva\DevelopersGuide\Controller\Admin\ModulesCleaner::class,
+        'imva_devguide_logviewer'       =>  \Imva\DevelopersGuide\Controller\Admin\Logviewer::class,
     ],
     'events'       => [
     ],
     'templates'	=>	[
         // views w/ controllers
-        'imva_devguide_clearmod.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_clearmod.tpl',
-        'imva_devguide_cleartemp.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_cleartemp.tpl',
-        'imva_devguide_logviewer.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_logviewer.tpl',
-        'imva_devguide_main.tpl'			=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_main.tpl',
-        'imva_devguide_rebuildviews.tpl'	=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_rebuildviews.tpl',
+        'imva_devguide_clearmod.tpl'		=>	'imva.biz/developersguide/View/Admin/tpl/imva_devguide_clearmod.tpl',
+        'imva_devguide_cleartemp.tpl'		=>	'imva.biz/developersguide/View/Admin/tpl/imva_devguide_cleartemp.tpl',
+        'imva_devguide_logviewer.tpl'		=>	'imva.biz/developersguide/View/Admin/tpl/imva_devguide_logviewer.tpl',
+        'imva_devguide_main.tpl'			=>	'imva.biz/developersguide/View/Admin/tpl/imva_devguide_main.tpl',
+        'imva_devguide_rebuildviews.tpl'	=>	'imva.biz/developersguide/View/Admin/tpl/imva_devguide_rebuildviews.tpl',
 
         // snippets
-        'imva_devguide_cancelled.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/inc/imva_devguide_cancelled.tpl',
-        'imva_devguide_redo.tpl'			=>	'imva.biz/imva_devguide/views/admin/tpl/inc/imva_devguide_redo.tpl',
+        'imva_devguide_cancelled.tpl'		=>	'imva.biz/developersguide/View/Admin/tpl/inc/imva_devguide_cancelled.tpl',
+        'imva_devguide_redo.tpl'			=>	'imva.biz/developersguide/View/Admin/tpl/inc/imva_devguide_redo.tpl',
     ],
     'blocks'	=>	[
         [
             'template' => 'imva_devguide_logviewer.tpl',
             'block'    => 'imva_devguide_header',
-            'file'     => 'views/blocks/imva_devguide_header.tpl'
+            'file'     => 'View/blocks/imva_devguide_header.tpl'
         ],
         [
             'template' => 'imva_devguide_logviewer.tpl',
             'block'    => 'imva_devguide_footer',
-            'file'     => 'views/blocks/imva_devguide_footer.tpl'
+            'file'     => 'View/blocks/imva_devguide_footer.tpl'
         ],
 
         [
             'template' => 'imva_devguide_main.tpl',
             'block'    => 'imva_devguide_header',
-            'file'     => 'views/blocks/imva_devguide_header.tpl'
+            'file'     => 'View/blocks/imva_devguide_header.tpl'
         ],
         [
             'template' => 'imva_devguide_main.tpl',
             'block'    => 'imva_devguide_footer',
-            'file'     => 'views/blocks/imva_devguide_footer.tpl'
+            'file'     => 'View/blocks/imva_devguide_footer.tpl'
         ],
 
         [
             'template' => 'imva_devguide_clearmod.tpl',
             'block'    => 'imva_devguide_header',
-            'file'     => 'views/blocks/imva_devguide_header.tpl'
+            'file'     => 'View/blocks/imva_devguide_header.tpl'
         ],
         [
             'template' => 'imva_devguide_clearmod.tpl',
             'block'    => 'imva_devguide_footer',
-            'file'     => 'views/blocks/imva_devguide_footer.tpl'
+            'file'     => 'View/blocks/imva_devguide_footer.tpl'
         ],
         [
             'template' => 'imva_devguide_clearmod.tpl',
             'block'    => 'imva_devguide_confirm',
-            'file'     => 'views/blocks/imva_devguide_dialogue.tpl'
+            'file'     => 'View/blocks/imva_devguide_dialogue.tpl'
         ],
 
         [
             'template' => 'imva_devguide_cleartemp.tpl',
             'block'    => 'imva_devguide_header',
-            'file'     => 'views/blocks/imva_devguide_header.tpl'
+            'file'     => 'View/blocks/imva_devguide_header.tpl'
         ],
         [
             'template' => 'imva_devguide_cleartemp.tpl',
             'block'    => 'imva_devguide_footer',
-            'file'     => 'views/blocks/imva_devguide_footer.tpl'
+            'file'     => 'View/blocks/imva_devguide_footer.tpl'
         ],
         [
             'template' => 'imva_devguide_cleartemp.tpl',
             'block'    => 'imva_devguide_confirm',
-            'file'     => 'views/blocks/imva_devguide_dialogue.tpl'
+            'file'     => 'View/blocks/imva_devguide_dialogue.tpl'
         ],
 
         [
             'template' => 'imva_devguide_rebuildviews.tpl',
             'block'    => 'imva_devguide_header',
-            'file'     => 'views/blocks/imva_devguide_header.tpl'
+            'file'     => 'View/blocks/imva_devguide_header.tpl'
         ],
         [
             'template' => 'imva_devguide_rebuildviews.tpl',
             'block'    => 'imva_devguide_footer',
-            'file'     => 'views/blocks/imva_devguide_footer.tpl'
+            'file'     => 'View/blocks/imva_devguide_footer.tpl'
         ],
         [
             'template' => 'imva_devguide_rebuildviews.tpl',
             'block'    => 'imva_devguide_confirm',
-            'file'     => 'views/blocks/imva_devguide_dialogue.tpl'
+            'file'     => 'View/blocks/imva_devguide_dialogue.tpl'
         ],
     ],
     'settings'	=>	[

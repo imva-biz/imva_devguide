@@ -2,7 +2,7 @@
 
 <h1>[{oxmultilang ident='IMVA_DEVGUIDE_TITLE'}]</h1>
 
-<h2>EXCEPTION_LOG.txt</h2>
+<h2>oxideshop.log</h2>
 [{if $oView->showExceptionlog()}]
 	<a class="btn green" style="position: relative; top: -30px; left: 220px;"
 		href="[{$oViewConf->getSelfLink()}]cl=[{$DevguideService->getCurrentCl()}]&amp;blconfirm=true">

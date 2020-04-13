@@ -32,17 +32,17 @@
  * (c) 2013-2020 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 15/1/25-20/4/10
+ * 15/1/25-20/4/13
  * v 2.0.0
  */
 
 namespace Imva\DevelopersGuide\Controller\Admin;
 
-class LogViewer extends Base
+use \OxidEsales\Eshop\Core\Registry;
+
+class LogViewer extends BaseController
 {
-	
-	
-	
+
 	/**
 	 * Render
 	 *
@@ -74,7 +74,7 @@ class LogViewer extends Base
 	 */
 	public function showExceptionlog()
 	{
-		$sLogfile = oxRegistry::getConfig()->getConfigParam('sShopDir').'log/EXCEPTION_LOG.txt';
+		$sLogfile = Registry::getConfig()->getConfigParam('sShopDir').'log/oxideshop.log';
 		
 		if (filesize($sLogfile) > 0)
 		{
@@ -98,7 +98,7 @@ class LogViewer extends Base
 	 */
 	private function _clearLogfile()
 	{
-		$sLogfile = oxRegistry::getConfig()->getConfigParam('sShopDir').'log/EXCEPTION_LOG.txt';
+		$sLogfile = Registry::getConfig()->getConfigParam('sShopDir').'log/oxideshop.log';
 		
 		$oLogfile = fopen($sLogfile, 'w');
 		@file_put_contents($oLogfile, '');
@@ -115,7 +115,7 @@ class LogViewer extends Base
 	 */
 	public function showErrorlog()
 	{
-		$sErrorlog = oxRegistry::getConfig()->getConfigParam('imva_devguide_pathtoerrorlog');
+		$sErrorlog = Registry::getConfig()->getConfigParam('imva_devguide_pathtoerrorlog');
 		
 		if (($sErrorlog != '') and (@filesize($sErrorlog) > 0))
 		{

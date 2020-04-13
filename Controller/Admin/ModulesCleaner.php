@@ -38,16 +38,14 @@
 
 namespace Imva\DevelopersGuide\Controller\Admin;
 
-class ModulesCleaner extends Base
-{
+use \OxidEsales\Eshop\Core\Registry;
 
-	
+class ModulesCleaner extends BaseController
+{
 
 	public $thirdPartyRevive		=	false;
 	public $aRevived3rdPartyModules	=	null;
-	
-	
-	
+
 	/**
 	 * Init
 	 * 
@@ -83,9 +81,7 @@ class ModulesCleaner extends Base
 			}
 		}
 	}
-	
-	
-	
+
 	/**
 	 * Render
 	 * 
@@ -96,9 +92,7 @@ class ModulesCleaner extends Base
 		parent::render();		
 		return 'imva_devguide_clearmod.tpl';
 	}
-	
-	
-	
+
 	/**
 	 * Generates an unique identifier for database entries.
 	 * 
@@ -109,9 +103,7 @@ class ModulesCleaner extends Base
 	{
 		return oxUtilsObject::getInstance()->generateUId();
 	}
-	
-	
-	
+
 	/**
 	 * Clear module cache
 	 * Cleans all module configuration entries from the database.
@@ -172,19 +164,19 @@ class ModulesCleaner extends Base
             $Db->startTransaction();
             $restoreBlocks = "
                 REPLACE INTO `oxtplblocks` (`OXID`, `OXACTIVE`, `OXSHOPID`, `OXTEMPLATE`, `OXBLOCKNAME`, `OXPOS`, `OXFILE`, `OXMODULE`) VALUES
-                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_confirm',	1,	'views/blocks/imva_devguide_dialogue.tpl',	'imva_devguide'),
-                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_footer',	1,	'views/blocks/imva_devguide_footer.tpl',	'imva_devguide'),
-                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_header',	1,	'views/blocks/imva_devguide_header.tpl',	'imva_devguide'),
-                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_confirm',	1,	'views/blocks/imva_devguide_dialogue.tpl',	'imva_devguide'),
-                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_footer',	1,	'views/blocks/imva_devguide_footer.tpl',	'imva_devguide'),
-                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_header',	1,	'views/blocks/imva_devguide_header.tpl',	'imva_devguide'),
-                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_confirm',	1,	'views/blocks/imva_devguide_dialogue.tpl',	'imva_devguide'),
-                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_footer',	1,	'views/blocks/imva_devguide_footer.tpl',	'imva_devguide'),
-                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_header',	1,	'views/blocks/imva_devguide_header.tpl',	'imva_devguide'),
-                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_main.tpl', 'imva_devguide_footer',	1,	'views/blocks/imva_devguide_footer.tpl',	'imva_devguide'),
-                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_main.tpl', 'imva_devguide_header',	1,	'views/blocks/imva_devguide_header.tpl',	'imva_devguide'),
-                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_logviewer.tpl', 'imva_devguide_footer',	1,	'views/blocks/imva_devguide_footer.tpl',	'imva_devguide'),
-                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_logviewer.tpl', 'imva_devguide_header',	1,	'views/blocks/imva_devguide_header.tpl',	'imva_devguide');
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_confirm',	1,	'View/Block/imva_devguide_dialogue.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_footer',	1,	'View/Block/imva_devguide_footer.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_rebuildviews.tpl', 'imva_devguide_header',	1,	'View/Block/imva_devguide_header.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_confirm',	1,	'View/Block/imva_devguide_dialogue.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_footer',	1,	'View/Block/imva_devguide_footer.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_cleartemp.tpl', 'imva_devguide_header',	1,	'View/Block/imva_devguide_header.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_confirm',	1,	'View/Block/imva_devguide_dialogue.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_footer',	1,	'View/Block/imva_devguide_footer.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_clearmod.tpl', 'imva_devguide_header',	1,	'View/Block/imva_devguide_header.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_main.tpl', 'imva_devguide_footer',	1,	'View/Block/imva_devguide_footer.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_main.tpl', 'imva_devguide_header',	1,	'vView/Block/imva_devguide_header.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_logviewer.tpl', 'imva_devguide_footer',	1,	'View/Block/imva_devguide_footer.tpl',	'imva_devguide'),
+                ('".$this->genId()."', 1, '".$sShopId."', 'imva_devguide_logviewer.tpl', 'imva_devguide_header',	1,	'View/Block/imva_devguide_header.tpl',	'imva_devguide');
             ";
             
 
@@ -198,27 +190,28 @@ class ModulesCleaner extends Base
                 ),
                 'aModuleTemplates' => array(
                     'imva_devguide' => array(
-                        'imva_devguide_clearmod.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_clearmod.tpl',
-                        'imva_devguide_cleartemp.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_cleartemp.tpl',
-                        'imva_devguide_logviewer.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_logviewer.tpl',
-                        'imva_devguide_main.tpl'			=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_main.tpl',
-                        'imva_devguide_rebuildviews.tpl'	=>	'imva.biz/imva_devguide/views/admin/tpl/imva_devguide_rebuildviews.tpl',
-                        'imva_devguide_cancelled.tpl'		=>	'imva.biz/imva_devguide/views/admin/tpl/inc/imva_devguide_cancelled.tpl',
-                        'imva_devguide_redo.tpl'			=>	'imva.biz/imva_devguide/views/admin/tpl/inc/imva_devguide_redo.tpl',
+                        'imva_devguide_clearmod.tpl'		=>	'imva.biz/developersguide/View/Admin/tpl/imva_devguide_clearmod.tpl',
+                        'imva_devguide_cleartemp.tpl'		=>	'imva.biz/developersguide/View/Admin/tpl/imva_devguide_cleartemp.tpl',
+                        'imva_devguide_logviewer.tpl'		=>	'imva.biz/developersguide/View/Admin/tpl/imva_devguide_logviewer.tpl',
+                        'imva_devguide_main.tpl'			=>	'imva.biz/developersguide/View/Admin/tpl/imva_devguide_main.tpl',
+                        'imva_devguide_rebuildviews.tpl'	=>	'imva.biz/developersguide/View/Admin/tpl/imva_devguide_rebuildviews.tpl',
+                        'imva_devguide_cancelled.tpl'		=>	'imva.biz/developersguide/View/Admin/tpl/inc/imva_devguide_cancelled.tpl',
+                        'imva_devguide_redo.tpl'			=>	'imva.biz/developersguide/View/Admin/tpl/inc/imva_devguide_redo.tpl',
                     ),
                 ),
                 'aDisabledModules' => array(),
                 'aModuleFiles' => array(
                     'imva_devguide' =>
+                        //@Todo
                         array(
-                            'base' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_base.php',
-                            'service' => 'imva.biz/imva_devguide/core/imva_devguide_service.php',
-                            'base' => 'imva.biz/imva_devguide/core/imva_devguide_basefunctions.php',
-                            'clearmod' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_clearmod.php',
-                            'cleartemp' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_cleartemp.php',
-                            'logviewer' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_logviewer.php',
-                            'main' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_main.php',
-                            'viewsRebuilder' => 'imva.biz/imva_devguide/controllers/admin/imva_devguide_rebuildviews.php',
+                            'base' => 'imva.biz/developersguide/Controllers/Admin/imva_devguide_base.php',
+                            'service' => 'imva.biz/developersguide/core/imva_devguide_service.php',
+                            'base' => 'imva.biz/developersguide/core/imva_devguide_basefunctions.php',
+                            'clearmod' => 'imva.biz/developersguide/Controllers/Admin/imva_devguide_clearmod.php',
+                            'cleartemp' => 'imva.biz/developersguide/Controllers/Admin/imva_devguide_cleartemp.php',
+                            'logviewer' => 'imva.biz/developersguide/Controllers/Admin/imva_devguide_logviewer.php',
+                            'main' => 'imva.biz/developersguide/Controllers/Admin/imva_devguide_main.php',
+                            'viewsRebuilder' => 'imva.biz/developersguide/Controllers/Admin/imva_devguide_rebuildviews.php',
                         ),
                 ),
                 'aModuleEvents' => array(),
@@ -226,11 +219,11 @@ class ModulesCleaner extends Base
                     'imva_devguide' => '1.0.0',
                 ),
                 'aModules' => array(
-                    'oxviewconfig' => 'imva.biz/imva_devguide/core/imva_devguide_oxviewconfig',
+                    'oxviewconfig' => 'imva.biz/developersguide/core/imva_devguide_oxviewconfig',
                 ),
             );
 
-            $shopId = oxRegistry::getConfig()->getActiveShop()->getId();
+            $shopId = Registry::getConfig()->getActiveShop()->getId();
 
             foreach ($DevguideConfigurations as $DevguideConfig => $item) {
                 $SqlStatement = "
@@ -241,7 +234,7 @@ class ModulesCleaner extends Base
                         '".$DevguideConfig."',
                         'aarr',
                         ENCODE('".addslashes(serialize($DevguideConfigurations[$DevguideConfig]))."',
-                        '".oxRegistry::getConfig()->sConfigKey."')
+                        '".Registry::getConfig()->getConfk."')
                     );
                 ";
 
@@ -268,9 +261,9 @@ class ModulesCleaner extends Base
 	    if ($this->getDevguideService()->revive3rdParty()){
 
             // @ToDo: Not helpful when attempting to activate 3rd party modules
-            $this->_clearModuleCache(oxRegistry::getConfig()->getActiveShop()->getId());
+            $this->_clearModuleCache(Registry::getConfig()->getActiveShop()->getId());
 
-	    	$aReviveThese = oxRegistry::getConfig()->getConfigParam('imva_devguide_3rdpartymdllist');
+	    	$aReviveThese = Registry::getConfig()->getConfigParam('imva_devguide_3rdpartymdllist');
 
 	    	foreach ($aReviveThese as $sModuleID){
 	    		$this->_activateModule($sModuleID);
@@ -322,7 +315,7 @@ class ModulesCleaner extends Base
             'amodules'
         );
 
-		$compileDir = oxRegistry::getConfig()->getConfigParam('sCompileDir');
+		$compileDir = Registry::getConfig()->getConfigParam('sCompileDir');
 		
 		foreach ($aFileSuffixes as $sFileSuffix){
 			$sFileName = 'config.'.$this->sShopId.'.'.$sFileSuffix.'.txt';	// Naming shape of cache files.

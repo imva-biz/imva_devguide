@@ -32,16 +32,14 @@
  * (c) 2013-2020 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 16/9/23-20/4/10
+ * 16/9/23-20/4/13
  * v 2.0.0
  */
 
 namespace Imva\DevelopersGuide\Core;
 
-class Base extends oxUbase
+class Base
 {
-
-
 
     /**
      * Delete contents from the Compile Dir.
@@ -52,7 +50,7 @@ class Base extends oxUbase
     public function imva_clearTemp()
     {
         // Compile dir
-        $tempdirPath = oxRegistry::getConfig()->getConfigParam('sCompileDir');
+        $tempdirPath = \OxidEsales\Eshop\Core\Registry::getConfig()->getConfigParam('sCompileDir');
 
         // tmp
         if (!$this->_clearDir($tempdirPath))
@@ -86,8 +84,6 @@ class Base extends oxUbase
         // Return
         return true;
     }
-
-
 
     /**
      * Clean directory.

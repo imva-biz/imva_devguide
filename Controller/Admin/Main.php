@@ -32,18 +32,15 @@
  * (c) 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-20/4/10
+ * 13/7/5-20/4/13
  * v 2.0.0
- *
  */
 
 namespace Imva\DevelopersGuide\Controller\Admin;
 
-class main extends base
+class Main extends BaseController
 {
-	
-	
-	
+
 	/**
 	 * Render
 	 * @return string

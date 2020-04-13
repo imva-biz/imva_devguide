@@ -32,20 +32,21 @@
  * (c) 2013-2016 imva.biz, Johannes Ackermann, ja@imva.biz
  * @author Johannes Ackermann
  *
- * 13/7/5-20/4/10
+ * 13/7/5-20/4/13
  * v 2.0.0
  */
 
 namespace Imva\DevelopersGuide\Core;
 
-class service extends oxbase
+use OxidEsales\Eshop\Core\DatabaseProvider;
+use \OxidEsales\Eshop\Core\Registry;
+
+class Service extends \OxidEsales\Eshop\Core\Model\BaseModel
 {
 	public $sModuleId		=	null;							// Module ID, for later usage in imva_services
 	public $sModuleVersion	=	null;							// Module Version (for template)
 	public $oThisModule		=	null;							// oxModule instance for this module
-	
-	
-	
+
 	/**
 	 * Construct
 	 * 
@@ -56,7 +57,7 @@ class service extends oxbase
 	{
 		parent::__construct();
 		
-		$this->sModuleId = 'imva_devguide';
+		$this->sModuleId = 'imva.biz/developersguide';
 		
 		// Get the module version
 		$this->oThisModule = oxNew('oxModule');
@@ -64,8 +65,6 @@ class service extends oxbase
 		$this->sModuleVersion = $this->oThisModule->getInfo('version');
 	}
 
-	
-	
 	/**
 	 * A small configuration getter, returns the configuration value of the module setting(s).
 	 * 
@@ -74,11 +73,9 @@ class service extends oxbase
 	 */
 	public function askMe()
 	{
-		return oxRegistry::getConfig()->getConfigParam('imva_devguide_requestonaction');
+		return Registry::getConfig()->getConfigParam('imva_devguide_requestonaction');
 	}
-	
-	
-	
+
 	/**
 	 * Is auto-reactivation enabled?
 	 * 
@@ -87,10 +84,8 @@ class service extends oxbase
 	 */
 	public function isAutoRevive()
 	{
-		return oxRegistry::getConfig()->getConfigParam('imva_devguide_enableautorevive');
+		return Registry::getConfig()->getConfigParam('imva_devguide_enableautorevive');
 	}
-
-
 
     /**
      * Check whether to auto-revive of 3rd party modules
@@ -99,10 +94,8 @@ class service extends oxbase
      */
 	public function revive3rdParty()
 	{
-		return oxRegistry::getConfig()->getConfigParam('imva_devguide_revive3rdparty');
+		return Registry::getConfig()->getConfigParam('imva_devguide_revive3rdparty');
 	}
-	
-	
 	
 	/**
 	 * POST/GET parameter getter
@@ -112,10 +105,8 @@ class service extends oxbase
 	 */
 	public function getP($sString = '')
 	{
-		return oxRegistry::getConfig()->getRequestParameter($sString);
+		return Registry::getConfig()->getRequestParameter($sString);
 	}
-	
-	
 	
 	/**
 	 * Name of the current class
@@ -126,10 +117,8 @@ class service extends oxbase
 	 */
 	public function getCurrentCl()
 	{
-		return oxRegistry::getConfig()->getActiveView()->getClassName();
+		return Registry::getConfig()->getActiveView()->getClassName();
 	}
-	
-	
 	
 	/**
 	 * Determines, wheather this installation has subshops.
@@ -140,16 +129,14 @@ class service extends oxbase
 	 */
 	public function hasSubshops()
 	{
-		$iShops = oxDb::getDb()->getOne("SELECT COUNT(`OXID`) FROM `oxshops`;");
+	    $iShops = DatabaseProvider::getDb()->getOne("SELECT COUNT(`OXID`) FROM `oxshops`;");
 		if ($iShops > 1){
 			return true;
 		}
 		
 		return false;
 	}
-	
-	
-	
+
 	/**
 	 * Get hyperlinks for footer
 	 * 
